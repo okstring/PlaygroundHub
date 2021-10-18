@@ -13,5 +13,7 @@ target 'GitInsightHub' do
   pod 'NSObject+Rx'
   pod 'SnapKit'
   pod 'RxDataSources'
+  pod 'RxSwiftExt'
+  pod 'KeychainAccess'
 
 end
