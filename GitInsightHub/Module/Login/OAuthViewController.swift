@@ -23,7 +23,8 @@ class OAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setSubViews()
+        setConstraints()
     }
     
     private func setSubViews() {
