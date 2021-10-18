@@ -70,6 +70,7 @@ class OAuthViewModel: ViewModel {
 extension OAuthViewModel: ASWebAuthenticationPresentationContextProviding {
     @available(iOS 13.0, *)
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return UIApplication.shared.keyWindow!
+        let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        return window ?? ASPresentationAnchor()
     }
 }
