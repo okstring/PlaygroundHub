@@ -11,9 +11,8 @@ import RxCocoa
 import Alamofire
 
 final class Networking {
-    func get<T: Decodable>(type: T.Type,
-                           endpoint: Endpoint,
-                           needToken: Bool = false) -> Single<T> {
+    func request<T: Decodable>(type: T.Type,
+                           endpoint: Endpoint) -> Single<T> {
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
