@@ -7,17 +7,18 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import Alamofire
 
 final class NetworkManager {
     func get<T: Decodable>(type: T.Type,
                            endpoint: Endpoint,
-                           needToken: Bool = false) -> Observable<T> {
+                           needToken: Bool = false) -> Single<T> {
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
-        return Observable.create() { emitter in
+        return Single.create() { single in
             AF.request(endpoint.URL,
                        method: endpoint.httpMethod,
                        parameters: endpoint.parameters,
@@ -28,27 +29,54 @@ final class NetworkManager {
                 .responseDecodable(of: type,
                                    decoder: decoder) { (dataResponse) in
                     guard let statusCode = dataResponse.response?.statusCode else {
-                        return emitter.onError(NetworkError.internet)
+                        return single(.failure(NetworkError.internet))
                     }
                     switch statusCode {
                     case 200..<300:
                         guard let result = dataResponse.value else {
-                            return emitter.onError(NetworkError.noResult)
+                            return single(.failure(NetworkError.noResult))
                         }
-                        emitter.onNext(result)
-                        emitter.onCompleted()
+                        single(.success(result))
                     case 300..<400:
-                        emitter.onError(NetworkError.redirection)
+                        single(.failure(NetworkError.redirection))
                     case 400..<500:
-                        emitter.onError(NetworkError.notAllowed)
+                        single(.failure(NetworkError.notAllowed))
                     case 500...:
-                        emitter.onError(NetworkError.server)
+                        single(.failure(NetworkError.server))
                     default:
-                        emitter.onError(NetworkError.unknown)
+                        single(.failure(NetworkError.unknown))
                     }
                 }
             return Disposables.create()
         }
+    }
+    
+    func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?) -> Single<Token> {
+        return Single.create { single in
+            var params: Parameters = [:]
+            params["client_id"] = clientId
+            params["client_secret"] = clientSecret
+            params["code"] = code
+            params["redirect_uri"] = redirectURI
+            AF.request("https://github.com/login/oauth/access_token",
+                       method: .post,
+                       parameters: params,
+                       encoding: URLEncoding.default,
+                       headers: ["Accept": "application/json"])
+                .responseDecodable(of: Token.self, completionHandler: { response in
+                    if let error = response.error {
+                        single(.failure(error))
+                        return
+                    }
+                    if let token = response.value {
+                        single(.success(token))
+                        return
+                    }
+                    single(.failure(RxError.unknown))
+                })
+            return Disposables.create()
+        }
+        .observe(on: MainScheduler.instance)
     }
 }
 
