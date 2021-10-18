@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 enum Endpoint {
+    case createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?)
     case searchRepository(query: String, page: Int)
     case user(name: String)
     case userRepository(name: String)
@@ -20,10 +21,16 @@ enum Endpoint {
         "https://api.github.com/"
     }
     
+    var createAccessTokenURL: String {
+        "https://github.com/login/oauth/access_token"
+    }
+    
     var httpMethod: HTTPMethod {
         switch self {
         case .searchRepository, .user, .userRepository, .isStarred:
             return .get
+        case .createAccessToken:
+            return .post
         case .putStarred:
             return .put
         case .deleteStarred:
@@ -33,6 +40,8 @@ enum Endpoint {
     
     var path: String {
         switch self {
+        case .createAccessToken:
+            return ""
         case .searchRepository:
             return "search/repositories"
         case .user(let user):
@@ -55,6 +64,10 @@ enum Endpoint {
                 HTTPHeader(name: "Accept", value: "application/vnd.github.mercy-preview+json"),
                 HTTPHeader(name: "User-Agent", value: "request")
             ]
+        case .createAccessToken:
+            return [
+                HTTPHeader(name: "Accept", value: "application/json")
+            ]
         }
     }
     
@@ -64,6 +77,13 @@ enum Endpoint {
             return [
                 "q": query,
                 "page": page
+            ]
+        case .createAccessToken(let clientId, let clientSecret, let code, let redirectURI):
+            return [
+                "client_id": clientId,
+                "client_secret": clientSecret,
+                "code": code,
+                "redirect_uri": redirectURI ?? ""
             ]
         case .user, .userRepository, .isStarred, .putStarred, .deleteStarred:
             return [:]

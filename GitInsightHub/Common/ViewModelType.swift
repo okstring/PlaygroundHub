@@ -13,3 +13,13 @@ protocol ViewModelType {
 
     func transform(input: Input) -> Output
 }
+
+class ViewModel: NSObject {
+    let usecase: GithubAPI
+    let sceneCoordinator: SceneCoordinatorType
+    
+    init(usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
+        self.usecase = usecase
+        self.sceneCoordinator = sceneCoordinator
+    }
+}

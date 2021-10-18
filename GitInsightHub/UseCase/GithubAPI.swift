@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol GithubAPI {
-    func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURL: String?) -> Single<Token>
+    func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?) -> Single<Token>
 }

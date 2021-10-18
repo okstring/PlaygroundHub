@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class OAuthViewController: UIViewController {
+class OAuthViewController: UIViewController, ViewModelBindableType {
+    var viewModel: OAuthViewModel!
     
     private let loginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
@@ -23,19 +26,24 @@ class OAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSubViews()
-        setConstraints()
+        makeUI()
     }
     
-    private func setSubViews() {
+    private func makeUI() {
         view.addSubview(loginButton)
-    }
-    
-    private func setConstraints() {
+        
         loginButton.snp.makeConstraints({
             $0.width.equalTo(150)
             $0.height.equalTo(50)
             $0.center.equalToSuperview()
         })
     }
+    
+    func bindViewModel() {
+        
+        let input = OAuthViewModel.Input(oAuthLoginTrigger: loginButton.rx.tap.asDriver())
+        let output = viewModel.transform(input: input)
+        
+    }
+    
 }

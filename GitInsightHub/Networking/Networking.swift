@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-final class NetworkManager {
+final class Networking {
     func get<T: Decodable>(type: T.Type,
                            endpoint: Endpoint,
                            needToken: Bool = false) -> Single<T> {
@@ -51,18 +51,13 @@ final class NetworkManager {
         }
     }
     
-    func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?) -> Single<Token> {
+    func createAccessToken(endpoint: Endpoint) -> Single<Token> {
         return Single.create { single in
-            var params: Parameters = [:]
-            params["client_id"] = clientId
-            params["client_secret"] = clientSecret
-            params["code"] = code
-            params["redirect_uri"] = redirectURI
-            AF.request("https://github.com/login/oauth/access_token",
-                       method: .post,
-                       parameters: params,
+            AF.request(endpoint.createAccessTokenURL,
+                       method: endpoint.httpMethod,
+                       parameters: endpoint.parameters,
                        encoding: URLEncoding.default,
-                       headers: ["Accept": "application/json"])
+                       headers: endpoint.headers)
                 .responseDecodable(of: Token.self, completionHandler: { response in
                     if let error = response.error {
                         single(.failure(error))
