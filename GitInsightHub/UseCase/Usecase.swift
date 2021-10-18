@@ -19,4 +19,8 @@ class Usecase: GithubAPI {
     func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?) -> Single<Token> {
         return networking.createAccessToken(endpoint: Endpoint.createAccessToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectURI: redirectURI))
     }
+    
+    func getUser() -> Single<User> {
+        return networking.request(type: User.self, endpoint: .user)
+    }
 }

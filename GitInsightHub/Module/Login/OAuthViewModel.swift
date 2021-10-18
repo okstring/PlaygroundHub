@@ -28,6 +28,7 @@ class OAuthViewModel: ViewModel {
     private var session: ASWebAuthenticationSession?
     
     let code = PublishSubject<String>()
+    let tokenSaved = PublishSubject<Void>()
     
     func transform(input: Input) -> Output {
         
@@ -60,7 +61,18 @@ class OAuthViewModel: ViewModel {
         }.share()
         
         tokenRequest.elements().subscribe(onNext: { [weak self] (token) in
-            print(token)
+            AuthManager.setToken(token)
+            self?.tokenSaved.onNext(())
+        }).disposed(by: disposeBag)
+        
+        let requestUser = tokenSaved.flatMapLatest { _ -> Observable<RxSwift.Event<User>> in
+            self.usecase.getUser()
+                .asObservable()
+                .materialize()
+        }.share()
+        
+        requestUser.subscribe(onNext: {
+            print($0)
         }).disposed(by: disposeBag)
         
         return Output()

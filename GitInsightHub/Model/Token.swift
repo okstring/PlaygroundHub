@@ -9,12 +9,12 @@ import Foundation
 
 struct Token: Codable {
 
-    var accessToken: String?
+    var accessToken: String
     var scope: String?
     var tokenType: String?
     
     var isValid: Bool {
-        return accessToken == "" && accessToken != nil
+        return accessToken == ""
     }
     
     enum CodingKeys: String, CodingKey {

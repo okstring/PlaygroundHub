@@ -11,7 +11,7 @@ import Alamofire
 enum Endpoint {
     case createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?)
     case searchRepository(query: String, page: Int)
-    case user(name: String)
+    case user
     case userRepository(name: String)
     case isStarred(name: String, repo: String)
     case putStarred(name: String, repo: String)
@@ -44,8 +44,8 @@ enum Endpoint {
             return ""
         case .searchRepository:
             return "search/repositories"
-        case .user(let user):
-            return "users/\(user)"
+        case .user:
+            return "user"
         case .userRepository(name: let user):
             return "users/\(user)/repos"
         case .isStarred(name: let user, repo: let repository):
@@ -58,17 +58,20 @@ enum Endpoint {
     }
     
     var headers: HTTPHeaders {
+        var headers = HTTPHeaders()
+        if let token = AuthManager.shared.token {
+            headers.add(HTTPHeader(name: "Authorization", value: "token \(token.accessToken)"))
+        }
+        
         switch self {
         case .searchRepository, .user, .userRepository, .isStarred, .putStarred, .deleteStarred:
-            return [
-                HTTPHeader(name: "Accept", value: "application/vnd.github.mercy-preview+json"),
-                HTTPHeader(name: "User-Agent", value: "request")
-            ]
+            headers.add(HTTPHeader(name: "Accept", value: "application/vnd.github.mercy-preview+json"))
+            headers.add(HTTPHeader(name: "User-Agent", value: "request"))
         case .createAccessToken:
-            return [
-                HTTPHeader(name: "Accept", value: "application/json")
-            ]
+            headers.add(HTTPHeader(name: "Accept", value: "application/json"))
         }
+        
+        return headers
     }
     
     var parameters: [String: Any] {
