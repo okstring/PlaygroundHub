@@ -17,7 +17,7 @@ class ProfileViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        
+        return Output()
     }
     
 }

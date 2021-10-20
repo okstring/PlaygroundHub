@@ -15,4 +15,8 @@ class TrandViewModel: ViewModel, ViewModelType {
     struct Output {
         
     }
+    
+    func transform(input: Input) -> Output {
+        return Output()
+    }
 }

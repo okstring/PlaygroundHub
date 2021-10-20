@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class TabsViewModel: ViewModel, ViewModelType {
+    
     struct Input {
         let trigger: Observable<Void>
     }
@@ -26,9 +27,8 @@ class TabsViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        
-        let tabBarItems = Observable.zip(input.trigger, Observable.just(authorized))
-            .map({ _, authorized -> [TabBarItem] in
+        let tabBarItems = Observable.combineLatest(input.trigger, Observable.just(authorized)) { $1 }
+            .map({ authorized -> [TabBarItem] in
                 if authorized {
                     return [.trand, .profile]
                 } else {

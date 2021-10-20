@@ -68,7 +68,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
         
         
         tokenSaved.subscribe(onNext: { [weak self] in
-            self?.sceneCoordinator.
+            
         })
         
         

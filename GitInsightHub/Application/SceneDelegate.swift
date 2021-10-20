@@ -23,11 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let sceneCoordinator = SceneCoordinator(window: window!)
         
         let usecase = Usecase()
-        let oauthViewModel = OAuthViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
         
-        let oauthScene = Scene.oauth(oauthViewModel)
+        let tabsViewModel = TabsViewModel(authorized: AuthManager.shared.hasValidToken, usecase: usecase, sceneCoordinator: sceneCoordinator)
         
-        sceneCoordinator.transition(to: oauthScene, using: .root, animated: false)
+        let tabsScene = Scene.tabs(tabsViewModel)
+        
+        sceneCoordinator.transition(to: tabsScene, using: .root, animated: false)
         
     }
 }
