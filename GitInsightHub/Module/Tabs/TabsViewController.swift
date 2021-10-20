@@ -67,7 +67,7 @@ class TabsViewController: UITabBarController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        let input = TabsViewModel.Input(trigger: rx.viewWillAppear.map({ _ in  }).asObservable())
+        let input = TabsViewModel.Input(trigger: rx.viewWillAppear.mapToVoid().asObservable())
         let output = viewModel.transform(input: input)
         
         output.tabBarItems
