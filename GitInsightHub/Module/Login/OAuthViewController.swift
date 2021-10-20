@@ -43,7 +43,6 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     func bindViewModel() {
         let input = OAuthViewModel.Input(oAuthLoginTrigger: loginButton.rx.tap.asDriver())
         let output = viewModel.transform(input: input)
-        
     }
     
 }

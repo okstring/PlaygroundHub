@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import AuthenticationServices
+import Action
 
 private let loginURL = URL(string: "http://github.com/login/oauth/authorize?client_id=\(Keys.github.appID)&scope=\(Configs.App.githubScope)")!
 private let callbackURLScheme = "gitinsighthub"
@@ -67,20 +68,10 @@ class OAuthViewModel: ViewModel, ViewModelType {
         }).disposed(by: disposeBag)
         
         
-        tokenSaved.subscribe(onNext: { [weak self] in
-            
-        })
-        
-        
-//        let requestUser = tokenSaved.flatMapLatest { _ -> Observable<RxSwift.Event<User>> in
-//            self.usecase.getUser()
-//                .asObservable()
-//                .materialize()
-//        }.share()
-//
-//        requestUser.subscribe(onNext: {
-//            print($0)
-//        }).disposed(by: disposeBag)
+        tokenSaved.subscribe(onNext: {
+            let tabsViewModel = TabsViewModel(authorized: true, usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
+            self.sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
+        }).disposed(by: rx.disposeBag)
         
         return Output()
     }
