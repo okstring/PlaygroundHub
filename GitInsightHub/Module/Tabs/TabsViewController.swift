@@ -19,9 +19,10 @@ enum TabBarItem {
         switch self {
         case .trand:
             var vc = TrandViewController()
+            let nav = UINavigationController(rootViewController: vc)
             let viewModel = TrandViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
             vc.bind(viewModel: viewModel)
-            return vc
+            return nav
         case .login:
             var vc = OAuthViewController()
             let viewModel = OAuthViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
@@ -29,9 +30,10 @@ enum TabBarItem {
             return vc
         case .profile:
             var vc = ProfileViewController()
+            let nav = UINavigationController(rootViewController: vc)
             let viewModel = ProfileViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
             vc.bind(viewModel: viewModel)
-            return vc
+            return nav
         }
     }
     
