@@ -15,5 +15,6 @@ target 'GitInsightHub' do
   pod 'RxDataSources'
   pod 'RxSwiftExt'
   pod 'KeychainAccess'
+  pod 'Action'
 
 end
