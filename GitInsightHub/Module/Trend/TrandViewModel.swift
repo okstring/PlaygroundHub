@@ -7,6 +7,12 @@
 
 import Foundation
 
-class TrandViewModel: ViewModelType {
+class TrandViewModel: ViewModel, ViewModelType {
+    struct Input {
+        
+    }
     
+    struct Output {
+        
+    }
 }

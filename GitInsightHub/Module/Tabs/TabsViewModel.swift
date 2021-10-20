@@ -7,6 +7,12 @@
 
 import Foundation
 
-class TabsViewModel: ViewModelType {
+class TabsViewModel: ViewModel, ViewModelType {
+    struct Input {
+        
+    }
     
+    struct Output {
+        
+    }
 }

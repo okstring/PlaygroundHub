@@ -14,7 +14,7 @@ import AuthenticationServices
 private let loginURL = URL(string: "http://github.com/login/oauth/authorize?client_id=\(Keys.github.appID)&scope=\(Configs.App.githubScope)")!
 private let callbackURLScheme = "gitinsighthub"
 
-class OAuthViewModel: ViewModel {
+class OAuthViewModel: ViewModel, ViewModelType {
     let disposeBag = DisposeBag()
     
     struct Input {
@@ -22,7 +22,7 @@ class OAuthViewModel: ViewModel {
     }
     
     struct Output {
-        //        let oAuthLoginTrigger: Driver<Void>
+        
     }
     
     private var session: ASWebAuthenticationSession?
@@ -52,6 +52,7 @@ class OAuthViewModel: ViewModel {
         let tokenRequest = code.flatMapLatest { (code) -> Observable<RxSwift.Event<Token>> in
             let clientId = Keys.github.appID
             let clientSecret = Keys.github.apiKey
+            
             return self.usecase.createAccessToken(clientId: clientId,
                                                   clientSecret: clientSecret,
                                                   code: code,
@@ -65,15 +66,21 @@ class OAuthViewModel: ViewModel {
             self?.tokenSaved.onNext(())
         }).disposed(by: disposeBag)
         
-        let requestUser = tokenSaved.flatMapLatest { _ -> Observable<RxSwift.Event<User>> in
-            self.usecase.getUser()
-                .asObservable()
-                .materialize()
-        }.share()
         
-        requestUser.subscribe(onNext: {
-            print($0)
-        }).disposed(by: disposeBag)
+        tokenSaved.subscribe(onNext: { [weak self] in
+            self?.sceneCoordinator.
+        })
+        
+        
+//        let requestUser = tokenSaved.flatMapLatest { _ -> Observable<RxSwift.Event<User>> in
+//            self.usecase.getUser()
+//                .asObservable()
+//                .materialize()
+//        }.share()
+//
+//        requestUser.subscribe(onNext: {
+//            print($0)
+//        }).disposed(by: disposeBag)
         
         return Output()
     }

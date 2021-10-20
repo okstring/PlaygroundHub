@@ -18,12 +18,15 @@
 		22005DDB271D9D310058609C /* CodableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DDA271D9D310058609C /* CodableManager.swift */; };
 		22005DDD271DA65C0058609C /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DDC271DA65C0058609C /* ViewModelBindableType.swift */; };
 		22005DDF271E36650058609C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DDE271E36650058609C /* User.swift */; };
+		22005DE3271EF3E40058609C /* TabsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DE2271EF3E40058609C /* TabsViewModel.swift */; };
+		22005DE5271EF45C0058609C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DE4271EF45C0058609C /* TabsViewController.swift */; };
+		22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DE9271EF6B40058609C /* TrandViewModel.swift */; };
+		22005DEC271EF6CD0058609C /* TrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DEB271EF6CD0058609C /* TrandViewController.swift */; };
 		22F11BDE271D177700E556EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F11BDD271D177700E556EB /* Assets.xcassets */; };
 		22F11BE1271D177700E556EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22F11BDF271D177700E556EB /* LaunchScreen.storyboard */; };
 		22F11BF8271D179D00E556EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BE9271D179D00E556EB /* AppDelegate.swift */; };
 		22F11BF9271D179D00E556EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BEA271D179D00E556EB /* SceneDelegate.swift */; };
 		22F11BFA271D179D00E556EB /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BED271D179D00E556EB /* Configs.swift */; };
-		22F11BFB271D179D00E556EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BF1271D179D00E556EB /* ViewController.swift */; };
 		22F11BFC271D179D00E556EB /* OAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BF3271D179D00E556EB /* OAuthViewModel.swift */; };
 		22F11BFD271D179D00E556EB /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BF4271D179D00E556EB /* OAuthViewController.swift */; };
 		22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BF6271D179D00E556EB /* ViewModelType.swift */; };
@@ -46,6 +49,10 @@
 		22005DDA271D9D310058609C /* CodableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableManager.swift; sourceTree = "<group>"; };
 		22005DDC271DA65C0058609C /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		22005DDE271E36650058609C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		22005DE2271EF3E40058609C /* TabsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewModel.swift; sourceTree = "<group>"; };
+		22005DE4271EF45C0058609C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
+		22005DE9271EF6B40058609C /* TrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandViewModel.swift; sourceTree = "<group>"; };
+		22005DEB271EF6CD0058609C /* TrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandViewController.swift; sourceTree = "<group>"; };
 		22F11BD1271D177300E556EB /* GitInsightHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsightHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F11BDD271D177700E556EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F11BE0271D177700E556EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,7 +60,6 @@
 		22F11BE9271D179D00E556EB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22F11BEA271D179D00E556EB /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22F11BED271D179D00E556EB /* Configs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
-		22F11BF1271D179D00E556EB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22F11BF3271D179D00E556EB /* OAuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewModel.swift; sourceTree = "<group>"; };
 		22F11BF4271D179D00E556EB /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		22F11BF6271D179D00E556EB /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -105,6 +111,15 @@
 				22005DD8271D8E900058609C /* Usecase.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		22005DE6271EF5A10058609C /* Trend */ = {
+			isa = PBXGroup;
+			children = (
+				22005DEB271EF6CD0058609C /* TrandViewController.swift */,
+				22005DE9271EF6B40058609C /* TrandViewModel.swift */,
+			);
+			path = Trend;
 			sourceTree = "<group>";
 		};
 		22F11BC8271D177300E556EB = {
@@ -182,18 +197,20 @@
 		22F11BEF271D179D00E556EB /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				22F11BF0271D179D00E556EB /* Main */,
+				22F11BF0271D179D00E556EB /* Tabs */,
+				22005DE6271EF5A10058609C /* Trend */,
 				22F11BF2271D179D00E556EB /* Login */,
 			);
 			path = Module;
 			sourceTree = "<group>";
 		};
-		22F11BF0271D179D00E556EB /* Main */ = {
+		22F11BF0271D179D00E556EB /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				22F11BF1271D179D00E556EB /* ViewController.swift */,
+				22005DE4271EF45C0058609C /* TabsViewController.swift */,
+				22005DE2271EF3E40058609C /* TabsViewModel.swift */,
 			);
-			path = Main;
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		22F11BF2271D179D00E556EB /* Login */ = {
@@ -359,21 +376,24 @@
 				22F11C05271D792100E556EB /* GithubAPI.swift in Sources */,
 				22F11BF9271D179D00E556EB /* SceneDelegate.swift in Sources */,
 				22005DD3271D8CF10058609C /* Networking.swift in Sources */,
+				22005DEC271EF6CD0058609C /* TrandViewController.swift in Sources */,
 				22005DDB271D9D310058609C /* CodableManager.swift in Sources */,
+				22005DE3271EF3E40058609C /* TabsViewModel.swift in Sources */,
 				22F11BFD271D179D00E556EB /* OAuthViewController.swift in Sources */,
+				22005DE5271EF45C0058609C /* TabsViewController.swift in Sources */,
 				22F11BF8271D179D00E556EB /* AppDelegate.swift in Sources */,
 				22F11BFC271D179D00E556EB /* OAuthViewModel.swift in Sources */,
 				22005DD0271D880A0058609C /* SceneCoordinator.swift in Sources */,
 				22005DDD271DA65C0058609C /* ViewModelBindableType.swift in Sources */,
 				22005DDF271E36650058609C /* User.swift in Sources */,
 				22005DD9271D8E900058609C /* Usecase.swift in Sources */,
-				22F11BFB271D179D00E556EB /* ViewController.swift in Sources */,
 				22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */,
 				22005DCD271D880A0058609C /* Scene.swift in Sources */,
 				22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */,
 				22005DD5271D8D330058609C /* ServerAPI.swift in Sources */,
 				22005DCF271D880A0058609C /* TransitionModel.swift in Sources */,
 				22F11BFA271D179D00E556EB /* Configs.swift in Sources */,
+				22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */,
 				22005DD7271D8E420058609C /* NetworkError.swift in Sources */,
 				22005DCE271D880A0058609C /* SceneCoordinatorType.swift in Sources */,
 				22F11C01271D740C00E556EB /* URL.swift in Sources */,

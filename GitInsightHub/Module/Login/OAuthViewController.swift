@@ -26,6 +26,7 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        oauthVC.view.backgroundColor = .white
         makeUI()
     }
     
