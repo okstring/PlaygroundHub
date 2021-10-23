@@ -87,6 +87,12 @@ class TabsViewController: UITabBarController, ViewModelBindableType {
                 })
             }).drive(rx.viewControllers)
             .disposed(by: rx.disposeBag)
+        
+        
+        Observable.combineLatest(rx.viewDidAppear, loggedIn) { $1 }
+            .subscribe(onNext: { [weak self] isLoggedIn in
+                self?.selectedIndex = isLoggedIn ? 1 : 0
+            }).disposed(by: rx.disposeBag)
     }
     
     

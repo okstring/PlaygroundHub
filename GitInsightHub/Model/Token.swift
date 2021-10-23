@@ -14,7 +14,7 @@ struct Token: Codable {
     var tokenType: String?
     
     var isValid: Bool {
-        return accessToken == ""
+        return accessToken != ""
     }
     
     enum CodingKeys: String, CodingKey {

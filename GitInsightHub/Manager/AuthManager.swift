@@ -51,4 +51,9 @@ class AuthManager {
     var hasValidToken: Bool {
         return token?.isValid == true
     }
+    
+    func deleteToken() {
+        AuthManager.shared.token = nil
+        keychain[tokenKey] = nil
+    }
 }
