@@ -30,7 +30,7 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         makeUI()
     }
     
-    private func makeUI() {
+    func makeUI() {
         view.addSubview(loginButton)
         
         loginButton.snp.makeConstraints({

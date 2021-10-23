@@ -65,7 +65,11 @@ class TabsViewController: UITabBarController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        makeUI()
+    }
+    
+    func makeUI() {
+        tabBar.backgroundColor = .systemGray6
     }
     
     func bindViewModel() {
