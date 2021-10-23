@@ -23,6 +23,7 @@
 		22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DE9271EF6B40058609C /* TrandViewModel.swift */; };
 		22005DEC271EF6CD0058609C /* TrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DEB271EF6CD0058609C /* TrandViewController.swift */; };
 		2227A45E2720CE290057387E /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227A45D2720CE290057387E /* ObservableType.swift */; };
+		226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */; };
 		22C796EB27206F5100576501 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C796EA27206F5100576501 /* ProfileViewController.swift */; };
 		22C796EF27206F7D00576501 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C796EE27206F7D00576501 /* ProfileViewModel.swift */; };
 		22F11BDE271D177700E556EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F11BDD271D177700E556EB /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		22005DE9271EF6B40058609C /* TrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandViewModel.swift; sourceTree = "<group>"; };
 		22005DEB271EF6CD0058609C /* TrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandViewController.swift; sourceTree = "<group>"; };
 		2227A45D2720CE290057387E /* ObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableType.swift; sourceTree = "<group>"; };
+		226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameProtocol.swift"; sourceTree = "<group>"; };
 		22C796EA27206F5100576501 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		22C796EE27206F7D00576501 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		22F11BD1271D177300E556EB /* GitInsightHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsightHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				22F11C07271D7F6200E556EB /* AuthManager.swift */,
+				226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */,
 				22005DDA271D9D310058609C /* CodableManager.swift */,
 			);
 			path = Manager;
@@ -413,6 +416,7 @@
 				22005DCF271D880A0058609C /* TransitionModel.swift in Sources */,
 				2227A45E2720CE290057387E /* ObservableType.swift in Sources */,
 				22F11BFA271D179D00E556EB /* Configs.swift in Sources */,
+				226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */,
 				22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */,
 				22005DD7271D8E420058609C /* NetworkError.swift in Sources */,
 				22005DCE271D880A0058609C /* SceneCoordinatorType.swift in Sources */,
