@@ -10,26 +10,36 @@ import UIKit
 class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
+    private let userRepositoryTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        tableView.isHidden = true
+        tableView.backgroundColor = .gray
+        return tableView
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
-
-        // Do any additional setup after loading the view.
+        makeUI()
+    }
+    
+    func makeUI() {
+        view.addSubview(userRepositoryTableView)
+        
+        userRepositoryTableView.snp.makeConstraints({
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        })
     }
     
     func bindViewModel() {
-        
+        userRepositoryTableView.rx
+            .setDelegate(self)
+            .disposed(by: rx.disposeBag)
     }
+}
+
+extension ProfileViewController: UITableViewDelegate {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
