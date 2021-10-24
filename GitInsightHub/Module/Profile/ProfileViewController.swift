@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         let tableView = UITableView()
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
-        tableView.isHidden = true
         tableView.backgroundColor = .gray
         return tableView
     }()
@@ -28,11 +27,21 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         makeUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     func makeUI() {
+        view.backgroundColor = .white
+        
+        userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
+        
         view.addSubview(userRepositoryTableView)
         
+        userRepositoryTableView.translatesAutoresizingMaskIntoConstraints = false
         userRepositoryTableView.snp.makeConstraints({
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         })
     }
     
@@ -45,8 +54,16 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         let output = viewModel.transform(input: input)
         
         output.repository
-            .subscribe(onNext: { print($0) })
-            .disposed(by: rx.disposeBag)
+            .bind(to: userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.configure(item: repository)
+                
+                return cell
+            }.disposed(by: rx.disposeBag)
         
     }
 }

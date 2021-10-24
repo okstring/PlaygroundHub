@@ -42,7 +42,7 @@ enum TabBarItem {
         case .trand:
             return UIImage(systemName: "chart.line.uptrend.xyaxis")
         case .login:
-            return UIImage(systemName: "person.fill")
+            return UIImage(systemName: "person")
         case .profile:
             return UIImage(systemName: "person.fill")
         }
