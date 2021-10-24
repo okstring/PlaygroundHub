@@ -20,18 +20,18 @@ enum TabBarItem {
         case .trand:
             var vc = TrandViewController()
             let nav = UINavigationController(rootViewController: vc)
-            let viewModel = TrandViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let viewModel = TrandViewModel(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
             vc.bind(viewModel: viewModel)
             return nav
         case .login:
             var vc = OAuthViewController()
-            let viewModel = OAuthViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let viewModel = OAuthViewModel(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
             vc.bind(viewModel: viewModel)
             return vc
         case .profile:
             var vc = ProfileViewController()
             let nav = UINavigationController(rootViewController: vc)
-            let viewModel = ProfileViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let viewModel = ProfileViewModel(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
             vc.bind(viewModel: viewModel)
             return nav
         }

@@ -15,13 +15,14 @@ class ProfileViewModel: ViewModel, ViewModelType {
     }
     
     struct Output {
-        let repository: Observable<[Repository]>
+        let repository: Driver<[Repository]>
     }
     
     func transform(input: Input) -> Output {
         let repository = Observable
             .combineLatest(usecase.getUserRepository().asObservable(), input.trigger) { user, _ in user }
             .share()
+            .asDriver(onErrorJustReturn: [Repository]())
         
         return Output(repository: repository)
     }

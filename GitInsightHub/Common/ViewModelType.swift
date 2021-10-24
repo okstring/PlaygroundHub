@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol ViewModelType {
     associatedtype Input
@@ -17,9 +19,11 @@ protocol ViewModelType {
 class ViewModel: NSObject {
     let usecase: GithubAPI
     let sceneCoordinator: SceneCoordinatorType
+    let title: Driver<String>
     
-    init(usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
+    init(title: String = "", usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
         self.usecase = usecase
         self.sceneCoordinator = sceneCoordinator
+        self.title = Observable.just(title).asDriver(onErrorJustReturn: "")
     }
 }

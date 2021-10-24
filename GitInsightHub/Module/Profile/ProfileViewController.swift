@@ -34,7 +34,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     func makeUI() {
         view.backgroundColor = .white
-        navigationItem.title = "마이 페이지"
+        
+        viewModel.title
+            .drive(navigationItem.rx.title)
+            .disposed(by: rx.disposeBag)
         
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
@@ -54,7 +57,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         let output = viewModel.transform(input: input)
         
         output.repository
-            .bind(to: userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+            .drive(userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
                 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
