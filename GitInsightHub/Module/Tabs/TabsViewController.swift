@@ -53,9 +53,9 @@ enum TabBarItem {
         case .trand:
             return "트렌드"
         case .login:
-            return "프로필"
+            return "마이 페이지"
         case .profile:
-            return "프로필"
+            return "마이 페이지"
         }
     }
 }

@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     func makeUI() {
         view.backgroundColor = .white
-        navigationItem.title = "프로필"
+        navigationItem.title = "마이 페이지"
         
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
