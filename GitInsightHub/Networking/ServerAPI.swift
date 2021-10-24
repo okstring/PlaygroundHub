@@ -12,6 +12,7 @@ enum Endpoint {
     case createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?)
     case searchRepository(query: String, page: Int)
     case user
+    case repository
     case userRepository(name: String)
     case isStarred(name: String, repo: String)
     case putStarred(name: String, repo: String)
@@ -27,7 +28,7 @@ enum Endpoint {
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .searchRepository, .user, .userRepository, .isStarred:
+        case .searchRepository, .user, .userRepository, .isStarred, .repository:
             return .get
         case .createAccessToken:
             return .post
@@ -46,6 +47,8 @@ enum Endpoint {
             return "search/repositories"
         case .user:
             return "user"
+        case .repository:
+            return "user/repos"
         case .userRepository(name: let user):
             return "users/\(user)/repos"
         case .isStarred(name: let user, repo: let repository):
@@ -64,7 +67,7 @@ enum Endpoint {
         }
         
         switch self {
-        case .searchRepository, .user, .userRepository, .isStarred, .putStarred, .deleteStarred:
+        case .searchRepository, .user, .userRepository, .isStarred, .putStarred, .deleteStarred, .repository:
             headers.add(HTTPHeader(name: "Accept", value: "application/vnd.github.mercy-preview+json"))
             headers.add(HTTPHeader(name: "User-Agent", value: "request"))
         case .createAccessToken:
@@ -88,7 +91,7 @@ enum Endpoint {
                 "code": code,
                 "redirect_uri": redirectURI ?? ""
             ]
-        case .user, .userRepository, .isStarred, .putStarred, .deleteStarred:
+        case .user, .userRepository, .isStarred, .putStarred, .deleteStarred, .repository:
             return [:]
         }
     }
