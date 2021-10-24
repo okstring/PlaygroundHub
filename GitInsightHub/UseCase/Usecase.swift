@@ -23,4 +23,8 @@ class Usecase: GithubAPI {
     func getUser() -> Single<User> {
         return networking.request(type: User.self, endpoint: .user)
     }
+    
+    func getUserRepository() -> Single<[Repository]> {
+        return networking.request(type: [Repository].self, endpoint: .repository)
+    }
 }

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxViewController
 
 class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
@@ -37,6 +40,14 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         userRepositoryTableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
+        
+        let input = ProfileViewModel.Input(trigger: rx.viewWillAppear.mapToVoid().asObservable())
+        let output = viewModel.transform(input: input)
+        
+        output.repository
+            .subscribe(onNext: { print($0) })
+            .disposed(by: rx.disposeBag)
+        
     }
 }
 
