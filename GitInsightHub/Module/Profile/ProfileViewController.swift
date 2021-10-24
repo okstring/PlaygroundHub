@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         let tableView = UITableView()
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .gray
+        tableView.backgroundColor = .white
         return tableView
     }()
     
@@ -34,14 +34,14 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     func makeUI() {
         view.backgroundColor = .white
+        navigationItem.title = "프로필"
         
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
         view.addSubview(userRepositoryTableView)
         
-        userRepositoryTableView.translatesAutoresizingMaskIntoConstraints = false
         userRepositoryTableView.snp.makeConstraints({
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         })
     }
     
