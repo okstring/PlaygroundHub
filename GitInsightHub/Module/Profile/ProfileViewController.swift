@@ -10,6 +10,20 @@ import RxSwift
 import RxCocoa
 import RxViewController
 
+enum SegmentedControlIndex: Int, CustomStringConvertible {
+    case repository = 0
+    case starred = 1
+    
+    var description: String {
+        switch self {
+        case .repository:
+            return "My repository"
+        case .starred:
+            return "Starred"
+        }
+    }
+}
+
 class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
@@ -21,6 +35,13 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         return tableView
     }()
     
+    private let repoTypeSegmentedControll: CustomSegmentedControl = {
+        let control = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 300, height: 300), buttonTitle: [SegmentedControlIndex.repository.description, SegmentedControlIndex.starred.description])
+        control.selectorTextColor = .systemBlue
+        control.selectorViewColor = .systemBlue
+        control.backgroundColor = .clear
+        return control
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +56,30 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     func makeUI() {
         view.backgroundColor = .white
         
-        viewModel.title
-            .drive(navigationItem.rx.title)
-            .disposed(by: rx.disposeBag)
-        
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
+        
+        view.addSubview(repoTypeSegmentedControll)
+        
+        repoTypeSegmentedControll.snp.makeConstraints({
+            $0.left.right.top.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(50)
+        })
         
         view.addSubview(userRepositoryTableView)
         
         userRepositoryTableView.snp.makeConstraints({
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(repoTypeSegmentedControll.snp.bottom)
         })
     }
     
     func bindViewModel() {
+        repoTypeSegmentedControll.delegate = self
+        
+        viewModel.title
+            .drive(navigationItem.rx.title)
+            .disposed(by: rx.disposeBag)
+        
         userRepositoryTableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
@@ -73,4 +104,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
 
 extension ProfileViewController: UITableViewDelegate {
     
+}
+
+extension ProfileViewController: CustomSegmentedControlDelegate {
+    func change(to index: Int) {
+        
+    }
 }

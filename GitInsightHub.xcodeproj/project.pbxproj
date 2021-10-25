@@ -24,6 +24,7 @@
 		22005DEC271EF6CD0058609C /* TrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DEB271EF6CD0058609C /* TrandViewController.swift */; };
 		2227A45E2720CE290057387E /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227A45D2720CE290057387E /* ObservableType.swift */; };
 		226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */; };
+		2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299635427263611007ABFF2 /* CustomSegmentedControl.swift */; };
 		22AA7A9527254E8A00FDA6C3 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA7A9427254E8A00FDA6C3 /* Repository.swift */; };
 		22AA7A972725535E00FDA6C3 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA7A962725535E00FDA6C3 /* RepositoryCell.swift */; };
 		22AA7A992725543000FDA6C3 /* Int+NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA7A982725543000FDA6C3 /* Int+NumberFormatter.swift */; };
@@ -65,6 +66,7 @@
 		22005DEB271EF6CD0058609C /* TrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrandViewController.swift; sourceTree = "<group>"; };
 		2227A45D2720CE290057387E /* ObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableType.swift; sourceTree = "<group>"; };
 		226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameProtocol.swift"; sourceTree = "<group>"; };
+		2299635427263611007ABFF2 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		22AA7A9427254E8A00FDA6C3 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		22AA7A962725535E00FDA6C3 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		22AA7A982725543000FDA6C3 /* Int+NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+NumberFormatter.swift"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				22F11BF6271D179D00E556EB /* ViewModelType.swift */,
 				22005DDC271DA65C0058609C /* ViewModelBindableType.swift */,
+				2299635427263611007ABFF2 /* CustomSegmentedControl.swift */,
 				22AA7A962725535E00FDA6C3 /* RepositoryCell.swift */,
 				22AA7A9C272554ED00FDA6C3 /* TopicsCollectionViewCell.swift */,
 			);
@@ -433,6 +436,7 @@
 				22005DDF271E36650058609C /* User.swift in Sources */,
 				22005DD9271D8E900058609C /* Usecase.swift in Sources */,
 				22AA7A9527254E8A00FDA6C3 /* Repository.swift in Sources */,
+				2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */,
 				22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */,
 				22005DCD271D880A0058609C /* Scene.swift in Sources */,
 				22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */,
