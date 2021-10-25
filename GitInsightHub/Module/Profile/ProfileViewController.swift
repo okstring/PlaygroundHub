@@ -110,6 +110,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {
         repoTypeSegmentedControll.delegate = self
+        tableViewScrollView.delegate = self
         
         viewModel.title
             .drive(navigationItem.rx.title)
@@ -144,5 +145,12 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
         
+    }
+}
+
+extension ProfileViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+        repoTypeSegmentedControll.setIndex(index: Int(pageNumber))
     }
 }
