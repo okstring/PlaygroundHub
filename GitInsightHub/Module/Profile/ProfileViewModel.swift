@@ -15,16 +15,27 @@ class ProfileViewModel: ViewModel, ViewModelType {
     }
     
     struct Output {
+        let title: Driver<String>
         let repository: Driver<[Repository]>
+        let refreshing: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
-        let repository = Observable
-            .combineLatest(usecase.getUserRepository().asObservable(), input.trigger) { user, _ in user }
-            .share()
-            .asDriver(onErrorJustReturn: [Repository]())
+        let usecase = usecase
+        let refresh = PublishSubject<Bool>()
         
-        return Output(repository: repository)
+        let title = title.asDriver(onErrorJustReturn: "")
+        
+        let repository = input.trigger
+            .do(onNext: { refresh.onNext(true) })
+            .flatMap{ usecase.getUserRepository() }
+            .do(onNext: { _ in refresh.onNext(false) })
+            .asDriver(onErrorJustReturn: [Repository]())
+                
+                //TODO: - refresh delay 
+            
+        let refreshing = refresh.asDriver(onErrorJustReturn: false)
+        
+        return Output(title: title, repository: repository, refreshing: refreshing)
     }
-    
 }

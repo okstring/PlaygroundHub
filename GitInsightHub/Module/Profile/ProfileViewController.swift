@@ -27,19 +27,31 @@ enum SegmentedControlIndex: Int, CustomStringConvertible {
 class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
-    private let userRepositoryTableView: UITableView = {
+    private let repositoryRefreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        return control
+    }()
+    
+    private let starredRefreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        return control
+    }()
+    
+    private lazy var userRepositoryTableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
+        tableView.refreshControl = repositoryRefreshControl
         return tableView
     }()
     
-    private let userStarredTableView: UITableView = {
+    private lazy var userStarredTableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .blue
+        tableView.refreshControl = starredRefreshControl
         return tableView
     }()
     
@@ -109,24 +121,43 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         })
     }
     
+    private let refresh = PublishSubject<Void>()
+    
     func bindViewModel() {
         repoTypeSegmentedControll.delegate = self
         tableViewScrollView.delegate = self
-        
-        viewModel.title
-            .drive(navigationItem.rx.title)
-            .disposed(by: rx.disposeBag)
         
         userRepositoryTableView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
         
-        let input = ProfileViewModel.Input(trigger: rx.viewWillAppear.mapToVoid().asObservable())
+        let firstLoad = rx.viewWillAppear
+            .mapToVoid()
+        
+        let refresh = repositoryRefreshControl.rx.controlEvent(.valueChanged)
+            .mapToVoid()
+            .asObservable()
+        
+        let trigger = Observable.merge([firstLoad, refresh])
+        
+        let input = ProfileViewModel.Input(trigger: trigger)
         let output = viewModel.transform(input: input)
+        
+        output.title
+            .drive(navigationItem.rx.title)
+            .disposed(by: rx.disposeBag)
+        
+        output.refreshing
+            .map({ !$0 })
+            .drive(onNext: { [weak self] isFinished in
+                if isFinished {
+                    self?.userRepositoryTableView.refreshControl?.endRefreshing()
+                }
+            }).disposed(by: rx.disposeBag)
         
         output.repository
             .drive(userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
-                
+          
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
