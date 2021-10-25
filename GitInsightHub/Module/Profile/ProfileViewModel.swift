@@ -32,9 +32,9 @@ class ProfileViewModel: ViewModel, ViewModelType {
             .do(onNext: { _ in refresh.onNext(false) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
-                //TODO: - refresh delay 
-            
-        let refreshing = refresh.asDriver(onErrorJustReturn: false)
+        let refreshing = refresh
+                .delay(.seconds(1), scheduler: MainScheduler.instance)
+                .asDriver(onErrorJustReturn: false)
         
         return Output(title: title, repository: repository, refreshing: refreshing)
     }
