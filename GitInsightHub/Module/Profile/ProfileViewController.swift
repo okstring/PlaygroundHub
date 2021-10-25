@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     private let tableViewScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
     
