@@ -35,6 +35,26 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         return tableView
     }()
     
+    private let userStarredTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .blue
+        return tableView
+    }()
+    
+    private let tableViewScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isPagingEnabled = true
+        return scrollView
+    }()
+    
+    private lazy var tableViewStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [userRepositoryTableView, userStarredTableView])
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
     private let repoTypeSegmentedControll: CustomSegmentedControl = {
         let control = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 300, height: 300), buttonTitle: [SegmentedControlIndex.repository.description, SegmentedControlIndex.starred.description])
         control.selectorTextColor = .systemBlue
@@ -65,11 +85,26 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             $0.height.equalTo(50)
         })
         
-        view.addSubview(userRepositoryTableView)
+        tableViewScrollView.addSubview(tableViewStackView)
+        view.addSubview(tableViewScrollView)
         
-        userRepositoryTableView.snp.makeConstraints({
+        tableViewScrollView.snp.makeConstraints({
             $0.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(repoTypeSegmentedControll.snp.bottom)
+        })
+        
+        tableViewStackView.snp.makeConstraints({
+            $0.height.equalTo(tableViewScrollView.frameLayoutGuide)
+            $0.width.equalTo(tableViewScrollView.frameLayoutGuide).priority(750)
+            $0.edges.equalTo(tableViewScrollView.contentLayoutGuide)
+        })
+        
+        userRepositoryTableView.snp.makeConstraints({
+            $0.width.equalTo(tableViewScrollView.frameLayoutGuide)
+        })
+        
+        userStarredTableView.snp.makeConstraints({
+            $0.width.equalTo(tableViewScrollView.frameLayoutGuide)
         })
     }
     
