@@ -144,7 +144,9 @@ extension ProfileViewController: UITableViewDelegate {
 
 extension ProfileViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
-        
+        let x = CGFloat(index) * tableViewScrollView.frame.size.width
+        let point = CGPoint(x: x, y: 0)
+        tableViewScrollView.setContentOffset(point, animated: true)
     }
 }
 
