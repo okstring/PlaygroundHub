@@ -123,8 +123,8 @@ class RepositoryCell: UITableViewCell {
         contributorStackView.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
         
         let languageStackView = UIStackView(arrangedSubviews: [languageImageView, language])
-        contributorStackView.axis = .horizontal
-        contributorStackView.spacing = 4
+        languageStackView.axis = .horizontal
+        languageStackView.spacing = 4
         
         let stackView = UIStackView(arrangedSubviews: [contributorStackView, languageStackView])
         stackView.axis = .horizontal
