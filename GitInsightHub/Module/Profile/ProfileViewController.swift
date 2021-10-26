@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
     private lazy var indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         indicator.style = UIActivityIndicatorView.Style.medium
         indicator.center = view.center
         return indicator
@@ -128,11 +128,6 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         })
         
         view.addSubview(indicator)
-        
-        indicator.snp.makeConstraints({
-            $0.top.equalTo(repoTypeSegmentedControll.snp.bottom)
-            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-        })
     }
     
     private let refresh = PublishSubject<Void>()
