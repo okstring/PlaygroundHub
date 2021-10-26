@@ -27,6 +27,13 @@ enum SegmentedControlIndex: Int, CustomStringConvertible {
 class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        indicator.style = UIActivityIndicatorView.Style.medium
+        indicator.center = view.center
+        return indicator
+    }()
+    
     private let repositoryRefreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         return control
@@ -119,6 +126,8 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         userStarredTableView.snp.makeConstraints({
             $0.width.equalTo(tableViewScrollView.frameLayoutGuide)
         })
+        
+        view.addSubview(indicator)
     }
     
     private let refresh = PublishSubject<Void>()
@@ -152,6 +161,9 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .drive(onNext: { [weak self] isFinished in
                 if isFinished {
                     self?.userRepositoryTableView.refreshControl?.endRefreshing()
+                    self?.indicator.stopAnimating()
+                } else {
+                    self?.indicator.startAnimating()
                 }
             }).disposed(by: rx.disposeBag)
         
