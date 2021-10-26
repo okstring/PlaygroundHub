@@ -17,6 +17,8 @@ struct Repository: Decodable {
     let language: String
     let loginName: String
     let isStarred: Bool
+    let profileImageURL: String
+    let forkCount: Int
     var identity: Int {
         return id
     }
@@ -40,8 +42,10 @@ struct Repository: Decodable {
         self.starCount = try container.decode(Int.self, forKey: .starCount)
         self.language = try container.decodeIfPresent(String.self, forKey: .language) ?? ""
         self.isStarred = try container.decodeIfPresent(Bool.self, forKey: .isStarred) ?? false
+        self.forkCount = try container.decode(Int.self, forKey: .forkCount)
         let ownerContainer = try container.nestedContainer(keyedBy: OwnerInfoKeys.self, forKey: .owner)
         self.loginName = try ownerContainer.decode(String.self, forKey: .loginName)
+        self.profileImageURL = try ownerContainer.decode(String.self, forKey: .profileImageURL)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -55,11 +59,13 @@ struct Repository: Decodable {
         case license
         case owner
         case isStarred
+        case forkCount = "forks_count"
     }
     
     enum OwnerInfoKeys: String, CodingKey {
         case loginName = "login"
         case starredURL = "starred_url"
+        case profileImageURL = "avatar_url"
     }
 }
 

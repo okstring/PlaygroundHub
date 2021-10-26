@@ -12,73 +12,28 @@ import NSObject_Rx
 
 class RepositoryCell: UITableViewCell {
     private var disposeBag = DisposeBag()
-    private let topicsCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        layout.minimumLineSpacing = 3
-        layout.minimumInteritemSpacing = 2
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 75, height: 25)
-        
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.contentInsetAdjustmentBehavior = .always
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        collectionView.backgroundColor = .systemGray6
-        collectionView.isScrollEnabled = false
-        
-        collectionView.register(TopicsCollectionViewCell.self, forCellWithReuseIdentifier: TopicsCollectionViewCell.className)
-        
-        return collectionView
+    
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
-    private let name: UILabel = {
+    private let repositoryName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        return label
-    }()
-    
-    private let repositoryDescription: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
-        label.textColor = .gray
-        return label
-    }()
-    
-    private let starCount: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
-        return label
-    }()
-    
-    private let language: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .vertical)
+        label.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
         return label
     }()
     
     private let owner: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .gray
         return label
-    }()
-    
-    private let starImageView: UIImageView = {
-        let starImage = UIImage(systemName: "star.fill")
-        let imageView = UIImageView(image: starImage)
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .gray
-        return imageView
-    }()
-    
-    private let mainStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 4
-        stackView.alignment = .top
-        return stackView
     }()
     
     private let starButton: UIButton = {
@@ -89,47 +44,150 @@ class RepositoryCell: UITableViewCell {
         button.setImage(selectedStarImage, for: .selected)
         button.contentMode = .scaleAspectFit
         button.tintColor = .orange
+        button.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .vertical)
         return button
     }()
     
-    private let rightStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private let starCount: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        label.textAlignment = .center
+        label.textColor = .gray
+        return label
+    }()
+    
+    private lazy var infoStackView: UIStackView = {
+        let nameStackView = UIStackView(arrangedSubviews: [repositoryName, owner])
+        nameStackView.axis = .vertical
+        
+        let starStackView = UIStackView(arrangedSubviews: [starButton, starCount])
+        starStackView.axis = .vertical
+        
+        let stackView = UIStackView(arrangedSubviews: [profileImageView, nameStackView, starStackView])
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        return stackView
+    }()
+    
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray3
+        return view
+    }()
+    
+    private let repositoryDescription: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        label.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .vertical)
+        return label
+    }()
+    
+    private let topics: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private let forkImageView: UIImageView = {
+        let starImage = UIImage(systemName: "person.2.fill")
+        let imageView = UIImageView(image: starImage)
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .gray
+        return imageView
+    }()
+    
+    private let forkCount: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private let languageImageView: UIImageView = {
+        let starImage = UIImage(systemName: "character.bubble")
+        let imageView = UIImageView(image: starImage)
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .gray
+        return imageView
+    }()
+    
+    private let language: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private lazy var bottomInfoStackView: UIStackView = {
+        let contributorStackView = UIStackView(arrangedSubviews: [forkImageView, forkCount])
+        contributorStackView.axis = .horizontal
+        contributorStackView.spacing = 4
+        contributorStackView.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
+        
+        let languageStackView = UIStackView(arrangedSubviews: [languageImageView, language])
+        contributorStackView.axis = .horizontal
+        contributorStackView.spacing = 4
+        
+        let stackView = UIStackView(arrangedSubviews: [contributorStackView, languageStackView])
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        
+        return stackView
+    }()
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [infoStackView, separatorView, repositoryDescription, topics, bottomInfoStackView])
         stackView.axis = .vertical
         stackView.spacing = 8
-        stackView.alignment = .leading
+        stackView.alignment = .center
         return stackView
+    }()
+    
+    private lazy var subContentView: UIView = {
+        let view = UIView()
+        view.addSubview(mainStackView)
+        
+        //MARK: - shadow
+        
+        return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        registerCollectionView()
-        setStackView()
-        setSubviews()
-        setConstraints()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        registerCollectionView()
-        setStackView()
-        setSubviews()
-        setConstraints()
+        makeUI()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        topicsCollectionView.delegate = nil
-        topicsCollectionView.dataSource = nil
+        repositoryDescription.isHidden = false
+        topics.isHidden = false
         disposeBag = DisposeBag()
     }
     
     func configure(item: Repository) {
-        name.text = item.fullTitle
-        repositoryDescription.text = item.repositoryDescription
+        repositoryName.text = item.title
+        owner.text = item.loginName
+        
         starCount.text = item.abbreviateStarCount
+        
+        if item.repositoryDescription == "" {
+            repositoryDescription.isHidden = true
+        } else {
+            repositoryDescription.text = item.repositoryDescription
+        }
+        
+        if item.topics.reduce("", +) == "" {
+            topics.isHidden = true
+        } else {
+            topics.text = item.topics.reduce("", +)
+        }
+        
+        forkCount.text = "\(item.forkCount)"
         language.text = item.language
-        owner.attributedText = makeAttributedString(normal: "owner: ", bold: item.loginName)
+        
         bind(item: item)
     }
     
@@ -138,8 +196,6 @@ class RepositoryCell: UITableViewCell {
             .asObservable()
             .bind(to: starButton.rx.isSelected)
             .disposed(by: disposeBag)
-        
-        bindTopicCollectionItems(topics: item.topics)
         
         starButton.rx.tap
             .withLatestFrom(Observable.just(starButton.isSelected)) { $1 }
@@ -157,79 +213,62 @@ class RepositoryCell: UITableViewCell {
                     self.starButton.isSelected = !self.starButton.isSelected
                 }
             }).disposed(by: disposeBag)
-            
-    }
-    
-    private func bindTopicCollectionItems(topics: [String]) {
-        Observable.just(topics)
-            .bind(to: topicsCollectionView.rx.items) { collectionView, row, topic in
-                let indexPath = IndexPath(row: row, section: 0)
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicsCollectionViewCell.className, for: indexPath) as? TopicsCollectionViewCell else {
-                    return UICollectionViewCell()
-                }
-                cell.configure(topic: topic)
-                return cell
-            }.disposed(by: disposeBag)
-    }
-    
-    private func registerCollectionView()  {
-        topicsCollectionView.register(TopicsCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: TopicsCollectionViewCell.className)
-    }
-    
-    private func setStackView() {
-        let starStackView: UIStackView = {
-            let stackView = UIStackView(arrangedSubviews: [
-                starImageView,
-                starCount
-            ])
-            stackView.axis = .horizontal
-            stackView.spacing = 0
-            
-            return stackView
-        }()
         
-        let infoStackView: UIStackView = {
-            let stackView = UIStackView(arrangedSubviews: [
-                starStackView,
-                language,
-                owner
-            ])
-            stackView.spacing = 8
-            stackView.axis = .horizontal
-            return stackView
-        }()
-        
-        rightStackView.addArrangedSubview(name)
-        rightStackView.addArrangedSubview(repositoryDescription)
-        rightStackView.addArrangedSubview(topicsCollectionView)
-        rightStackView.addArrangedSubview(infoStackView)
-        
-        mainStackView.addSubview(starButton)
-        mainStackView.addSubview(rightStackView)
+        ImageLoader.load(from: item.profileImageURL)
+            .drive(profileImageView.rx.image)
+            .disposed(by: rx.disposeBag)
     }
     
-    private func setSubviews() {
-        contentView.addSubview(mainStackView)
-    }
-    
-    private func setConstraints() {
-        mainStackView.snp.makeConstraints({
+    private func makeUI() {
+        contentView.addSubview(subContentView)
+
+        subContentView.snp.makeConstraints({
             $0.edges.equalTo(contentView).inset(16)
         })
         
-        rightStackView.snp.makeConstraints({
-            $0.leading.equalTo(starButton.snp.trailing).offset(8)
-            $0.trailing.top.bottom.equalTo(mainStackView)
-        })
-
-        starButton.snp.makeConstraints({
-            $0.leading.top.equalTo(mainStackView)
-            $0.width.height.equalTo(20)
+        mainStackView.snp.makeConstraints({
+            $0.edges.equalTo(subContentView).inset(8)
         })
         
-        topicsCollectionView.snp.makeConstraints({
-            $0.leading.trailing.equalTo(rightStackView)
-            $0.height.equalTo(100)
+        profileImageView.snp.makeConstraints({
+            $0.width.height.equalTo(40)
+        })
+        
+        starButton.snp.makeConstraints({
+            $0.width.equalTo(40)
+        })
+        
+        infoStackView.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+        })
+        
+        separatorView.snp.makeConstraints({
+            $0.width.equalTo(mainStackView).multipliedBy(0.9)
+            $0.height.equalTo(1)
+        })
+        
+        repositoryDescription.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+        })
+        
+        topics.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+        })
+        
+        bottomInfoStackView.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+        })
+        
+        forkImageView.snp.makeConstraints({
+            $0.width.height.equalTo(17)
+        })
+        
+        forkCount.snp.makeConstraints({
+            $0.width.equalTo(40)
+        })
+        
+        languageImageView.snp.makeConstraints({
+            $0.width.height.equalTo(17)
         })
     }
 }
