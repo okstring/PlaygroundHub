@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
     private lazy var indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let indicator = UIActivityIndicatorView()
         indicator.style = UIActivityIndicatorView.Style.medium
         indicator.center = view.center
         return indicator
@@ -128,6 +128,11 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         })
         
         view.addSubview(indicator)
+        
+        indicator.snp.makeConstraints({
+            $0.top.equalTo(repoTypeSegmentedControll.snp.bottom)
+            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        })
     }
     
     private let refresh = PublishSubject<Void>()
@@ -188,6 +193,8 @@ extension ProfileViewController: UITableViewDelegate {
 
 extension ProfileViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
+        indicator.stopAnimating()
+        
         let x = CGFloat(index) * tableViewScrollView.frame.size.width
         let point = CGPoint(x: x, y: 0)
         tableViewScrollView.setContentOffset(point, animated: true)
