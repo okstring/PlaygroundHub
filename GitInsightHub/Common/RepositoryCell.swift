@@ -16,7 +16,7 @@ class RepositoryCell: UITableViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -24,8 +24,6 @@ class RepositoryCell: UITableViewCell {
     private let repositoryName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        label.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .vertical)
-        label.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
         return label
     }()
     
@@ -44,7 +42,6 @@ class RepositoryCell: UITableViewCell {
         button.setImage(selectedStarImage, for: .selected)
         button.contentMode = .scaleAspectFit
         button.tintColor = .orange
-        button.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .vertical)
         return button
     }()
     
@@ -78,13 +75,14 @@ class RepositoryCell: UITableViewCell {
     private let repositoryDescription: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .vertical)
+        label.numberOfLines = 0
         return label
     }()
     
     private let topics: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -162,8 +160,6 @@ class RepositoryCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        repositoryDescription.isHidden = false
-        topics.isHidden = false
         disposeBag = DisposeBag()
     }
     
@@ -173,17 +169,8 @@ class RepositoryCell: UITableViewCell {
         
         starCount.text = item.abbreviateStarCount
         
-        if item.repositoryDescription == "" {
-            repositoryDescription.isHidden = true
-        } else {
-            repositoryDescription.text = item.repositoryDescription
-        }
-        
-        if item.topics.reduce("", +) == "" {
-            topics.isHidden = true
-        } else {
-            topics.text = item.topics.reduce("", +)
-        }
+        repositoryDescription.text = item.repositoryDescription == "" ? "" : item.repositoryDescription
+        topics.text = item.topics.isEmpty ? "" : item.topics.reduce("", +)
         
         forkCount.text = "\(item.forkCount)"
         language.text = item.language
@@ -221,17 +208,13 @@ class RepositoryCell: UITableViewCell {
     
     private func makeUI() {
         contentView.addSubview(subContentView)
-
-        subContentView.snp.makeConstraints({
-            $0.edges.equalTo(contentView).inset(16)
-        })
         
-        mainStackView.snp.makeConstraints({
-            $0.edges.equalTo(subContentView).inset(8)
-        })
+        owner.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
+        topics.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
+        starCount.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
         
         profileImageView.snp.makeConstraints({
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(50)
         })
         
         starButton.snp.makeConstraints({
@@ -239,23 +222,6 @@ class RepositoryCell: UITableViewCell {
         })
         
         infoStackView.snp.makeConstraints({
-            $0.leading.trailing.equalTo(mainStackView)
-        })
-        
-        separatorView.snp.makeConstraints({
-            $0.width.equalTo(mainStackView).multipliedBy(0.9)
-            $0.height.equalTo(1)
-        })
-        
-        repositoryDescription.snp.makeConstraints({
-            $0.leading.trailing.equalTo(mainStackView)
-        })
-        
-        topics.snp.makeConstraints({
-            $0.leading.trailing.equalTo(mainStackView)
-        })
-        
-        bottomInfoStackView.snp.makeConstraints({
             $0.leading.trailing.equalTo(mainStackView)
         })
         
@@ -269,6 +235,33 @@ class RepositoryCell: UITableViewCell {
         
         languageImageView.snp.makeConstraints({
             $0.width.height.equalTo(17)
+        })
+        
+        bottomInfoStackView.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+        })
+        
+        separatorView.snp.makeConstraints({
+            $0.width.equalTo(mainStackView).multipliedBy(0.9)
+            $0.height.equalTo(1)
+        })
+        
+        repositoryDescription.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+            $0.height.greaterThanOrEqualTo(0).priority(750)
+        })
+        
+        topics.snp.makeConstraints({
+            $0.leading.trailing.equalTo(mainStackView)
+            $0.height.greaterThanOrEqualTo(0).priority(750)
+        })
+        
+        subContentView.snp.makeConstraints({
+            $0.edges.equalTo(contentView).inset(16)
+        })
+        
+        mainStackView.snp.makeConstraints({
+            $0.edges.equalTo(subContentView).inset(8)
         })
     }
 }

@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         tableView.backgroundColor = .white
         tableView.refreshControl = repositoryRefreshControl
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 300
         return tableView
     }()
     
