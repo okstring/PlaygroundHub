@@ -65,7 +65,7 @@ class CustomSegmentedControl: UIView {
                 selectedIndex = buttonIndex
                 delegate?.change(to: selectedIndex)
                 
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.3) { 
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 

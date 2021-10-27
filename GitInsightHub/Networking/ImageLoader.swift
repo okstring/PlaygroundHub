@@ -26,15 +26,17 @@ final class ImageLoader {
                 let image = UIImage(contentsOfFile: cache)
                 
                 emitter.onNext(image)
+                emitter.onCompleted()
                 return Disposables.create()
             }
-
+            
             let request = downloadRequest(of: imageURL, fileName: fileName)
             request.responseURL { response in
                 if response.error == nil, let filePath = response.fileURL?.path {
                     let image = UIImage(contentsOfFile: filePath)
 
                     emitter.onNext(image)
+                    emitter.onCompleted()
                 }
             }
             return Disposables.create()
@@ -49,7 +51,7 @@ final class ImageLoader {
 
     class private func downloadRequest(of imageURL: String, fileName: String) -> DownloadRequest {
         let destination: DownloadRequest.Destination = { _,_ in
-            let fileURL = self.cacheURL.appendingPathComponent(fileName)
+            let fileURL = ImageLoader.cacheURL.appendingPathComponent(fileName)
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         return AF.download(imageURL, to: destination)

@@ -143,6 +143,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .disposed(by: rx.disposeBag)
         
         let firstLoad = rx.viewWillAppear
+            .take(1)
             .mapToVoid()
         
         let refresh = repositoryRefreshControl.rx.controlEvent(.valueChanged)

@@ -32,6 +32,8 @@ class OAuthViewModel: ViewModel, ViewModelType {
     let tokenSaved = PublishSubject<Void>()
     
     func transform(input: Input) -> Output {
+        let usecase = usecase
+        let sceneCoordinator = sceneCoordinator
         
         input.oAuthLoginTrigger.drive(onNext: { [weak self] in
             
@@ -54,7 +56,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
             let clientId = Keys.github.appID
             let clientSecret = Keys.github.apiKey
             
-            return self.usecase.createAccessToken(clientId: clientId,
+            return usecase.createAccessToken(clientId: clientId,
                                                   clientSecret: clientSecret,
                                                   code: code,
                                                   redirectURI: nil)
@@ -69,8 +71,8 @@ class OAuthViewModel: ViewModel, ViewModelType {
         
         
         tokenSaved.subscribe(onNext: {
-            let tabsViewModel = TabsViewModel(authorized: true, usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
-            self.sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: false)
+            let tabsViewModel = TabsViewModel(authorized: true, usecase: usecase, sceneCoordinator: sceneCoordinator)
+            sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: false)
         }).disposed(by: rx.disposeBag)
         
         return Output()
