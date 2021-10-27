@@ -141,9 +141,14 @@ class RepositoryCell: UITableViewCell {
     
     private lazy var subContentView: UIView = {
         let view = UIView()
+        view.backgroundColor = .white
         view.addSubview(mainStackView)
         
-        //MARK: - shadow
+        view.layer.cornerRadius = 5
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.15
+        view.layer.shadowRadius = 3.0
+        view.layer.shadowOffset = CGSize(width: 3, height: 3)
         
         return view
     }()
