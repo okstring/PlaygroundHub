@@ -16,7 +16,7 @@ class RepositoryCell: UITableViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 25
+        imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -68,7 +68,7 @@ class RepositoryCell: UITableViewCell {
     
     private let separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray3
+        view.backgroundColor = .systemGray5
         return view
     }()
     
@@ -79,10 +79,12 @@ class RepositoryCell: UITableViewCell {
         return label
     }()
     
-    private let topics: UILabel = {
-        let label = UILabel()
+    private let topics: TopicLabel = {
+        let label = TopicLabel()
         label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = .darkNavy
         return label
     }()
     
@@ -146,9 +148,9 @@ class RepositoryCell: UITableViewCell {
         
         view.layer.cornerRadius = 5
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.15
-        view.layer.shadowRadius = 3.0
-        view.layer.shadowOffset = CGSize(width: 3, height: 3)
+        view.layer.shadowOpacity = 0.10
+        view.layer.shadowRadius = 3.5
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         return view
     }()
@@ -175,7 +177,7 @@ class RepositoryCell: UITableViewCell {
         starCount.text = item.abbreviateStarCount
         
         repositoryDescription.text = item.repositoryDescription == "" ? "" : item.repositoryDescription
-        topics.text = item.topics.isEmpty ? "" : item.topics.reduce("", +)
+        topics.setAttributenTagString(arr: item.topics)
         
         forkCount.text = "\(item.forkCount)"
         language.text = item.language
@@ -219,7 +221,7 @@ class RepositoryCell: UITableViewCell {
         starCount.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
         
         profileImageView.snp.makeConstraints({
-            $0.width.height.equalTo(50)
+            $0.width.height.equalTo(40)
         })
         
         starButton.snp.makeConstraints({
