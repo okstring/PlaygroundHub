@@ -50,6 +50,8 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.refreshControl = repositoryRefreshControl
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200
         return tableView
     }()
     
@@ -180,10 +182,6 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: rx.disposeBag)
         
     }
-}
-
-extension ProfileViewController: UITableViewDelegate {
-    
 }
 
 extension ProfileViewController: CustomSegmentedControlDelegate {
