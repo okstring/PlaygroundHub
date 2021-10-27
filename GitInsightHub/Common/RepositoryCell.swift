@@ -136,7 +136,7 @@ class RepositoryCell: UITableViewCell {
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [infoStackView, separatorView, repositoryDescription, topics, bottomInfoStackView])
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 12
         stackView.alignment = .center
         return stackView
     }()
