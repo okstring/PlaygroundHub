@@ -21,7 +21,7 @@ class TopicLabel: UILabel {
     
     func setAttributenTagString(arr: [String]) {
         let attributedTagString = arr.reduce(NSMutableAttributedString(string: "")) { result, tag in
-            let attrStirng = NSAttributedString(string: "\(tag)", attributes: attr)
+            let attrStirng = NSAttributedString(string: "@\(tag)", attributes: attr)
             
             result.append(attrStirng)
             result.append(NSAttributedString(string: " "))

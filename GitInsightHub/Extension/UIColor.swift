@@ -10,7 +10,7 @@ import UIKit
 extension UIColor {
     
     class var darkNavy: UIColor {
-        return UIColor.init(red: 0.17, green: 0.17, blue: 0.17, alpha: 1)
+        return UIColor.init(red: 0.17, green: 0.17, blue: 0.17, alpha: 0.7)
     }
     
     class var paleBlue: UIColor {
