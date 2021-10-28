@@ -111,8 +111,9 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         view.addSubview(tableViewScrollView)
         
         tableViewScrollView.snp.makeConstraints({
-            $0.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.left.right.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(repoTypeSegmentedControll.snp.bottom)
+            $0.bottom.equalTo(view)
         })
         
         tableViewStackView.snp.makeConstraints({

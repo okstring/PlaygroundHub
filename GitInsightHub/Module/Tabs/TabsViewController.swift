@@ -69,7 +69,11 @@ class TabsViewController: UITabBarController, ViewModelBindableType {
     }
     
     func makeUI() {
-        tabBar.backgroundColor = .systemGray6
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .white
+        appearance.configureWithOpaqueBackground()
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
     }
     
     func bindViewModel() {
