@@ -268,7 +268,7 @@ class RepositoryCell: UITableViewCell {
         })
         
         mainStackView.snp.makeConstraints({
-            $0.edges.equalTo(subContentView).inset(8)
+            $0.edges.equalTo(subContentView).inset(16)
         })
     }
 }
