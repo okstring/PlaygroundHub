@@ -137,7 +137,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     func bindViewModel() {
         repoTypeSegmentedControll.delegate = self
-        tableViewScrollView.delegate = self
+        
+        tableViewScrollView.rx
+            .setDelegate(self)
+            .disposed(by: rx.disposeBag)
         
         userRepositoryTableView.rx
             .setDelegate(self)
