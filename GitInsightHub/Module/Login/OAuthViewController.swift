@@ -61,11 +61,12 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         makeUI()
     }
     
     func makeUI() {
+        view.backgroundColor = .white
+        
         view.addSubview(welcomeView)
         view.addSubview(loginButton)
         
@@ -86,7 +87,6 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         loginButton.setImage(logoImage, for: .normal)
         
         view.addSubview(animationView)
-        animationView.play()
         
         animationView.snp.makeConstraints({
             let width = view.bounds.width
@@ -101,6 +101,13 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        let animationView = animationView
+        
+        rx.viewWillAppear
+            .mapToVoid()
+            .subscribe(onNext: { animationView.play() })
+            .disposed(by: rx.disposeBag)
+        
         let input = OAuthViewModel.Input(oAuthLoginTrigger: loginButton.rx.tap.asDriver())
         _ = viewModel.transform(input: input)
     }
