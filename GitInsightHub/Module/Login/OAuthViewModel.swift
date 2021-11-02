@@ -12,7 +12,7 @@ import RxSwiftExt
 import AuthenticationServices
 import Action
 
-private let loginURL = URL(string: "http://github.com/login/oauth/authorize?client_id=\(Keys.github.appID)&scope=\(Configs.App.githubScope)")!
+private let loginURL = URL(string: "https://github.com/login/oauth/authorize?client_id=\(Keys.github.appID)&scope=\(Configs.App.githubScope)")!
 private let callbackURLScheme = "gitinsighthub"
 
 class OAuthViewModel: ViewModel, ViewModelType {
