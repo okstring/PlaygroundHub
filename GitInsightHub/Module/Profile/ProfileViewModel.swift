@@ -36,7 +36,6 @@ class ProfileViewModel: ViewModel, ViewModelType {
             .do(onNext: { refresh.onNext(true) })
             .flatMap{ usecase.getUserRepository() }
             .do(onNext: { _ in refresh.onNext(false) })
-                .do(onNext: { print($0.count) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
         let starredRepository = input.starredRefresh
@@ -44,7 +43,6 @@ class ProfileViewModel: ViewModel, ViewModelType {
             .do(onNext: { refresh.onNext(true) })
             .flatMap({ usecase.getStarred() })
             .do(onNext: { _ in refresh.onNext(false) })
-                .do(onNext: { print($0.count) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
         let refreshing = refresh.distinctUntilChanged()
