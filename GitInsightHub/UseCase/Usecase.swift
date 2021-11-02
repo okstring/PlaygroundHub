@@ -27,4 +27,8 @@ class Usecase: GithubAPI {
     func getUserRepository() -> Single<[Repository]> {
         return networking.request(type: [Repository].self, endpoint: .repository)
     }
+    
+    func getStarred() -> Single<[Repository]> {
+        return networking.request(type: [Repository].self, endpoint: .userStarred)
+    }
 }

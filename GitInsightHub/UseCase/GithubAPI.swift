@@ -15,4 +15,6 @@ protocol GithubAPI {
     func getUser() -> Single<User>
     
     func getUserRepository() -> Single<[Repository]>
+    
+    func getStarred() -> Single<[Repository]>
 }
