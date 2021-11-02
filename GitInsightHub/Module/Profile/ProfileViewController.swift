@@ -176,6 +176,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .drive(onNext: { [weak self] isFinished in
                 if isFinished {
                     self?.userRepositoryTableView.refreshControl?.endRefreshing()
+                    self?.starredTableView.refreshControl?.endRefreshing()
                     self?.indicator.stopAnimating()
                 } else {
                     self?.indicator.startAnimating()
