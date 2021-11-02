@@ -69,11 +69,10 @@ class TabsViewController: UITabBarController, ViewModelBindableType {
     }
     
     func makeUI() {
-        let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .white
-        appearance.configureWithOpaqueBackground()
-        tabBar.standardAppearance = appearance
-        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        let blurEffect = UIBlurEffect(style: .regular)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.frame = view.bounds
+        tabBar.addSubview(visualEffectView)
     }
     
     func bindViewModel() {
