@@ -55,12 +55,14 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         return tableView
     }()
     
-    private lazy var userStarredTableView: UITableView = {
+    private lazy var starredTableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .blue
+        tableView.backgroundColor = .white
         tableView.refreshControl = starredRefreshControl
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 300
         return tableView
     }()
     
@@ -72,7 +74,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     }()
     
     private lazy var tableViewStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [userRepositoryTableView, userStarredTableView])
+        let stackView = UIStackView(arrangedSubviews: [userRepositoryTableView, starredTableView])
         stackView.axis = .horizontal
         return stackView
     }()
@@ -99,6 +101,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         view.backgroundColor = .white
         
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
+        starredTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
         view.addSubview(repoTypeSegmentedControll)
         
@@ -126,7 +129,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             $0.width.equalTo(tableViewScrollView.frameLayoutGuide)
         })
         
-        userStarredTableView.snp.makeConstraints({
+        starredTableView.snp.makeConstraints({
             $0.width.equalTo(tableViewScrollView.frameLayoutGuide)
         })
         
@@ -146,17 +149,22 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
         
-        let firstLoad = rx.viewWillAppear
-            .take(1)
+        let appearTrigger = rx.viewWillAppear
             .mapToVoid()
         
-        let refresh = repositoryRefreshControl.rx.controlEvent(.valueChanged)
+        
+        
+        let repositoryRefresh = repositoryRefreshControl.rx.controlEvent(.valueChanged)
             .mapToVoid()
             .asObservable()
+            .merge(with: appearTrigger)
         
-        let trigger = Observable.merge([firstLoad, refresh])
-        
-        let input = ProfileViewModel.Input(trigger: trigger)
+        let starredRefresh = starredRefreshControl.rx.controlEvent(.valueChanged)
+            .mapToVoid()
+            .asObservable()
+            .merge(with: appearTrigger)
+
+        let input = ProfileViewModel.Input(appearTrigger: appearTrigger, repositoryRefresh: repositoryRefresh, starredRefresh: starredRefresh)
         let output = viewModel.transform(input: input)
         
         output.title
@@ -174,8 +182,20 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
                 }
             }).disposed(by: rx.disposeBag)
         
-        output.repository
+        output.userRepository
             .drive(userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+          
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
+                    return UITableViewCell()
+                }
+                
+                cell.configure(item: repository)
+                
+                return cell
+            }.disposed(by: rx.disposeBag)
+        
+        output.starredRespository
+            .drive(starredTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
           
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()

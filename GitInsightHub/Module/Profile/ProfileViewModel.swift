@@ -11,12 +11,15 @@ import RxCocoa
 
 class ProfileViewModel: ViewModel, ViewModelType {
     struct Input {
-        let trigger: Observable<Void>
+        let appearTrigger: Observable<Void>
+        let repositoryRefresh: Observable<Void>
+        let starredRefresh: Observable<Void>
     }
     
     struct Output {
         let title: Driver<String>
-        let repository: Driver<[Repository]>
+        let userRepository: Driver<[Repository]>
+        let starredRespository: Driver<[Repository]>
         let refreshing: Driver<Bool>
     }
     
@@ -26,16 +29,31 @@ class ProfileViewModel: ViewModel, ViewModelType {
         
         let title = title.asDriver(onErrorJustReturn: "")
         
-        let repository = input.trigger
+        
+        
+        let userRepository = input.repositoryRefresh
+            .withLatestFrom(input.appearTrigger) { appear, _ in appear }
             .do(onNext: { refresh.onNext(true) })
             .flatMap{ usecase.getUserRepository() }
             .do(onNext: { _ in refresh.onNext(false) })
+                .do(onNext: { print($0.count) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
-            let refreshing = refresh.distinctUntilChanged()
-                .delay(.seconds(1), scheduler: MainScheduler.instance)
-                .asDriver(onErrorJustReturn: false)
-        
-        return Output(title: title, repository: repository, refreshing: refreshing)
+        let starredRepository = input.starredRefresh
+            .withLatestFrom(input.appearTrigger) { appear, _ in appear }
+            .do(onNext: { refresh.onNext(true) })
+            .flatMap({ usecase.getStarred() })
+            .do(onNext: { _ in refresh.onNext(false) })
+                .do(onNext: { print($0.count) })
+            .asDriver(onErrorJustReturn: [Repository]())
+                
+        let refreshing = refresh.distinctUntilChanged()
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: false)
+                
+        return Output(title: title,
+                      userRepository: userRepository,
+                      starredRespository: starredRepository,
+                      refreshing: refreshing)
     }
 }
