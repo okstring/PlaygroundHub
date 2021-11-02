@@ -14,15 +14,40 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     
     private let loginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-        button.setTitle("깃허브 로그인", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
+        
+        let logo = UIImage(named: "githubLogo")
+        button.setImage(logo, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.backgroundColor = .black
+        button.contentVerticalAlignment = .center
+        button.contentHorizontalAlignment = .center
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        
+        button.titleLabel?.font = .systemFont(ofSize: 17)
+        button.setTitle("Log in With Github", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        
         button.clipsToBounds = true
         button.layer.cornerRadius = button.frame.height / 10
         return button
     }()
+    
+    private let welcomeView: UIStackView = {
+        let firstLabel = UILabel()
+        firstLabel.font = .systemFont(ofSize: 32, weight: .bold)
+        firstLabel.text = "Hello,"
+        
+        let secondLabel = UILabel()
+        secondLabel.font = .systemFont(ofSize: 32, weight: .bold)
+        secondLabel.text = "Wellcome Back!"
+        
+        let stackView = UIStackView(arrangedSubviews: [firstLabel, secondLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        
+        return stackView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +56,25 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     }
     
     func makeUI() {
+        view.addSubview(welcomeView)
         view.addSubview(loginButton)
         
-        loginButton.snp.makeConstraints({
-            $0.width.equalTo(150)
-            $0.height.equalTo(50)
-            $0.center.equalToSuperview()
+        welcomeView.snp.makeConstraints({
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(72)
         })
+        
+        let buttonHeight: CGFloat = 48.0
+        
+        loginButton.snp.makeConstraints({
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(72)
+            $0.height.equalTo(buttonHeight)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(72)
+        })
+        
+        let logoImage = loginButton.imageView?.image?.resize(newWidth: buttonHeight / 1.4, newHeight: buttonHeight / 1.4)
+        loginButton.setImage(logoImage, for: .normal)
+        
     }
     
     func bindViewModel() {
