@@ -16,5 +16,6 @@ target 'GitInsightHub' do
   pod 'RxSwiftExt'
   pod 'KeychainAccess'
   pod 'Action'
+  pod 'lottie-ios'
 
 end
