@@ -67,5 +67,19 @@ struct Repository: Decodable {
         case starredURL = "starred_url"
         case profileImageURL = "avatar_url"
     }
+    
+    init(id: Int, title: String, fullTitle: String, repositoryDescription: String, topics: [String], starCount: Int, language: String, loginName: String, isStarred: Bool, profileImageURL: String, forkCount: Int) {
+        self.id = id
+        self.title = title
+        self.fullTitle = fullTitle
+        self.repositoryDescription = repositoryDescription
+        self.topics = topics
+        self.starCount = starCount
+        self.language = language
+        self.loginName = loginName
+        self.isStarred = isStarred
+        self.profileImageURL = profileImageURL
+        self.forkCount = forkCount
+    }
 }
 
