@@ -14,9 +14,6 @@ final class Networking {
     func request<T: Decodable>(type: T.Type,
                            endpoint: Endpoint) -> Single<T> {
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        
         return Single.create() { single in
             AF.request(endpoint.URL,
                        method: endpoint.httpMethod,
@@ -25,8 +22,7 @@ final class Networking {
                        headers: endpoint.headers,
                        interceptor: nil,
                        requestModifier: nil)
-                .responseDecodable(of: type,
-                                   decoder: decoder) { (dataResponse) in
+                .responseDecodable(of: type) { (dataResponse) in
                     guard let statusCode = dataResponse.response?.statusCode else {
                         return single(.failure(NetworkError.internet))
                     }

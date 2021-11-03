@@ -172,17 +172,10 @@
 			isa = PBXGroup;
 			children = (
 				22411A7527325C030023A03B /* Repository */,
-				22411A7427325BE50023A03B /* Persistance */,
+				22411A7927326A780023A03B /* Persistance */,
 				22F11BF7271D179D00E556EB /* Network */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		22411A7427325BE50023A03B /* Persistance */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Persistance;
 			sourceTree = "<group>";
 		};
 		22411A7527325C030023A03B /* Repository */ = {
@@ -190,6 +183,13 @@
 			children = (
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		22411A7927326A780023A03B /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 		22C796E927206F3800576501 /* Profile */ = {
