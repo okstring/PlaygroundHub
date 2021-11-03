@@ -49,6 +49,14 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         return stackView
     }()
     
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "repository를 불러오기 위해 로그인이 필요합니다."
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .gray
+        return label
+    }()
+    
     private lazy var animationView: AnimationView = {
         let animationView = AnimationView(name: "GithubNeonImage")
         
@@ -69,6 +77,8 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         
         view.addSubview(welcomeView)
         view.addSubview(loginButton)
+        view.addSubview(animationView)
+        view.addSubview(descriptionLabel)
         
         welcomeView.snp.makeConstraints({
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -80,13 +90,11 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         loginButton.snp.makeConstraints({
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(72)
             $0.height.equalTo(buttonHeight)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(72)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(96)
         })
         
         let logoImage = loginButton.imageView?.image?.resize(newWidth: buttonHeight / 1.4, newHeight: buttonHeight / 1.4)
         loginButton.setImage(logoImage, for: .normal)
-        
-        view.addSubview(animationView)
         
         animationView.snp.makeConstraints({
             let width = view.bounds.width
@@ -96,6 +104,11 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
             $0.center.equalTo(view.center)
             $0.width.equalTo(width)
             $0.height.equalTo(height)
+        })
+        
+        descriptionLabel.snp.makeConstraints({
+            $0.top.equalTo(loginButton.snp.bottom).offset(16)
+            $0.centerX.equalTo(view.snp.centerX)
         })
         
     }
