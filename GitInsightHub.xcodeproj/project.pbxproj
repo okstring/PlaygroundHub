@@ -150,6 +150,48 @@
 			path = Trend;
 			sourceTree = "<group>";
 		};
+		22411A71273258D60023A03B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				22F11BF5271D179D00E556EB /* Common */,
+				22F11BEF271D179D00E556EB /* Module */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		22411A72273258E00023A03B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				22005DD1271D8CA40058609C /* UseCase */,
+				22F11BEE271D179D00E556EB /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		22411A73273258E70023A03B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				22411A7527325C030023A03B /* Repository */,
+				22411A7427325BE50023A03B /* Persistance */,
+				22F11BF7271D179D00E556EB /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		22411A7427325BE50023A03B /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		22411A7527325C030023A03B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		22C796E927206F3800576501 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,11 +224,9 @@
 			children = (
 				22F11BE8271D179D00E556EB /* Application */,
 				22005DC8271D880A0058609C /* Scene */,
-				22F11BF5271D179D00E556EB /* Common */,
-				22F11BEE271D179D00E556EB /* Model */,
-				22F11BEF271D179D00E556EB /* Module */,
-				22005DD1271D8CA40058609C /* UseCase */,
-				22F11BF7271D179D00E556EB /* Networking */,
+				22411A71273258D60023A03B /* Presentation */,
+				22411A72273258E00023A03B /* Domain */,
+				22411A73273258E70023A03B /* Data */,
 				22F11BEC271D179D00E556EB /* Configs */,
 				22F11C06271D7F4A00E556EB /* Manager */,
 				22F11BEB271D179D00E556EB /* Extension */,
@@ -279,7 +319,7 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		22F11BF7271D179D00E556EB /* Networking */ = {
+		22F11BF7271D179D00E556EB /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				22AA7A9E2725552D00FDA6C3 /* StarredLoader.swift */,
@@ -288,7 +328,7 @@
 				22005DD4271D8D330058609C /* ServerAPI.swift */,
 				22005DD6271D8E420058609C /* NetworkError.swift */,
 			);
-			path = Networking;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		22F11C06271D7F4A00E556EB /* Manager */ = {

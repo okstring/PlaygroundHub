@@ -8,7 +8,7 @@
 import Foundation
 
 class CodableManager {
-    private let decoder = JSONDecoder()
+    private var decoder = JSONDecoder()
     private let encoder = JSONEncoder()
     
     static let shared = CodableManager()
