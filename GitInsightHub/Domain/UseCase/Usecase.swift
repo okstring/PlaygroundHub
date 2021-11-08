@@ -14,21 +14,21 @@ class Usecase: GithubAPI {
     let networking: Networking
     
     init(networking: Networking = Networking(),
-         githubRepository: GithubRepository = GithubRepository(repositoryCoreDataStorage: DefaultRepositoryCoreDataStorage(), networking: Networking())) {
+         githubRepository: GithubRepository = DefaultGithubRepository(repositoryCoreDataStorage: CoreDataStorage(), networking: Networking())) {
         self.networking = networking
         self.githubRepository = githubRepository
     }
     
     func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?) -> Single<Token> {
-        return networking.createAccessToken(endpoint: Endpoint.createAccessToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectURI: redirectURI))
+        return githubRepository.createAccessToken(endpoint: Endpoint.createAccessToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectURI: redirectURI))
     }
     
     func getUser() -> Single<User> {
-        return networking.request(type: User.self, endpoint: .user)
+        return githubRepository.fetchUser()
     }
     
     func getUserRepository() -> Single<[Repository]> {
-        return githubRepository.fetchRepository(endpoint: .user, category: .user)
+        return githubRepository.fetchRepository(endpoint: .repository, category: .user)
     }
     
     func getStarred() -> Single<[Repository]> {

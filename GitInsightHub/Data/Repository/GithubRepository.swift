@@ -9,15 +9,34 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class GithubRepository {
+protocol GithubRepository {
+    
+    func createAccessToken(endpoint: Endpoint) -> Single<Token>
+    
+    func fetchUser() -> Single<User>
+    
+    func fetchRepository(endpoint: Endpoint, category: RepositoryCagetory) -> Single<[Repository]>
+}
+
+class DefaultGithubRepository: GithubRepository {
     let disposeBag = DisposeBag()
-    let repositoryCoreDataStorage: DefaultRepositoryCoreDataStorage
+    let repositoryCoreDataStorage: CoreDataStorage
     let networking: Networking
     
-    init(repositoryCoreDataStorage: DefaultRepositoryCoreDataStorage, networking: Networking) {
+    init(repositoryCoreDataStorage: CoreDataStorage, networking: Networking) {
         self.repositoryCoreDataStorage = repositoryCoreDataStorage
         self.networking = networking
     }
+    
+    
+    func createAccessToken(endpoint: Endpoint) -> Single<Token> {
+        return networking.createAccessToken(endpoint: endpoint)
+    }
+    
+    func fetchUser() -> Single<User> {
+        return networking.request(type: User.self, endpoint: .user)
+    }
+    
     
     func fetchRepository(endpoint: Endpoint, category: RepositoryCagetory) -> Single<[Repository]> {
         return Single.create() { single in
@@ -33,7 +52,7 @@ class GithubRepository {
                     
                 }, onFailure: { error in
                     #if DEBUG
-                    print(#function, error)
+                    print(#function, error, category, endpoint)
                     #endif
                     
                     self.repositoryCoreDataStorage.getLocalRepositoryList(category: category)
