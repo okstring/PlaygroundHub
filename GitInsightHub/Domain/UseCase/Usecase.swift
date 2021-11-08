@@ -14,7 +14,7 @@ class Usecase: GithubAPI {
     let networking: Networking
     
     init(networking: Networking = Networking(),
-         githubRepository: GithubRepository = GithubRepository(repositoryCoreDataStorage: RepositoryCoreDataStorage(), networking: Networking())) {
+         githubRepository: GithubRepository = GithubRepository(repositoryCoreDataStorage: DefaultRepositoryCoreDataStorage(), networking: Networking())) {
         self.networking = networking
         self.githubRepository = githubRepository
     }

@@ -28,7 +28,7 @@
 		2246E9ED27335C2900A75FFC /* PersistanceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9EC27335C2900A75FFC /* PersistanceError.swift */; };
 		2246E9F02733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9EE2733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift */; };
 		2246E9F12733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9EF2733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift */; };
-		2246E9F3273361A500A75FFC /* RepositoryCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9F2273361A500A75FFC /* RepositoryCoreDataStorage.swift */; };
+		2246E9F3273361A500A75FFC /* DefaultRepositoryCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9F2273361A500A75FFC /* DefaultRepositoryCoreDataStorage.swift */; };
 		226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */; };
 		2276AE7E273163770082EA73 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276AE7D273163770082EA73 /* UIImage.swift */; };
 		2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299635427263611007ABFF2 /* CustomSegmentedControl.swift */; };
@@ -81,7 +81,7 @@
 		2246E9EC27335C2900A75FFC /* PersistanceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceError.swift; sourceTree = "<group>"; };
 		2246E9EE2733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReposiporyEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2246E9EF2733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReposiporyEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2246E9F2273361A500A75FFC /* RepositoryCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCoreDataStorage.swift; sourceTree = "<group>"; };
+		2246E9F2273361A500A75FFC /* DefaultRepositoryCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepositoryCoreDataStorage.swift; sourceTree = "<group>"; };
 		226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameProtocol.swift"; sourceTree = "<group>"; };
 		2276AE7D273163770082EA73 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		2299635427263611007ABFF2 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
@@ -362,7 +362,7 @@
 		22F23C1A2732A7CF0090C689 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				2246E9F2273361A500A75FFC /* RepositoryCoreDataStorage.swift */,
+				2246E9F2273361A500A75FFC /* DefaultRepositoryCoreDataStorage.swift */,
 				2246E9EE2733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift */,
 				2246E9EF2733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift */,
 				22F23C172732A00A0090C689 /* RepositoryEntity.xcdatamodeld */,
@@ -526,7 +526,7 @@
 				2246E9F02733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift in Sources */,
 				22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */,
 				2246E9ED27335C2900A75FFC /* PersistanceError.swift in Sources */,
-				2246E9F3273361A500A75FFC /* RepositoryCoreDataStorage.swift in Sources */,
+				2246E9F3273361A500A75FFC /* DefaultRepositoryCoreDataStorage.swift in Sources */,
 				22005DCD271D880A0058609C /* Scene.swift in Sources */,
 				22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */,
 				22F23C1E2732AD5C0090C689 /* RepositoryEntity.swift in Sources */,

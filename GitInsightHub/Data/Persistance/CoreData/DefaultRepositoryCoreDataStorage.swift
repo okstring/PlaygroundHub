@@ -10,7 +10,12 @@ import CoreData
 import RxSwift
 import RxCocoa
 
-class RepositoryCoreDataStorage {
+protocol RepositoryCoreDataStorage {
+    func getLocalRepositoryList(category: RepositoryCagetory) -> Single<[Repository]>
+    func saveRepository(repository: Repository, category: RepositoryCagetory)
+}
+
+class DefaultRepositoryCoreDataStorage: RepositoryCoreDataStorage {
     private let coreDataStack: CoreDataStack
     
     init(coreDataStack: CoreDataStack = .shared) {
@@ -53,7 +58,7 @@ class RepositoryCoreDataStorage {
     }
 }
 
-extension RepositoryCoreDataStorage {
+extension DefaultRepositoryCoreDataStorage {
     func fetchRequest(id: Int) -> NSFetchRequest<ReposiporyEntity> {
         let request: NSFetchRequest = ReposiporyEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)

@@ -11,10 +11,10 @@ import RxCocoa
 
 class GithubRepository {
     let disposeBag = DisposeBag()
-    let repositoryCoreDataStorage: RepositoryCoreDataStorage
+    let repositoryCoreDataStorage: DefaultRepositoryCoreDataStorage
     let networking: Networking
     
-    init(repositoryCoreDataStorage: RepositoryCoreDataStorage, networking: Networking) {
+    init(repositoryCoreDataStorage: DefaultRepositoryCoreDataStorage, networking: Networking) {
         self.repositoryCoreDataStorage = repositoryCoreDataStorage
         self.networking = networking
     }
