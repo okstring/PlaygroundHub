@@ -25,9 +25,11 @@
 		2227A45E2720CE290057387E /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227A45D2720CE290057387E /* ObservableType.swift */; };
 		223F55E027299E7400B8BCE3 /* TopicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223F55DF27299E7400B8BCE3 /* TopicLabel.swift */; };
 		223F55E22729A21200B8BCE3 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223F55E12729A21100B8BCE3 /* UIColor.swift */; };
+		2246E9ED27335C2900A75FFC /* PersistanceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9EC27335C2900A75FFC /* PersistanceError.swift */; };
+		2246E9F02733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9EE2733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift */; };
+		2246E9F12733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9EF2733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift */; };
+		2246E9F3273361A500A75FFC /* RepositoryCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246E9F2273361A500A75FFC /* RepositoryCoreDataStorage.swift */; };
 		226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */; };
-		227471BE2732B87C00DD9600 /* ReposiporyEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227471BC2732B87C00DD9600 /* ReposiporyEntity+CoreDataClass.swift */; };
-		227471BF2732B87C00DD9600 /* ReposiporyEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227471BD2732B87C00DD9600 /* ReposiporyEntity+CoreDataProperties.swift */; };
 		2276AE7E273163770082EA73 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276AE7D273163770082EA73 /* UIImage.swift */; };
 		2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299635427263611007ABFF2 /* CustomSegmentedControl.swift */; };
 		22AA7A9527254E8A00FDA6C3 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA7A9427254E8A00FDA6C3 /* Repository.swift */; };
@@ -36,6 +38,7 @@
 		22AA7A9F2725552D00FDA6C3 /* StarredLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA7A9E2725552D00FDA6C3 /* StarredLoader.swift */; };
 		22C796EB27206F5100576501 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C796EA27206F5100576501 /* ProfileViewController.swift */; };
 		22C796EF27206F7D00576501 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C796EE27206F7D00576501 /* ProfileViewModel.swift */; };
+		22DF7EEF2738AFC8001F0CD1 /* GithubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF7EEE2738AFC8001F0CD1 /* GithubRepository.swift */; };
 		22E172382728C584007D87ED /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E172372728C584007D87ED /* ImageLoader.swift */; };
 		22E5394F27316B7500647008 /* GithubNeonImage.json in Resources */ = {isa = PBXBuildFile; fileRef = 22E5394E27316B7500647008 /* GithubNeonImage.json */; };
 		22F11BDE271D177700E556EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F11BDD271D177700E556EB /* Assets.xcassets */; };
@@ -75,9 +78,11 @@
 		2227A45D2720CE290057387E /* ObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableType.swift; sourceTree = "<group>"; };
 		223F55DF27299E7400B8BCE3 /* TopicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicLabel.swift; sourceTree = "<group>"; };
 		223F55E12729A21100B8BCE3 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		2246E9EC27335C2900A75FFC /* PersistanceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceError.swift; sourceTree = "<group>"; };
+		2246E9EE2733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReposiporyEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2246E9EF2733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReposiporyEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2246E9F2273361A500A75FFC /* RepositoryCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCoreDataStorage.swift; sourceTree = "<group>"; };
 		226C92CB27243DD200810E81 /* NSObject+ClassNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameProtocol.swift"; sourceTree = "<group>"; };
-		227471BC2732B87C00DD9600 /* ReposiporyEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReposiporyEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		227471BD2732B87C00DD9600 /* ReposiporyEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReposiporyEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2276AE7D273163770082EA73 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		2299635427263611007ABFF2 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		22AA7A9427254E8A00FDA6C3 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 		22AA7A9E2725552D00FDA6C3 /* StarredLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredLoader.swift; sourceTree = "<group>"; };
 		22C796EA27206F5100576501 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		22C796EE27206F7D00576501 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		22DF7EEE2738AFC8001F0CD1 /* GithubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepository.swift; sourceTree = "<group>"; };
 		22E172372728C584007D87ED /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		22E5394E27316B7500647008 /* GithubNeonImage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GithubNeonImage.json; sourceTree = "<group>"; };
 		22F11BD1271D177300E556EB /* GitInsightHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsightHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +197,7 @@
 		22411A7527325C030023A03B /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				22DF7EEE2738AFC8001F0CD1 /* GithubRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -198,6 +205,8 @@
 		22411A7927326A780023A03B /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
+				2246E9EC27335C2900A75FFC /* PersistanceError.swift */,
+				22F23C1A2732A7CF0090C689 /* CoreData */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -237,11 +246,6 @@
 				22411A71273258D60023A03B /* Presentation */,
 				22411A72273258E00023A03B /* Domain */,
 				22411A73273258E70023A03B /* Data */,
-				22F11BEC271D179D00E556EB /* Configs */,
-				22F11C06271D7F4A00E556EB /* Manager */,
-				22F11BEB271D179D00E556EB /* Extension */,
-				227471BC2732B87C00DD9600 /* ReposiporyEntity+CoreDataClass.swift */,
-				227471BD2732B87C00DD9600 /* ReposiporyEntity+CoreDataProperties.swift */,
 				22F11BDD271D177700E556EB /* Assets.xcassets */,
 				22E5394E27316B7500647008 /* GithubNeonImage.json */,
 				22F11BDF271D177700E556EB /* LaunchScreen.storyboard */,
@@ -283,7 +287,9 @@
 		22F11BEE271D179D00E556EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22F23C1A2732A7CF0090C689 /* CoreData */,
+				22F11C06271D7F4A00E556EB /* Manager */,
+				22F11BEB271D179D00E556EB /* Extension */,
+				22F11BEC271D179D00E556EB /* Configs */,
 				22F11C02271D782800E556EB /* Token.swift */,
 				22AA7A9427254E8A00FDA6C3 /* Repository.swift */,
 				22005DDE271E36650058609C /* User.swift */,
@@ -356,6 +362,9 @@
 		22F23C1A2732A7CF0090C689 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				2246E9F2273361A500A75FFC /* RepositoryCoreDataStorage.swift */,
+				2246E9EE2733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift */,
+				2246E9EF2733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift */,
 				22F23C172732A00A0090C689 /* RepositoryEntity.xcdatamodeld */,
 				22F23C1D2732AD5C0090C689 /* RepositoryEntity.swift */,
 				22F23C1B2732A7EC0090C689 /* CoreDataStack.swift */,
@@ -492,7 +501,7 @@
 				22AA7A9F2725552D00FDA6C3 /* StarredLoader.swift in Sources */,
 				22F11BF9271D179D00E556EB /* SceneDelegate.swift in Sources */,
 				22C796EF27206F7D00576501 /* ProfileViewModel.swift in Sources */,
-				227471BE2732B87C00DD9600 /* ReposiporyEntity+CoreDataClass.swift in Sources */,
+				22DF7EEF2738AFC8001F0CD1 /* GithubRepository.swift in Sources */,
 				22005DD3271D8CF10058609C /* Networking.swift in Sources */,
 				22005DEC271EF6CD0058609C /* TrandViewController.swift in Sources */,
 				22AA7A992725543000FDA6C3 /* Int+NumberFormatter.swift in Sources */,
@@ -511,9 +520,13 @@
 				22005DDF271E36650058609C /* User.swift in Sources */,
 				22005DD9271D8E900058609C /* Usecase.swift in Sources */,
 				223F55E22729A21200B8BCE3 /* UIColor.swift in Sources */,
+				2246E9F12733612600A75FFC /* ReposiporyEntity+CoreDataProperties.swift in Sources */,
 				22AA7A9527254E8A00FDA6C3 /* Repository.swift in Sources */,
 				2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */,
+				2246E9F02733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift in Sources */,
 				22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */,
+				2246E9ED27335C2900A75FFC /* PersistanceError.swift in Sources */,
+				2246E9F3273361A500A75FFC /* RepositoryCoreDataStorage.swift in Sources */,
 				22005DCD271D880A0058609C /* Scene.swift in Sources */,
 				22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */,
 				22F23C1E2732AD5C0090C689 /* RepositoryEntity.swift in Sources */,
@@ -521,7 +534,6 @@
 				22005DCF271D880A0058609C /* TransitionModel.swift in Sources */,
 				2227A45E2720CE290057387E /* ObservableType.swift in Sources */,
 				22F23C192732A00A0090C689 /* RepositoryEntity.xcdatamodeld in Sources */,
-				227471BF2732B87C00DD9600 /* ReposiporyEntity+CoreDataProperties.swift in Sources */,
 				22F11BFA271D179D00E556EB /* Configs.swift in Sources */,
 				226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */,
 				22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */,

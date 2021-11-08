@@ -8,10 +8,24 @@
 import Foundation
 import CoreData
 
+enum RepositoryCagetory {
+    case user
+    case starred
+    
+    var categoryID: Int {
+        switch self {
+        case .user:
+            return 1
+        case .starred:
+            return 2
+        }
+    }
+}
+
 extension Repository {
-    func toEntity(in context: NSManagedObjectContext) -> ReposiporyEntity {
+    func toEntity(in context: NSManagedObjectContext, category: RepositoryCagetory) -> ReposiporyEntity {
         let entity: ReposiporyEntity = .init(context: context)
-        entity.id = Int16(id)
+        entity.id = Int32(id)
         entity.title = title
         entity.fullTitle = fullTitle
         entity.repositoryDescription = repositoryDescription
@@ -22,6 +36,7 @@ extension Repository {
         entity.isStarred = isStarred
         entity.profileImageURL = profileImageURL
         entity.forkCount = Int16(forkCount)
+        entity.categoryID = Int16(category.categoryID)
         
         return entity
     }

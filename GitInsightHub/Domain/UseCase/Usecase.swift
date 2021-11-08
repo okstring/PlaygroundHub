@@ -10,10 +10,13 @@ import RxSwift
 
 
 class Usecase: GithubAPI {
+    let githubRepository: GithubRepository
     let networking: Networking
     
-    init(networking: Networking = Networking()) {
+    init(networking: Networking = Networking(),
+         githubRepository: GithubRepository = GithubRepository(repositoryCoreDataStorage: RepositoryCoreDataStorage(), networking: Networking())) {
         self.networking = networking
+        self.githubRepository = githubRepository
     }
     
     func createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?) -> Single<Token> {
@@ -25,10 +28,10 @@ class Usecase: GithubAPI {
     }
     
     func getUserRepository() -> Single<[Repository]> {
-        return networking.request(type: [Repository].self, endpoint: .repository)
+        return githubRepository.fetchRepository(endpoint: .user, category: .user)
     }
     
     func getStarred() -> Single<[Repository]> {
-        return networking.request(type: [Repository].self, endpoint: .userStarred)
+        return githubRepository.fetchRepository(endpoint: .userStarred, category: .starred)
     }
 }
