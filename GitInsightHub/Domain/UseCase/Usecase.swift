@@ -11,11 +11,8 @@ import RxSwift
 
 class Usecase: GithubAPI {
     let githubRepository: GithubRepository
-    let networking: Networking
     
-    init(networking: Networking = Networking(),
-         githubRepository: GithubRepository = DefaultGithubRepository(repositoryCoreDataStorage: CoreDataStorage(), networking: Networking())) {
-        self.networking = networking
+    init(githubRepository: GithubRepository = DefaultGithubRepository(repositoryCoreDataStorage: CoreDataStorage(), networkingProtocol: Networking())) {
         self.githubRepository = githubRepository
     }
     

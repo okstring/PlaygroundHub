@@ -10,7 +10,14 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-final class Networking {
+protocol NetworkingProtocol {
+    
+    func request<T: Decodable>(type: T.Type, endpoint: Endpoint) -> Single<T>
+    
+    func createAccessToken(endpoint: Endpoint) -> Single<Token>
+}
+
+final class Networking: NetworkingProtocol {
     func request<T: Decodable>(type: T.Type,
                            endpoint: Endpoint) -> Single<T> {
         

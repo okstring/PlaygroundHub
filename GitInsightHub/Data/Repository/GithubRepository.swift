@@ -21,27 +21,27 @@ protocol GithubRepository {
 class DefaultGithubRepository: GithubRepository {
     let disposeBag = DisposeBag()
     let repositoryCoreDataStorage: CoreDataStorage
-    let networking: Networking
+    let networkingProtocol: NetworkingProtocol
     
-    init(repositoryCoreDataStorage: CoreDataStorage, networking: Networking) {
+    init(repositoryCoreDataStorage: CoreDataStorage, networkingProtocol: NetworkingProtocol) {
         self.repositoryCoreDataStorage = repositoryCoreDataStorage
-        self.networking = networking
+        self.networkingProtocol = networkingProtocol
     }
     
     
     func createAccessToken(endpoint: Endpoint) -> Single<Token> {
-        return networking.createAccessToken(endpoint: endpoint)
+        return networkingProtocol.createAccessToken(endpoint: endpoint)
     }
     
     func fetchUser() -> Single<User> {
-        return networking.request(type: User.self, endpoint: .user)
+        return networkingProtocol.request(type: User.self, endpoint: .user)
     }
     
     
     func fetchRepository(endpoint: Endpoint, category: RepositoryCagetory) -> Single<[Repository]> {
         return Single.create() { single in
             
-            self.networking.request(type: [Repository].self, endpoint: endpoint)
+            self.networkingProtocol.request(type: [Repository].self, endpoint: endpoint)
                 .subscribe(onSuccess: { repositories in
                     
                     for repository in repositories {
