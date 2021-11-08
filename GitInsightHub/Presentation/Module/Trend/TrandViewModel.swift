@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class TrandViewModel: ViewModel, ViewModelType {
     struct Input {
@@ -13,10 +15,12 @@ class TrandViewModel: ViewModel, ViewModelType {
     }
     
     struct Output {
-        
+        let title: Driver<String>
     }
     
     func transform(input: Input) -> Output {
-        return Output()
+        let title = title.asDriver(onErrorJustReturn: "")
+        
+        return Output(title: title)
     }
 }
