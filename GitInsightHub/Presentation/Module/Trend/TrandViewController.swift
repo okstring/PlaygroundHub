@@ -16,7 +16,6 @@ class TrandViewController: UIViewController, ViewModelBindableType {
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "검색어를 입력하세요"
-        searchController.delegate = self
         return searchController
     }()
     
