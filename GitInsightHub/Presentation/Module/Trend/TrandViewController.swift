@@ -34,7 +34,16 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.navigationItem.searchController = searchController
-        repositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
+        makeUI()
+    }
+    
+    private func makeUI() {
+        view.addSubview(repositoryTableView)
+        
+        repositoryTableView.snp.makeConstraints({
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view)
+        })
     }
     
     func bindViewModel() {
@@ -53,8 +62,11 @@ class TrandViewController: UIViewController, ViewModelBindableType {
             .drive(navigationItem.rx.title)
             .disposed(by: rx.disposeBag)
         
+        repositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
+        
         output.repository
             .drive(repositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
@@ -64,8 +76,4 @@ class TrandViewController: UIViewController, ViewModelBindableType {
                 return cell
             }.disposed(by: rx.disposeBag)
     }
-}
-
-extension TrandViewController: UISearchControllerDelegate {
-    
 }
