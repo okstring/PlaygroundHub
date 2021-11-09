@@ -16,6 +16,8 @@ protocol GithubRepository {
     func fetchUser() -> Single<User>
     
     func fetchRepository(endpoint: Endpoint, category: RepositoryCagetory) -> Single<[Repository]>
+    
+    func fetchSearchRespotory(query: String, page: Int) -> Single<[Repository]>
 }
 
 class DefaultGithubRepository: GithubRepository {
@@ -35,6 +37,11 @@ class DefaultGithubRepository: GithubRepository {
     
     func fetchUser() -> Single<User> {
         return networkingProtocol.request(type: User.self, endpoint: .user)
+    }
+    
+    func fetchSearchRespotory(query: String, page: Int) -> Single<[Repository]> {
+        return networkingProtocol.request(type: SearchRepository.self, endpoint: .searchRepository(query: query, page: page))
+            .map({ $0.items })
     }
     
     

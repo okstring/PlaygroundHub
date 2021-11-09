@@ -31,4 +31,8 @@ class Usecase: GithubAPI {
     func getStarred() -> Single<[Repository]> {
         return githubRepository.fetchRepository(endpoint: .userStarred, category: .starred)
     }
+    
+    func getSearchRepositoryResult(query: String, page: Int) -> Single<[Repository]> {
+        return githubRepository.fetchSearchRespotory(query: query, page: page)
+    }
 }

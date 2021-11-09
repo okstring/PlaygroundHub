@@ -41,6 +41,7 @@
 		22DF7EEF2738AFC8001F0CD1 /* GithubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF7EEE2738AFC8001F0CD1 /* GithubRepository.swift */; };
 		22E172382728C584007D87ED /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E172372728C584007D87ED /* ImageLoader.swift */; };
 		22E5394F27316B7500647008 /* GithubNeonImage.json in Resources */ = {isa = PBXBuildFile; fileRef = 22E5394E27316B7500647008 /* GithubNeonImage.json */; };
+		22F09584273ACDE4001011BE /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F09583273ACDE4001011BE /* SearchRepository.swift */; };
 		22F11BDE271D177700E556EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F11BDD271D177700E556EB /* Assets.xcassets */; };
 		22F11BE1271D177700E556EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22F11BDF271D177700E556EB /* LaunchScreen.storyboard */; };
 		22F11BF8271D179D00E556EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11BE9271D179D00E556EB /* AppDelegate.swift */; };
@@ -94,6 +95,7 @@
 		22DF7EEE2738AFC8001F0CD1 /* GithubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepository.swift; sourceTree = "<group>"; };
 		22E172372728C584007D87ED /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		22E5394E27316B7500647008 /* GithubNeonImage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GithubNeonImage.json; sourceTree = "<group>"; };
+		22F09583273ACDE4001011BE /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		22F11BD1271D177300E556EB /* GitInsightHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsightHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F11BDD271D177700E556EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F11BE0271D177700E556EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				22F11C02271D782800E556EB /* Token.swift */,
 				22AA7A9427254E8A00FDA6C3 /* Repository.swift */,
 				22005DDE271E36650058609C /* User.swift */,
+				22F09583273ACDE4001011BE /* SearchRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				22AA7A9527254E8A00FDA6C3 /* Repository.swift in Sources */,
 				2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */,
 				2246E9F02733612600A75FFC /* ReposiporyEntity+CoreDataClass.swift in Sources */,
+				22F09584273ACDE4001011BE /* SearchRepository.swift in Sources */,
 				22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */,
 				2246E9ED27335C2900A75FFC /* PersistanceError.swift in Sources */,
 				2246E9F3273361A500A75FFC /* CoreDataStorage.swift in Sources */,

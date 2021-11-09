@@ -17,4 +17,6 @@ protocol GithubAPI {
     func getUserRepository() -> Single<[Repository]>
     
     func getStarred() -> Single<[Repository]>
+    
+    func getSearchRepositoryResult(query: String, page: Int) -> Single<[Repository]>
 }
