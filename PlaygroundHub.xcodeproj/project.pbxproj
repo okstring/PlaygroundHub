@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DF94C3B0A63AB621211B71C /* Pods_PlaygroundHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AD30471986960E71346C7C /* Pods_PlaygroundHub.framework */; };
 		22005DCD271D880A0058609C /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DC9271D880A0058609C /* Scene.swift */; };
 		22005DCE271D880A0058609C /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DCA271D880A0058609C /* SceneCoordinatorType.swift */; };
 		22005DCF271D880A0058609C /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005DCB271D880A0058609C /* TransitionModel.swift */; };
@@ -57,7 +58,6 @@
 		22F23C192732A00A0090C689 /* RepositoryEntity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22F23C172732A00A0090C689 /* RepositoryEntity.xcdatamodeld */; };
 		22F23C1C2732A7EC0090C689 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F23C1B2732A7EC0090C689 /* CoreDataStack.swift */; };
 		22F23C1E2732AD5C0090C689 /* RepositoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F23C1D2732AD5C0090C689 /* RepositoryEntity.swift */; };
-		EBDEE788D2632E73D7BAFF3A /* Pods_GitInsightHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441FA8053EE69AA23B40A5A8 /* Pods_GitInsightHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +96,7 @@
 		22E172372728C584007D87ED /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		22E5394E27316B7500647008 /* GithubNeonImage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GithubNeonImage.json; sourceTree = "<group>"; };
 		22F09583273ACDE4001011BE /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
-		22F11BD1271D177300E556EB /* GitInsightHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitInsightHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F11BD1271D177300E556EB /* PlaygroundHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaygroundHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F11BDD271D177700E556EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F11BE0271D177700E556EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22F11BE2271D177700E556EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,9 +113,9 @@
 		22F23C182732A00A0090C689 /* Repository.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Repository.xcdatamodel; sourceTree = "<group>"; };
 		22F23C1B2732A7EC0090C689 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		22F23C1D2732AD5C0090C689 /* RepositoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEntity.swift; sourceTree = "<group>"; };
-		441FA8053EE69AA23B40A5A8 /* Pods_GitInsightHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitInsightHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E045E2F176B8F1E69B9C564 /* Pods-GitInsightHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitInsightHub.release.xcconfig"; path = "Target Support Files/Pods-GitInsightHub/Pods-GitInsightHub.release.xcconfig"; sourceTree = "<group>"; };
-		94DC64C5E955D12FBE0A10E8 /* Pods-GitInsightHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitInsightHub.debug.xcconfig"; path = "Target Support Files/Pods-GitInsightHub/Pods-GitInsightHub.debug.xcconfig"; sourceTree = "<group>"; };
+		3853DEEA1A5379DD36B3AEEA /* Pods-PlaygroundHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundHub.release.xcconfig"; path = "Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub.release.xcconfig"; sourceTree = "<group>"; };
+		3ED68ADD16E1859F2E4E3483 /* Pods-PlaygroundHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundHub.debug.xcconfig"; path = "Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub.debug.xcconfig"; sourceTree = "<group>"; };
+		57AD30471986960E71346C7C /* Pods_PlaygroundHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBDEE788D2632E73D7BAFF3A /* Pods_GitInsightHub.framework in Frameworks */,
+				1DF94C3B0A63AB621211B71C /* Pods_PlaygroundHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,8 +133,8 @@
 		00CBE6A8F31D07AFDA6F7769 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				94DC64C5E955D12FBE0A10E8 /* Pods-GitInsightHub.debug.xcconfig */,
-				4E045E2F176B8F1E69B9C564 /* Pods-GitInsightHub.release.xcconfig */,
+				3ED68ADD16E1859F2E4E3483 /* Pods-PlaygroundHub.debug.xcconfig */,
+				3853DEEA1A5379DD36B3AEEA /* Pods-PlaygroundHub.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -172,7 +172,10 @@
 			isa = PBXGroup;
 			children = (
 				22F11BF5271D179D00E556EB /* Common */,
-				22F11BEF271D179D00E556EB /* Module */,
+				22F11BF0271D179D00E556EB /* Tabs */,
+				22005DE6271EF5A10058609C /* Trend */,
+				22F11BF2271D179D00E556EB /* Login */,
+				22C796E927206F3800576501 /* Profile */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -225,22 +228,22 @@
 		22F11BC8271D177300E556EB = {
 			isa = PBXGroup;
 			children = (
-				22F11BD3271D177300E556EB /* GitInsightHub */,
+				22F11BD3271D177300E556EB /* PlaygroundHub */,
 				22F11BD2271D177300E556EB /* Products */,
 				00CBE6A8F31D07AFDA6F7769 /* Pods */,
-				6468B76F818E9E83BA33F2DA /* Frameworks */,
+				85969549CDA28136F1CFDA4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		22F11BD2271D177300E556EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22F11BD1271D177300E556EB /* GitInsightHub.app */,
+				22F11BD1271D177300E556EB /* PlaygroundHub.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		22F11BD3271D177300E556EB /* GitInsightHub */ = {
+		22F11BD3271D177300E556EB /* PlaygroundHub */ = {
 			isa = PBXGroup;
 			children = (
 				22F11BE8271D179D00E556EB /* Application */,
@@ -253,7 +256,7 @@
 				22F11BDF271D177700E556EB /* LaunchScreen.storyboard */,
 				22F11BE2271D177700E556EB /* Info.plist */,
 			);
-			path = GitInsightHub;
+			path = PlaygroundHub;
 			sourceTree = "<group>";
 		};
 		22F11BE8271D179D00E556EB /* Application */ = {
@@ -298,17 +301,6 @@
 				22F09583273ACDE4001011BE /* SearchRepository.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		22F11BEF271D179D00E556EB /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				22F11BF0271D179D00E556EB /* Tabs */,
-				22005DE6271EF5A10058609C /* Trend */,
-				22F11BF2271D179D00E556EB /* Login */,
-				22C796E927206F3800576501 /* Profile */,
-			);
-			path = Module;
 			sourceTree = "<group>";
 		};
 		22F11BF0271D179D00E556EB /* Tabs */ = {
@@ -375,10 +367,10 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		6468B76F818E9E83BA33F2DA /* Frameworks */ = {
+		85969549CDA28136F1CFDA4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				441FA8053EE69AA23B40A5A8 /* Pods_GitInsightHub.framework */,
+				57AD30471986960E71346C7C /* Pods_PlaygroundHub.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -386,23 +378,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22F11BD0271D177300E556EB /* GitInsightHub */ = {
+		22F11BD0271D177300E556EB /* PlaygroundHub */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22F11BE5271D177700E556EB /* Build configuration list for PBXNativeTarget "GitInsightHub" */;
+			buildConfigurationList = 22F11BE5271D177700E556EB /* Build configuration list for PBXNativeTarget "PlaygroundHub" */;
 			buildPhases = (
-				7E0169B598176BA746F7BE60 /* [CP] Check Pods Manifest.lock */,
+				8405267D4C0B529734A85A83 /* [CP] Check Pods Manifest.lock */,
 				22F11BCD271D177300E556EB /* Sources */,
 				22F11BCE271D177300E556EB /* Frameworks */,
 				22F11BCF271D177300E556EB /* Resources */,
-				9C7CBB006B8EBB0E9DCD56D0 /* [CP] Embed Pods Frameworks */,
+				1815EC8D9463FE2F7DBFC28C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = GitInsightHub;
+			name = PlaygroundHub;
 			productName = GitInsightHub;
-			productReference = 22F11BD1271D177300E556EB /* GitInsightHub.app */;
+			productReference = 22F11BD1271D177300E556EB /* PlaygroundHub.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -420,7 +412,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 22F11BCC271D177300E556EB /* Build configuration list for PBXProject "GitInsightHub" */;
+			buildConfigurationList = 22F11BCC271D177300E556EB /* Build configuration list for PBXProject "PlaygroundHub" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -433,7 +425,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22F11BD0271D177300E556EB /* GitInsightHub */,
+				22F11BD0271D177300E556EB /* PlaygroundHub */,
 			);
 		};
 /* End PBXProject section */
@@ -452,7 +444,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7E0169B598176BA746F7BE60 /* [CP] Check Pods Manifest.lock */ = {
+		1815EC8D9463FE2F7DBFC28C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8405267D4C0B529734A85A83 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,28 +476,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GitInsightHub-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PlaygroundHub-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9C7CBB006B8EBB0E9DCD56D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GitInsightHub/Pods-GitInsightHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GitInsightHub/Pods-GitInsightHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitInsightHub/Pods-GitInsightHub-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -684,7 +676,7 @@
 		};
 		22F11BE6271D177700E556EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94DC64C5E955D12FBE0A10E8 /* Pods-GitInsightHub.debug.xcconfig */;
+			baseConfigurationReference = 3ED68ADD16E1859F2E4E3483 /* Pods-PlaygroundHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -692,7 +684,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GitInsightHub/Info.plist;
+				INFOPLIST_FILE = PlaygroundHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -702,7 +694,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.GitInsightHub;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.PlaygroundHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -712,7 +704,7 @@
 		};
 		22F11BE7271D177700E556EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E045E2F176B8F1E69B9C564 /* Pods-GitInsightHub.release.xcconfig */;
+			baseConfigurationReference = 3853DEEA1A5379DD36B3AEEA /* Pods-PlaygroundHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -720,7 +712,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GitInsightHub/Info.plist;
+				INFOPLIST_FILE = PlaygroundHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -730,7 +722,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.GitInsightHub;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.PlaygroundHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -741,7 +733,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22F11BCC271D177300E556EB /* Build configuration list for PBXProject "GitInsightHub" */ = {
+		22F11BCC271D177300E556EB /* Build configuration list for PBXProject "PlaygroundHub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22F11BE3271D177700E556EB /* Debug */,
@@ -750,7 +742,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22F11BE5271D177700E556EB /* Build configuration list for PBXNativeTarget "GitInsightHub" */ = {
+		22F11BE5271D177700E556EB /* Build configuration list for PBXNativeTarget "PlaygroundHub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22F11BE6271D177700E556EB /* Debug */,
