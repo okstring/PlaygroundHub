@@ -10,9 +10,20 @@ import UIKit
 enum Scene {
     case tabs(TabsViewModel)
     case oauth(OAuthViewModel)
+    case profile(ProfileViewModel)
 }
 
 extension Scene {
+    var tabBarIndex: Int {
+        switch self {
+        case .oauth:
+            return 0
+        case .profile:
+            return 1
+        default:
+            return 2
+        }
+    }
     
     func instantiate() -> UIViewController {
         
@@ -28,6 +39,12 @@ extension Scene {
             oauthVC.bind(viewModel: viewModel)
             
             return oauthVC
+        case .profile(let viewModel):
+            var profileVC = ProfileViewController()
+            let navVC = UINavigationController.init(rootViewController: profileVC)
+            profileVC.bind(viewModel: viewModel)
+            
+            return navVC
         }
     }
     

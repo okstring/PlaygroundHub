@@ -34,6 +34,7 @@ final class SceneCoordinator: SceneCoordinatorType {
         switch style {
         case .root:
             currentVC = target.sceneViewController
+            
             window.rootViewController = target
             subject.onCompleted()
         case .push:
@@ -51,6 +52,20 @@ final class SceneCoordinator: SceneCoordinatorType {
             nav.pushViewController(target, animated: animated)
             currentVC = target.sceneViewController
             
+            subject.onCompleted()
+        case .changeTabBarItem:
+            
+            guard let tabsViewController = currentVC as? TabsViewController else {
+                subject.onError(TransitionError.tabBarControllerMissing)
+                break
+            }
+            
+            tabsViewController.viewControllers?.remove(at: scene.tabBarIndex)
+            tabsViewController.viewControllers?.insert(target, at: scene.tabBarIndex)
+            
+            tabsViewController.selectedIndex = scene.tabBarIndex
+            
+            currentVC = target.sceneViewController
             subject.onCompleted()
         }
         

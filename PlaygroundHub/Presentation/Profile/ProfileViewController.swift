@@ -98,6 +98,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     }
     
     func makeUI() {
+        tabBarItem = UITabBarItem.init(title: "마이 페이지", image: UIImage(systemName: "person.fill"), selectedImage: UIImage(systemName: "person.fill"))
         view.backgroundColor = .white
         
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
