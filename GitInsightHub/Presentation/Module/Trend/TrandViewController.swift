@@ -31,12 +31,14 @@ class TrandViewController: UIViewController, ViewModelBindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        self.navigationItem.searchController = searchController
         makeUI()
     }
     
     private func makeUI() {
+        view.backgroundColor = .white
+        
+        self.navigationItem.searchController = searchController
+        
         view.addSubview(repositoryTableView)
         
         repositoryTableView.snp.makeConstraints({
@@ -50,7 +52,7 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         let query = searchController.searchBar.rx.searchButtonClicked
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
             .distinctUntilChanged()
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .debug()
         
         let input = TrandViewModel.Input(query: query)
