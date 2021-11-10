@@ -106,7 +106,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         view.addSubview(repoTypeSegmentedControll)
         
         repoTypeSegmentedControll.snp.makeConstraints({
-            $0.left.right.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(50)
         })
         
@@ -114,7 +114,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         view.addSubview(tableViewScrollView)
         
         tableViewScrollView.snp.makeConstraints({
-            $0.left.right.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(repoTypeSegmentedControll.snp.bottom)
             $0.bottom.equalTo(view)
         })
