@@ -31,25 +31,19 @@ class TrandViewModel: ViewModel, ViewModelType {
         
         input.query
             .do(onNext: { _ in self.page = 1 })
-                .flatMap({ self.usecase.getSearchRepositoryResult(query: $0, page: self.page) })
+            .flatMap({ self.usecase.getSearchRepositoryResult(query: $0, page: self.page) })
             .asDriver(onErrorJustReturn: [Repository]())
             .drive(repository)
             .disposed(by: disposeBag)
         
         input.nextPage
             .do(onNext: { _ in self.page += 1 })
-                .flatMap({ self.usecase.getSearchRepositoryResult(query: $0, page: self.page) })
-                .map({ repository.value + $0 })
-                .asDriver(onErrorJustReturn: [Repository]())
-                .drive(repository)
-                .disposed(by: disposeBag)
-        
+            .flatMap({ self.usecase.getSearchRepositoryResult(query: $0, page: self.page) })
+            .map({ repository.value + $0 })
+            .asDriver(onErrorJustReturn: [Repository]())
+            .drive(repository)
+            .disposed(by: disposeBag)
                 
         return Output(title: title, repository: repository)
-    }
-    
-    func getSearchRepositoryResult(query: String, page: Int) -> Single<[Repository]> {
-        self.page = page
-        return usecase.getSearchRepositoryResult(query: query, page: page)
     }
 }

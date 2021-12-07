@@ -53,11 +53,9 @@ class TrandViewController: UIViewController, ViewModelBindableType {
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
             .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .debug()
         
         
         let nextPage = repositoryTableView.rx.reachedBottom(offset: 120)
-            .debug()
             .withLatestFrom(self.searchController.searchBar.rx.text.orEmpty) { $1 }
         
         let input = TrandViewModel.Input(query: query, nextPage: nextPage)
@@ -71,7 +69,6 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         repositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
         output.repository
-            .do(onNext: { print($0.count, $0.first?.repositoryDescription) })
             .bind(to: repositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
