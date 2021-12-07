@@ -16,7 +16,6 @@ target 'PlaygroundHub' do
   pod 'RxDataSources'
   pod 'RxSwiftExt'
   pod 'KeychainAccess'
-  pod 'Action'
   pod 'lottie-ios'
 
 end

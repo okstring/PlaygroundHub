@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import AuthenticationServices
-import Action
 
 private let loginURL = URL(string: "https://github.com/login/oauth/authorize?client_id=\(Keys.github.appID)&scope=\(Configs.App.githubScope)")!
 private let callbackURLScheme = "gitinsighthub"

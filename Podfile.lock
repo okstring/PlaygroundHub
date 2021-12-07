@@ -1,7 +1,4 @@
 PODS:
-  - Action (5.0.0):
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
   - Alamofire (5.4.3)
   - Differentiator (5.0.0)
   - KeychainAccess (4.2.2)
@@ -32,7 +29,6 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
-  - Action
   - Alamofire
   - KeychainAccess
   - lottie-ios
@@ -46,7 +42,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Action
     - Alamofire
     - Differentiator
     - KeychainAccess
@@ -61,7 +56,6 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
-  Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
@@ -75,6 +69,6 @@ SPEC CHECKSUMS:
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 8814265e2791c74c6cac5b807115debf9521a6fb
+PODFILE CHECKSUM: 3fc25ec1f39c6167fb852333f3fca9ef09e0c032
 
 COCOAPODS: 1.11.2
