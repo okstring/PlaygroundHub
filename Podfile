@@ -13,7 +13,6 @@ target 'PlaygroundHub' do
   pod 'Alamofire'
   pod 'NSObject+Rx'
   pod 'SnapKit'
-  pod 'RxDataSources'
   pod 'RxSwiftExt'
   pod 'KeychainAccess'
   pod 'lottie-ios'
