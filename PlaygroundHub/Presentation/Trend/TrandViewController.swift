@@ -52,10 +52,15 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         let query = searchController.searchBar.rx.searchButtonClicked
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
             .distinctUntilChanged()
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .debug()
         
-        let input = TrandViewModel.Input(query: query)
+        
+        let nextPage = repositoryTableView.rx.reachedBottom(offset: 120)
+            .debug()
+            .withLatestFrom(self.searchController.searchBar.rx.text.orEmpty) { $1 }
+        
+        let input = TrandViewModel.Input(query: query, nextPage: nextPage)
         
         let output = viewModel.transform(input: input)
         
@@ -66,8 +71,8 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         repositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
         output.repository
-            .drive(repositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
-                
+            .do(onNext: { print($0.count, $0.first?.repositoryDescription) })
+            .bind(to: repositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
@@ -76,5 +81,7 @@ class TrandViewController: UIViewController, ViewModelBindableType {
                 
                 return cell
             }.disposed(by: rx.disposeBag)
+        
+        
     }
 }
