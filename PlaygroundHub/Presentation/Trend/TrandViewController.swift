@@ -94,6 +94,7 @@ class TrandViewController: UIViewController, ViewModelBindableType {
                 } else {
                     self.indicator.stopAnimating()
                     self.refreshControl.endRefreshing()
+                    self.repositoryTableView.setContentOffset(.zero, animated: true)
                 }
                 
             }).disposed(by: rx.disposeBag)

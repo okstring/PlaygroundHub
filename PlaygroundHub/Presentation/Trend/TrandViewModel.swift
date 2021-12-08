@@ -33,7 +33,7 @@ class TrandViewModel: ViewModel, ViewModelType {
         
         let refresh = BehaviorRelay<Bool>(value: false)
         
-        Observable.of(input.query, input.pullRefresh, input.nextPage)
+        Observable.of(input.query, input.pullRefresh)
             .merge()
             .map({ _ in true })
             .asDriver(onErrorJustReturn: false)
