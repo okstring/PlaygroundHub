@@ -153,8 +153,6 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         let appearTrigger = rx.viewWillAppear
             .mapToVoid()
         
-        
-        
         let repositoryRefresh = repositoryRefreshControl.rx.controlEvent(.valueChanged)
             .mapToVoid()
             .asObservable()
@@ -172,15 +170,14 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .drive(navigationItem.rx.title)
             .disposed(by: rx.disposeBag)
         
-        output.refreshing
-            .map({ !$0 })
-            .drive(onNext: { [weak self] isFinished in
-                if isFinished {
+        output.isRefresh
+            .drive(onNext: { [weak self] isRefresh in
+                if isRefresh {
+                    self?.indicator.startAnimating()
+                } else {
                     self?.userRepositoryTableView.refreshControl?.endRefreshing()
                     self?.starredTableView.refreshControl?.endRefreshing()
                     self?.indicator.stopAnimating()
-                } else {
-                    self?.indicator.startAnimating()
                 }
             }).disposed(by: rx.disposeBag)
         
