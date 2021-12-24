@@ -72,7 +72,6 @@ class TrandViewController: UIViewController, ViewModelBindableType {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
         
         let pullRefresh = refreshControl.rx.controlEvent(.valueChanged)
-            .debug()
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
             .delay(.milliseconds(500), scheduler: MainScheduler.instance)
         

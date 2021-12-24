@@ -195,7 +195,6 @@ class RepositoryCell: UITableViewCell {
         
         let tabResult = starButton.rx.tap
             .withLatestFrom(starred) { $1 }
-            .debug()
             .flatMap{ starSelected -> Single<Bool> in
                 if starSelected == true {
                     return StarredLoader.starred(endpoint: .deleteStarred(name: item.loginName, repo: item.title))
