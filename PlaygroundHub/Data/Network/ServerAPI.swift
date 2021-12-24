@@ -94,7 +94,12 @@ enum Endpoint {
                 "code": code,
                 "redirect_uri": redirectURI ?? ""
             ]
-        case .user, .userRepository, .isStarred, .putStarred, .deleteStarred, .repository, .userStarred:
+        case .userRepository, .userStarred:
+            return [
+                "sort": "updated",
+                "per_page": 100
+            ]
+        case .user, .isStarred, .putStarred, .deleteStarred, .repository:
             return [:]
         }
     }

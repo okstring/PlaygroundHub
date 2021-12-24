@@ -48,7 +48,7 @@ class DefaultGithubRepository: GithubRepository {
             
             self.networkingProtocol.request(type: [Repository].self, endpoint: endpoint)
                 .subscribe(onSuccess: { repositories in
-                    return single(.success(repositories))
+                    return single(.success(repositories.sorted(by: { $0.updatedAt > $1.updatedAt })))
                     
                 }, onFailure: { error in
                     #if DEBUG

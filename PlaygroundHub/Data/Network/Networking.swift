@@ -18,6 +18,13 @@ protocol NetworkingProtocol {
 }
 
 final class Networking: NetworkingProtocol {
+    
+    let jsonDecoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
+    
     func request<T: Decodable>(type: T.Type,
                            endpoint: Endpoint) -> Single<T> {
         
@@ -29,7 +36,7 @@ final class Networking: NetworkingProtocol {
                        headers: endpoint.headers,
                        interceptor: nil,
                        requestModifier: nil)
-                .responseDecodable(of: type) { (dataResponse) in
+                .responseDecodable(of: T.self, decoder: self.jsonDecoder) { (dataResponse) in
                     guard let statusCode = dataResponse.response?.statusCode else {
                         return single(.failure(NetworkError.internet))
                     }
