@@ -13,7 +13,7 @@ import NSObject_Rx
 import SnapKit
 
 enum TabBarItem {
-    case trand, login, profile
+    case trand, profile
     
     func viewController(sceneCoordinator: SceneCoordinatorType, usecase: GithubAPI) -> UIViewController {
         switch self {
@@ -23,11 +23,6 @@ enum TabBarItem {
             let viewModel = TrandViewModel(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
             vc.bind(viewModel: viewModel)
             return nav
-        case .login:
-            var vc = OAuthViewController()
-            let viewModel = OAuthViewModel(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
-            vc.bind(viewModel: viewModel)
-            return vc
         case .profile:
             var vc = ProfileViewController()
             let nav = UINavigationController(rootViewController: vc)
@@ -41,8 +36,6 @@ enum TabBarItem {
         switch self {
         case .trand:
             return UIImage(systemName: "chart.line.uptrend.xyaxis")
-        case .login:
-            return UIImage(systemName: "person")
         case .profile:
             return UIImage(systemName: "person.fill")
         }
@@ -52,8 +45,6 @@ enum TabBarItem {
         switch self {
         case .trand:
             return "트렌드"
-        case .login:
-            return "마이 페이지"
         case .profile:
             return "마이 페이지"
         }

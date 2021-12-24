@@ -27,14 +27,10 @@ class TabsViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let tabBarItems = Observable.combineLatest(input.trigger, Observable.just(authorized)) { $1 }
-            .map({ authorized -> [TabBarItem] in
-                if authorized {
-                    return [.trand, .profile]
-                } else {
-                    return [.trand, .login]
-                }
-            }).asDriver(onErrorJustReturn: [])
+        let tabBarItems = input.trigger
+            .map({ _ -> [TabBarItem] in
+                return [.trand, .profile]
+            }).asDriver(onErrorJustReturn: [.trand, .profile])
         
         return Output(tabBarItems: tabBarItems)
     }

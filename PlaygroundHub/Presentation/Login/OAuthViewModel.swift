@@ -70,8 +70,8 @@ class OAuthViewModel: ViewModel, ViewModelType {
         
         
         tokenSaved.subscribe(onNext: {
-            let profileViewModel = ProfileViewModel(title: "마이 페이지", usecase: usecase, sceneCoordinator: sceneCoordinator)
-            sceneCoordinator.transition(to: .profile(profileViewModel), using: .changeTabBarItem, animated: false)
+            let tabsViewModel = TabsViewModel(authorized: AuthManager.shared.hasValidToken, usecase: usecase, sceneCoordinator: sceneCoordinator)
+            sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
         }).disposed(by: rx.disposeBag)
         
         return Output()

@@ -29,11 +29,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        AuthManager.shared.deleteToken()
         #endif
         
-        let tabsViewModel = TabsViewModel(authorized: AuthManager.shared.hasValidToken, usecase: usecase, sceneCoordinator: sceneCoordinator)
-        
-        let tabsScene = Scene.tabs(tabsViewModel)
-        
-        sceneCoordinator.transition(to: tabsScene, using: .root, animated: false)
+        if AuthManager.shared.hasValidToken {
+            
+            let tabsViewModel = TabsViewModel(authorized: AuthManager.shared.hasValidToken, usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let tabsScene = Scene.tabs(tabsViewModel)
+            
+            sceneCoordinator.transition(to: tabsScene, using: .root, animated: false)
+            
+        } else {
+            
+            let oauthViewModel = OAuthViewModel(title: "", usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let oauthScene = Scene.oauth(oauthViewModel)
+            
+            sceneCoordinator.transition(to: oauthScene, using: .root, animated: false)
+            
+        }
         
     }
 }

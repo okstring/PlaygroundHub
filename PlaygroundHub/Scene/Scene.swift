@@ -8,8 +8,8 @@
 import UIKit
 
 enum Scene {
-    case tabs(TabsViewModel)
     case oauth(OAuthViewModel)
+    case tabs(TabsViewModel)
     case profile(ProfileViewModel)
 }
 
@@ -41,10 +41,9 @@ extension Scene {
             return oauthVC
         case .profile(let viewModel):
             var profileVC = ProfileViewController()
-            let navVC = UINavigationController.init(rootViewController: profileVC)
             profileVC.bind(viewModel: viewModel)
             
-            return navVC
+            return profileVC
         }
     }
     

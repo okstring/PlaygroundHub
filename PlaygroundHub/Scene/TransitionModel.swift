@@ -10,7 +10,6 @@ import Foundation
 enum TransitionStyle {
     case root
     case push
-    case changeTabBarItem
 }
 
 enum TransitionError: Error {

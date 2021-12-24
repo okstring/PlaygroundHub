@@ -53,20 +53,8 @@ final class SceneCoordinator: SceneCoordinatorType {
             currentVC = target.sceneViewController
             
             subject.onCompleted()
-        case .changeTabBarItem:
             
-            guard let tabsViewController = currentVC as? TabsViewController else {
-                subject.onError(TransitionError.tabBarControllerMissing)
-                break
-            }
-            
-            tabsViewController.viewControllers?.remove(at: scene.tabBarIndex)
-            tabsViewController.viewControllers?.insert(target, at: scene.tabBarIndex)
-            
-            tabsViewController.selectedIndex = scene.tabBarIndex
-            
-            currentVC = target.sceneViewController
-            subject.onCompleted()
+            return subject.ignoreElements().asCompletable()
         }
         
         return subject.ignoreElements().asCompletable()
@@ -95,3 +83,5 @@ final class SceneCoordinator: SceneCoordinatorType {
         }
     }
 }
+
+
