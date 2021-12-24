@@ -71,7 +71,7 @@ enum Endpoint {
         
         switch self {
         case .searchRepository, .user, .userRepository, .isStarred, .putStarred, .deleteStarred, .repository, .userStarred:
-            headers.add(HTTPHeader(name: "Accept", value: "application/vnd.github.mercy-preview+json"))
+            headers.add(HTTPHeader(name: "Accept", value: "application/vnd.github.v3+json"))
             headers.add(HTTPHeader(name: "User-Agent", value: "request"))
         case .createAccessToken:
             headers.add(HTTPHeader(name: "Accept", value: "application/json"))

@@ -15,18 +15,16 @@ protocol GithubRepository {
     
     func fetchUser() -> Single<User>
     
-    func fetchRepository(endpoint: Endpoint, category: RepositoryCagetory) -> Single<[Repository]>
+    func fetchRepository(endpoint: Endpoint) -> Single<[Repository]>
     
     func fetchSearchRespotory(query: String, page: Int) -> Single<[Repository]>
 }
 
 class DefaultGithubRepository: GithubRepository {
     let disposeBag = DisposeBag()
-    let repositoryCoreDataStorage: CoreDataStorage
     let networkingProtocol: NetworkingProtocol
     
-    init(repositoryCoreDataStorage: CoreDataStorage, networkingProtocol: NetworkingProtocol) {
-        self.repositoryCoreDataStorage = repositoryCoreDataStorage
+    init(networkingProtocol: NetworkingProtocol) {
         self.networkingProtocol = networkingProtocol
     }
     
@@ -45,30 +43,17 @@ class DefaultGithubRepository: GithubRepository {
     }
     
     
-    func fetchRepository(endpoint: Endpoint, category: RepositoryCagetory) -> Single<[Repository]> {
+    func fetchRepository(endpoint: Endpoint) -> Single<[Repository]> {
         return Single.create() { single in
             
             self.networkingProtocol.request(type: [Repository].self, endpoint: endpoint)
                 .subscribe(onSuccess: { repositories in
-                    
-                    for repository in repositories {
-                        self.repositoryCoreDataStorage.saveRepository(repository: repository, category: category)
-                    }
-                    
                     return single(.success(repositories))
                     
                 }, onFailure: { error in
                     #if DEBUG
-                    print(#function, error, category, endpoint)
+                    print(#function, error, endpoint)
                     #endif
-                    
-                    self.repositoryCoreDataStorage.getLocalRepositoryList(category: category)
-                        .subscribe(onSuccess: { repositories in
-                            return single(.success(repositories))
-                        }, onFailure: { error in
-                            return single(.failure(error))
-                        }).disposed(by: self.disposeBag)
-                    
                 }).disposed(by: self.disposeBag)
             
             return Disposables.create()

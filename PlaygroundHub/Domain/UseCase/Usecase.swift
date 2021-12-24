@@ -12,7 +12,7 @@ import RxSwift
 class Usecase: GithubAPI {
     let githubRepository: GithubRepository
     
-    init(githubRepository: GithubRepository = DefaultGithubRepository(repositoryCoreDataStorage: CoreDataStorage(), networkingProtocol: Networking())) {
+    init(githubRepository: GithubRepository = DefaultGithubRepository(networkingProtocol: Networking())) {
         self.githubRepository = githubRepository
     }
     
@@ -25,11 +25,11 @@ class Usecase: GithubAPI {
     }
     
     func getUserRepository() -> Single<[Repository]> {
-        return githubRepository.fetchRepository(endpoint: .repository, category: .user)
+        return githubRepository.fetchRepository(endpoint: .repository)
     }
     
     func getStarred() -> Single<[Repository]> {
-        return githubRepository.fetchRepository(endpoint: .userStarred, category: .starred)
+        return githubRepository.fetchRepository(endpoint: .userStarred)
     }
     
     func getSearchRepositoryResult(query: String, page: Int) -> Single<[Repository]> {

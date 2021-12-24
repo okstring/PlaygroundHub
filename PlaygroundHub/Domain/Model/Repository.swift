@@ -23,15 +23,6 @@ struct Repository: Decodable {
         return id
     }
     
-    var abbreviateStarCount: String {
-        let count = String(starCount).count
-        if count > 4 {
-            return "\(starCount / 1000)k"
-        } else {
-            return "\(starCount.decimal)"
-        }
-    }
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)

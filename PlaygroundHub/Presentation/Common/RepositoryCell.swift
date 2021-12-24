@@ -45,7 +45,7 @@ class RepositoryCell: UITableViewCell {
         return button
     }()
     
-    private let starCount: UILabel = {
+    private let starCountLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textAlignment = .center
@@ -57,7 +57,7 @@ class RepositoryCell: UITableViewCell {
         let nameStackView = UIStackView(arrangedSubviews: [repositoryName, owner])
         nameStackView.axis = .vertical
         
-        let starStackView = UIStackView(arrangedSubviews: [starButton, starCount])
+        let starStackView = UIStackView(arrangedSubviews: [starButton, starCountLabel])
         starStackView.axis = .vertical
         
         let stackView = UIStackView(arrangedSubviews: [profileImageView, nameStackView, starStackView])
@@ -174,8 +174,6 @@ class RepositoryCell: UITableViewCell {
         repositoryName.text = item.title
         owner.text = item.loginName
         
-        starCount.text = item.abbreviateStarCount
-        
         repositoryDescription.text = item.repositoryDescription == "" ? "" : item.repositoryDescription
         topics.setAttributenTagString(arr: item.topics)
         
@@ -186,27 +184,53 @@ class RepositoryCell: UITableViewCell {
     }
     
     private func bind(item: Repository) {
+        let starred = BehaviorSubject<Bool>(value: false)
+        let starCount = BehaviorSubject<Int>(value: item.starCount)
+        let countToggle = PublishSubject<Bool>()
+        
         StarredLoader.starred(endpoint: .isStarred(name: item.loginName, repo: item.title))
             .asObservable()
-            .bind(to: starButton.rx.isSelected)
+            .subscribe(onNext: starred.onNext)
             .disposed(by: disposeBag)
         
-        starButton.rx.tap
-            .withLatestFrom(Observable.just(starButton.isSelected)) { $1 }
-            .flatMap{ isSelected -> Single<Bool> in
-                if isSelected == true {
+        let tabResult = starButton.rx.tap
+            .withLatestFrom(starred) { $1 }
+            .debug()
+            .flatMap{ starSelected -> Single<Bool> in
+                if starSelected == true {
                     return StarredLoader.starred(endpoint: .deleteStarred(name: item.loginName, repo: item.title))
                 } else {
                     return StarredLoader.starred(endpoint: .putStarred(name: item.loginName, repo: item.title))
                 }
-            }.subscribe(onNext: { [weak self] result in
-                if result {
-                    guard let self = self else {
-                        return
-                    }
-                    self.starButton.isSelected = !self.starButton.isSelected
-                }
-            }).disposed(by: disposeBag)
+            }.filter{ $0 }
+            .withLatestFrom(starred)
+            .map({ !$0 })
+            .share()
+        
+        tabResult
+            .bind(to: starred)
+            .disposed(by: disposeBag)
+        
+        tabResult
+            .bind(to: countToggle)
+            .disposed(by: disposeBag)
+        
+        starCount
+            .map({ $0.abbreviateStarCount })
+            .bind(to: starCountLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        countToggle
+            .withLatestFrom(starCount){ ($0, $1) }
+            .map{ $0 ? $1 + 1 : $1 - 1 }
+            .do(onNext: starCount.onNext)
+            .map({ $0.abbreviateStarCount })
+            .bind(to: starCountLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        starred
+            .bind(to: starButton.rx.isSelected)
+            .disposed(by: rx.disposeBag)
         
         ImageLoader.load(from: item.profileImageURL)
             .drive(profileImageView.rx.image)
@@ -218,7 +242,7 @@ class RepositoryCell: UITableViewCell {
         
         owner.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
         topics.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
-        starCount.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
+        starCountLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .vertical)
         
         profileImageView.snp.makeConstraints({
             $0.width.height.equalTo(40)
