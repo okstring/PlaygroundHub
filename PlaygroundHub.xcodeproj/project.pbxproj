@@ -52,6 +52,8 @@
 		22F11C05271D792100E556EB /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11C04271D792100E556EB /* GithubAPI.swift */; };
 		22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11C07271D7F6200E556EB /* AuthManager.swift */; };
 		FC44A1DA2775D0860070C8CE /* Int+abbreviateStarCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */; };
+		FC5F07142776295800EA1160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07132776295800EA1160 /* DetailViewController.swift */; };
+		FC5F07162776296500EA1160 /* DetaioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07152776296500EA1160 /* DetaioViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		3ED68ADD16E1859F2E4E3483 /* Pods-PlaygroundHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundHub.debug.xcconfig"; path = "Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub.debug.xcconfig"; sourceTree = "<group>"; };
 		57AD30471986960E71346C7C /* Pods_PlaygroundHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+abbreviateStarCount.swift"; sourceTree = "<group>"; };
+		FC5F07132776295800EA1160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FC5F07152776296500EA1160 /* DetaioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaioViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 				22005DE6271EF5A10058609C /* Trend */,
 				22F11BF2271D179D00E556EB /* Login */,
 				22C796E927206F3800576501 /* Profile */,
+				FC5F07122776293A00EA1160 /* Detail */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -341,6 +346,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC5F07122776293A00EA1160 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				FC5F07132776295800EA1160 /* DetailViewController.swift */,
+				FC5F07152776296500EA1160 /* DetaioViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -483,12 +497,14 @@
 				22AA7A9527254E8A00FDA6C3 /* Repository.swift in Sources */,
 				2299635527263611007ABFF2 /* CustomSegmentedControl.swift in Sources */,
 				22F09584273ACDE4001011BE /* SearchRepository.swift in Sources */,
+				FC5F07142776295800EA1160 /* DetailViewController.swift in Sources */,
 				22F11BFE271D179D00E556EB /* ViewModelType.swift in Sources */,
 				22005DCD271D880A0058609C /* Scene.swift in Sources */,
 				22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */,
 				22005DD5271D8D330058609C /* ServerAPI.swift in Sources */,
 				22005DCF271D880A0058609C /* TransitionModel.swift in Sources */,
 				2227A45E2720CE290057387E /* ObservableType.swift in Sources */,
+				FC5F07162776296500EA1160 /* DetaioViewModel.swift in Sources */,
 				22F11BFA271D179D00E556EB /* Configs.swift in Sources */,
 				226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */,
 				22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */,

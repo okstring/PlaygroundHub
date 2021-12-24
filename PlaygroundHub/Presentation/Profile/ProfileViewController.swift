@@ -46,7 +46,6 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     private lazy var userRepositoryTableView: UITableView = {
         let tableView = UITableView()
-        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.refreshControl = repositoryRefreshControl
@@ -57,7 +56,6 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     
     private lazy var starredTableView: UITableView = {
         let tableView = UITableView()
-        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.refreshControl = starredRefreshControl
@@ -205,6 +203,19 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
                 return cell
             }.disposed(by: rx.disposeBag)
         
+        Observable.zip(userRepositoryTableView.rx.itemSelected, userRepositoryTableView.rx.modelSelected(Repository.self))
+            .subscribe(onNext: { [weak self] indexPath, repository in
+                let cell = self?.starredTableView.cellForRow(at: indexPath) as? RepositoryCell
+                print(repository)
+                self?.userRepositoryTableView.deselectRow(at: indexPath, animated: true)
+            }).disposed(by: rx.disposeBag)
+        
+        Observable.zip(starredTableView.rx.itemSelected, starredTableView.rx.modelSelected(Repository.self))
+            .subscribe(onNext: { [weak self] indexPath, repository in
+                let cell = self?.starredTableView.cellForRow(at: indexPath) as? RepositoryCell
+                print(repository)
+                self?.starredTableView.deselectRow(at: indexPath, animated: true)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
