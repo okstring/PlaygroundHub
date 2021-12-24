@@ -21,6 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
+        
         let sceneCoordinator = SceneCoordinator(window: window!)
         
         let usecase = Usecase()
