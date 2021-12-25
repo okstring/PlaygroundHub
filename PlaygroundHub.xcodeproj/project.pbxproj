@@ -53,7 +53,7 @@
 		22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11C07271D7F6200E556EB /* AuthManager.swift */; };
 		FC44A1DA2775D0860070C8CE /* Int+abbreviateStarCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */; };
 		FC5F07142776295800EA1160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07132776295800EA1160 /* DetailViewController.swift */; };
-		FC5F07162776296500EA1160 /* DetaioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07152776296500EA1160 /* DetaioViewModel.swift */; };
+		FC5F07162776296500EA1160 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07152776296500EA1160 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,7 +107,7 @@
 		57AD30471986960E71346C7C /* Pods_PlaygroundHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+abbreviateStarCount.swift"; sourceTree = "<group>"; };
 		FC5F07132776295800EA1160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		FC5F07152776296500EA1160 /* DetaioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaioViewModel.swift; sourceTree = "<group>"; };
+		FC5F07152776296500EA1160 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				FC5F07132776295800EA1160 /* DetailViewController.swift */,
-				FC5F07152776296500EA1160 /* DetaioViewModel.swift */,
+				FC5F07152776296500EA1160 /* DetailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -504,7 +504,7 @@
 				22005DD5271D8D330058609C /* ServerAPI.swift in Sources */,
 				22005DCF271D880A0058609C /* TransitionModel.swift in Sources */,
 				2227A45E2720CE290057387E /* ObservableType.swift in Sources */,
-				FC5F07162776296500EA1160 /* DetaioViewModel.swift in Sources */,
+				FC5F07162776296500EA1160 /* DetailViewModel.swift in Sources */,
 				22F11BFA271D179D00E556EB /* Configs.swift in Sources */,
 				226C92CC27243DD200810E81 /* NSObject+ClassNameProtocol.swift in Sources */,
 				22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */,
