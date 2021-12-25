@@ -15,6 +15,7 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let appearTrigger: Observable<Void>
         let repositoryRefresh: Observable<Void>
         let starredRefresh: Observable<Void>
+        let tapLogout: Observable<Void>
     }
     
     struct Output {
@@ -47,6 +48,10 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let isRefresh = refresh.distinctUntilChanged()
             .delay(.milliseconds(500), scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: false)
+                
+        input.tapLogout
+            .subscribe(onNext: { print("ho") })
+            .disposed(by: rx.disposeBag)
                 
         return Output(title: title,
                       userRepository: userRepository,

@@ -85,6 +85,13 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         return control
     }()
     
+    private let logoutButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem()
+        barButton.image = UIImage(systemName: "person.badge.minus")
+        barButton.tintColor = .red
+        return barButton
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
@@ -96,7 +103,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
     }
     
     func makeUI() {
-        tabBarItem = UITabBarItem.init(title: "마이 페이지", image: UIImage(systemName: "person.fill"), selectedImage: UIImage(systemName: "person.fill"))
+        navigationItem.rightBarButtonItem = logoutButton
         view.backgroundColor = .white
         
         userRepositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
@@ -161,7 +168,10 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .asObservable()
             .merge(with: appearTrigger)
         
-        let input = ProfileViewModel.Input(appearTrigger: appearTrigger, repositoryRefresh: repositoryRefresh, starredRefresh: starredRefresh)
+        let tapLogout = logoutButton.rx.tap
+            .asObservable()
+        
+        let input = ProfileViewModel.Input(appearTrigger: appearTrigger, repositoryRefresh: repositoryRefresh, starredRefresh: starredRefresh, tapLogout: tapLogout)
         let output = viewModel.transform(input: input)
         
         output.title
