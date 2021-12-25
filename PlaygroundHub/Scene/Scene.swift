@@ -11,6 +11,7 @@ enum Scene {
     case oauth(OAuthViewModel)
     case tabs(TabsViewModel)
     case profile(ProfileViewModel)
+    case detail(DetailViewModel)
 }
 
 extension Scene {
@@ -44,6 +45,11 @@ extension Scene {
             profileVC.bind(viewModel: viewModel)
             
             return profileVC
+        case .detail(let viewModel):
+            var detailVC = DetailViewController()
+            detailVC.bind(viewModel: viewModel)
+            
+            return detailVC
         }
     }
     

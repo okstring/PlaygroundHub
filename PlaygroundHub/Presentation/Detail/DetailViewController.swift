@@ -8,7 +8,9 @@
 import UIKit
 import WebKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, ViewModelBindableType {
+    var viewModel: DetailViewModel!
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -82,6 +84,10 @@ class DetailViewController: UIViewController {
             let request = URLRequest(url: url)
             webView.load(request)
         }
+    }
+    
+    func bindViewModel() {
+        
     }
     
     func makeUI() {

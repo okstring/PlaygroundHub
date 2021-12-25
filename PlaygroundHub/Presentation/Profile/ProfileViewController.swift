@@ -160,7 +160,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .mapToVoid()
             .asObservable()
             .merge(with: appearTrigger)
-
+        
         let input = ProfileViewModel.Input(appearTrigger: appearTrigger, repositoryRefresh: repositoryRefresh, starredRefresh: starredRefresh)
         let output = viewModel.transform(input: input)
         
@@ -181,7 +181,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         
         output.userRepository
             .drive(userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
-          
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
@@ -193,7 +193,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
         
         output.starredRespository
             .drive(starredTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
-          
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
@@ -204,18 +204,20 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             }.disposed(by: rx.disposeBag)
         
         Observable.zip(userRepositoryTableView.rx.itemSelected, userRepositoryTableView.rx.modelSelected(Repository.self))
-            .subscribe(onNext: { [weak self] indexPath, repository in
-                let cell = self?.starredTableView.cellForRow(at: indexPath) as? RepositoryCell
-                print(repository)
+            .do(onNext: { [weak self] indexPath, repository in
                 self?.userRepositoryTableView.deselectRow(at: indexPath, animated: true)
-            }).disposed(by: rx.disposeBag)
+            })
+            .map{ $0.1 }
+            .bind(to: viewModel.detailAction.inputs)
+            .disposed(by: rx.disposeBag)
         
         Observable.zip(starredTableView.rx.itemSelected, starredTableView.rx.modelSelected(Repository.self))
-            .subscribe(onNext: { [weak self] indexPath, repository in
-                let cell = self?.starredTableView.cellForRow(at: indexPath) as? RepositoryCell
-                print(repository)
+            .do(onNext: { [weak self] indexPath, repository in
                 self?.starredTableView.deselectRow(at: indexPath, animated: true)
-            }).disposed(by: rx.disposeBag)
+            })
+            .map{ $0.1 }
+            .bind(to: viewModel.detailAction.inputs)
+            .disposed(by: rx.disposeBag)
     }
 }
 

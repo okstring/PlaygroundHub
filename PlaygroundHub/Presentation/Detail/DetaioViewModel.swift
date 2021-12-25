@@ -7,6 +7,15 @@
 
 import Foundation
 
-class DetailViewModel {
+class DetailViewModel: ViewModel, ViewModelType  {
+    struct Input {
+    }
     
+    struct Output {
+    }
+    
+    
+    func transform(input: Input) -> Output {
+        return Output()
+    }
 }
