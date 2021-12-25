@@ -25,11 +25,6 @@ class DetailViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
-        
-        if let url = URL(string: "https://github.com/okstring") {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
     }
     
     func bindViewModel() {
@@ -50,7 +45,6 @@ class DetailViewController: UIViewController, ViewModelBindableType {
                 }
                 
             }).disposed(by: rx.disposeBag)
-        
     }
     
     func makeUI() {
