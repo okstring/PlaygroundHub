@@ -30,17 +30,15 @@ class ProfileViewModel: ViewModel, ViewModelType {
         
         let title = title.asDriver(onErrorJustReturn: "")
         
-        
-        
-        let userRepository = input.repositoryRefresh
-            .withLatestFrom(input.appearTrigger) { appear, _ in appear }
+        let userRepository = Observable
+            .combineLatest(input.repositoryRefresh, input.appearTrigger) { appear, _ in appear }
             .do(onNext: { refresh.onNext(true) })
             .flatMap{ usecase.getUserRepository() }
             .do(onNext: { _ in refresh.onNext(false) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
-        let starredRepository = input.starredRefresh
-            .withLatestFrom(input.appearTrigger) { appear, _ in appear }
+        let starredRepository = Observable
+            .combineLatest(input.starredRefresh, input.appearTrigger) { appear, _ in appear }
             .do(onNext: { refresh.onNext(true) })
             .flatMap({ usecase.getStarred() })
             .do(onNext: { _ in refresh.onNext(false) })
