@@ -38,22 +38,7 @@ final class SceneCoordinator: SceneCoordinatorType {
             window.rootViewController = target
             subject.onCompleted()
         case .push:
-            if let tvc = currentVC as? TabsViewController {
-                
-                if let nc = tvc.selectedViewController as? UINavigationController,
-                   let vc = nc.topViewController {
-                    currentVC = vc
-                    
-                } else if let vc = tvc.selectedViewController {
-                    currentVC = vc
-                    
-                } else {
-                    subject.onError(TransitionError.selectedViewControllerMissing)
-                    break
-                }
-            }
-            
-            guard let nav = currentVC.navigationController else {
+            guard let nav = currentVC as? UINavigationController else {
                 subject.onError(TransitionError.navigationControllerMissing)
                 break
             }
@@ -71,6 +56,19 @@ final class SceneCoordinator: SceneCoordinatorType {
             
             return subject.ignoreElements().asCompletable()
         }
+        
+        return subject.ignoreElements().asCompletable()
+    }
+    
+    func transition() -> Completable {
+        let subject = PublishSubject<Void>()
+        
+        guard let selectedVC = currentVC.tabBarController?.selectedViewController else {
+            subject.onError(TransitionError.selectedViewControllerMissing)
+            return subject.ignoreElements().asCompletable()
+        }
+        
+        currentVC = selectedVC
         
         return subject.ignoreElements().asCompletable()
     }

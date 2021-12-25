@@ -12,6 +12,11 @@ enum TransitionStyle {
     case push
 }
 
+enum TabBarIndex: Int {
+    case trend = 0
+    case profile
+}
+
 enum TransitionError: Error {
     case navigationControllerMissing
     case connotPop

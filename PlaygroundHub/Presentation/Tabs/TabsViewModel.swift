@@ -16,20 +16,23 @@ class TabsViewModel: ViewModel, ViewModelType {
     }
     
     struct Output {
-        let tabBarItems: Driver<[TabBarItem]>
     }
+    
+    let selectedIndex = PublishSubject<Void>()
     
     init(usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
         super.init(usecase: usecase, sceneCoordinator: sceneCoordinator)
     }
     
     func transform(input: Input) -> Output {
-        let tabBarItems = input.trigger
-            .map({ _ -> [TabBarItem] in
-                return [.trand, .profile]
-            }).asDriver(onErrorJustReturn: [.trand, .profile])
+        let sceneCoordinator = sceneCoordinator
         
-        return Output(tabBarItems: tabBarItems)
+        selectedIndex
+            .subscribe(onNext: {
+                sceneCoordinator.transition()
+            }).disposed(by: rx.disposeBag)
+        
+        return Output()
     }
     
 }

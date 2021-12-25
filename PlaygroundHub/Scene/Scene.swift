@@ -34,6 +34,20 @@ extension Scene {
             var tabsVC = TabsViewController()
             tabsVC.bind(viewModel: viewModel)
             
+            var trandVC = TrandViewController()
+            let trandNav = UINavigationController(rootViewController: trandVC)
+            let trandViewModel = TrandViewModel(title: "Trend", usecase: viewModel.usecase, sceneCoordinator: viewModel.sceneCoordinator)
+            trandVC.bind(viewModel: trandViewModel)
+            trandVC.tabBarItem = UITabBarItem(title: "Trend", image: UIImage(systemName: "chart.line.uptrend.xyaxis"), selectedImage: UIImage(systemName: "chart.line.uptrend.xyaxis"))
+            
+            var profileVC = ProfileViewController()
+            let profileNav = UINavigationController(rootViewController: profileVC)
+            let profileViewModel = ProfileViewModel(title: "Profile", usecase: viewModel.usecase, sceneCoordinator: viewModel.sceneCoordinator)
+            profileVC.bind(viewModel: profileViewModel)
+            profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), selectedImage: UIImage(systemName: "person.fill"))
+            
+            tabsVC.viewControllers = [trandNav, profileNav]
+            
             return tabsVC
         case .oauth(let viewModel):
             var oauthVC = OAuthViewController()
