@@ -43,14 +43,7 @@ final class SceneCoordinator: SceneCoordinatorType {
                 break
             }
             
-            nav.rx.willShow
-                .subscribe(onNext: { [unowned self] event in
-                    self.currentVC = event.viewController.sceneViewController
-                })
-                .disposed(by: bag)
-            
             nav.pushViewController(target, animated: animated)
-            currentVC = target.sceneViewController
             
             subject.onCompleted()
             
