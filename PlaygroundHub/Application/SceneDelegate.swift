@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if AuthManager.shared.hasValidToken {
             
-            let tabsViewModel = TabsViewModel(authorized: AuthManager.shared.hasValidToken, usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let tabsViewModel = TabsViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
             let tabsScene = Scene.tabs(tabsViewModel)
             
             sceneCoordinator.transition(to: tabsScene, using: .root, animated: false)

@@ -70,7 +70,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
         
         
         tokenSaved.subscribe(onNext: {
-            let tabsViewModel = TabsViewModel(authorized: AuthManager.shared.hasValidToken, usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let tabsViewModel = TabsViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
             sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
         }).disposed(by: rx.disposeBag)
         

@@ -27,7 +27,7 @@ final class Networking: NetworkingProtocol {
     
     func request<T: Decodable>(type: T.Type,
                            endpoint: Endpoint) -> Single<T> {
-        
+        print(endpoint.path, endpoint.httpMethod)
         return Single.create() { single in
             AF.request(endpoint.URL,
                        method: endpoint.httpMethod,
