@@ -20,6 +20,7 @@ struct Repository: Decodable {
     let profileImageURL: String
     let forkCount: Int
     let updatedAt: Date
+    let htmlURL: String
     var identity: Int {
         return id
     }
@@ -36,6 +37,7 @@ struct Repository: Decodable {
         self.isStarred = try container.decodeIfPresent(Bool.self, forKey: .isStarred) ?? false
         self.forkCount = try container.decode(Int.self, forKey: .forkCount)
         self.updatedAt =  try container.decode(Date.self, forKey: .updatedAt)
+        self.htmlURL = try container.decode(String.self, forKey: .htmlURL)
         let ownerContainer = try container.nestedContainer(keyedBy: OwnerInfoKeys.self, forKey: .owner)
         self.loginName = try ownerContainer.decode(String.self, forKey: .loginName)
         self.profileImageURL = try ownerContainer.decode(String.self, forKey: .profileImageURL)
@@ -54,6 +56,7 @@ struct Repository: Decodable {
         case isStarred
         case forkCount = "forks_count"
         case updatedAt = "updated_at"
+        case htmlURL = "html_url"
     }
     
     enum OwnerInfoKeys: String, CodingKey {
@@ -62,7 +65,7 @@ struct Repository: Decodable {
         case profileImageURL = "avatar_url"
     }
     
-    init(id: Int, title: String, fullTitle: String, repositoryDescription: String, topics: [String], starCount: Int, language: String, loginName: String, isStarred: Bool, profileImageURL: String, forkCount: Int, updatedAt: Date) {
+    init(id: Int, title: String, fullTitle: String, repositoryDescription: String, topics: [String], starCount: Int, language: String, loginName: String, isStarred: Bool, profileImageURL: String, forkCount: Int, updatedAt: Date, htmlURL: String) {
         self.id = id
         self.title = title
         self.fullTitle = fullTitle
@@ -75,6 +78,7 @@ struct Repository: Decodable {
         self.profileImageURL = profileImageURL
         self.forkCount = forkCount
         self.updatedAt = updatedAt
+        self.htmlURL = htmlURL
     }
 }
 

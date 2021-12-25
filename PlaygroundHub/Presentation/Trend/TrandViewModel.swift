@@ -68,7 +68,7 @@ class TrandViewModel: ViewModel, ViewModelType {
     lazy var detailAction: Action<Repository, Void> = {
         return Action { repository in
             
-            let detailViewModel = DetailViewModel(title: "Detail", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
+            let detailViewModel = DetailViewModel(title: "Detail", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator, repository: repository)
             let detailScene = Scene.detail(detailViewModel)
             
             return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().mapToVoid()
