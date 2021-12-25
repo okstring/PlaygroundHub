@@ -17,4 +17,5 @@ enum TransitionError: Error {
     case connotPop
     case unknown
     case tabBarControllerMissing
+    case selectedViewControllerMissing
 }

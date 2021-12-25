@@ -38,11 +38,20 @@ final class SceneCoordinator: SceneCoordinatorType {
             window.rootViewController = target
             subject.onCompleted()
         case .push:
-            if let vc = currentVC as? TabsViewController {
-                if let nc = vc.selectedViewController as? UINavigationController {
-                    currentVC = nc.topViewController!
+            if let tvc = currentVC as? TabsViewController {
+                
+                if let nc = tvc.selectedViewController as? UINavigationController,
+                   let vc = nc.topViewController {
+                    
+                    currentVC = vc
+                    
+                } else if let vc = tvc.selectedViewController {
+                    
+                    currentVC = vc
+                    
                 } else {
-                    currentVC = vc.selectedViewController!
+                    subject.onError(TransitionError.selectedViewControllerMissing)
+                    break
                 }
             }
             
