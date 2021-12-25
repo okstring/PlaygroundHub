@@ -19,10 +19,7 @@ class TabsViewModel: ViewModel, ViewModelType {
         let tabBarItems: Driver<[TabBarItem]>
     }
     
-    let authorized: Bool
-    
-    init(authorized: Bool, usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
-        self.authorized = authorized
+    init(usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
         super.init(usecase: usecase, sceneCoordinator: sceneCoordinator)
     }
     

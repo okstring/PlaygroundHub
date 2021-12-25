@@ -42,11 +42,9 @@ final class SceneCoordinator: SceneCoordinatorType {
                 
                 if let nc = tvc.selectedViewController as? UINavigationController,
                    let vc = nc.topViewController {
-                    
                     currentVC = vc
                     
                 } else if let vc = tvc.selectedViewController {
-                    
                     currentVC = vc
                     
                 } else {
