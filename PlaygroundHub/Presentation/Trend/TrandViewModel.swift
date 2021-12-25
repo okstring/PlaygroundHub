@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Action
 
 class TrandViewModel: ViewModel, ViewModelType {
     let disposeBag = DisposeBag()
@@ -63,4 +64,14 @@ class TrandViewModel: ViewModel, ViewModelType {
                 
         return Output(title: title, repository: repository, isRefresh: isRefresh)
     }
+    
+    lazy var detailAction: Action<Repository, Void> = {
+        return Action { repository in
+            
+            let detailViewModel = DetailViewModel(title: "Detail", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
+            let detailScene = Scene.detail(detailViewModel)
+            
+            return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().mapToVoid()
+        }
+    }()
 }

@@ -33,7 +33,6 @@ class TrandViewController: UIViewController, ViewModelBindableType {
     
     private lazy var repositoryTableView: UITableView = {
         let tableView = UITableView()
-        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.refreshControl = refreshControl
         tableView.backgroundColor = .white
@@ -111,6 +110,13 @@ class TrandViewController: UIViewController, ViewModelBindableType {
                 return cell
             }.disposed(by: rx.disposeBag)
         
+        Observable.zip(repositoryTableView.rx.itemSelected, repositoryTableView.rx.modelSelected(Repository.self))
+            .do(onNext: { [weak self] indexPath, repository in
+                self?.repositoryTableView.deselectRow(at: indexPath, animated: true)
+            })
+            .map{ $0.1 }
+            .bind(to: viewModel.detailAction.inputs)
+            .disposed(by: rx.disposeBag)
         
     }
 }
