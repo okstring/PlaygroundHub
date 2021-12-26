@@ -55,6 +55,7 @@
 		FC5F07142776295800EA1160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07132776295800EA1160 /* DetailViewController.swift */; };
 		FC5F07162776296500EA1160 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07152776296500EA1160 /* DetailViewModel.swift */; };
 		FC9DA96C2776FE29008B23FC /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DA96B2776FE29008B23FC /* DetailHeaderView.swift */; };
+		FC9DA9702778CD61008B23FC /* SearchImage.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9DA96F2778CD61008B23FC /* SearchImage.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		FC5F07132776295800EA1160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FC5F07152776296500EA1160 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		FC9DA96B2776FE29008B23FC /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
+		FC9DA96F2778CD61008B23FC /* SearchImage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchImage.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				22411A73273258E70023A03B /* Data */,
 				22F11BDD271D177700E556EB /* Assets.xcassets */,
 				22E5394E27316B7500647008 /* GithubNeonImage.json */,
+				FC9DA96F2778CD61008B23FC /* SearchImage.json */,
 				22F11BDF271D177700E556EB /* LaunchScreen.storyboard */,
 				22F11BE2271D177700E556EB /* Info.plist */,
 			);
@@ -419,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E5394F27316B7500647008 /* GithubNeonImage.json in Resources */,
+				FC9DA9702778CD61008B23FC /* SearchImage.json in Resources */,
 				22F11BE1271D177700E556EB /* LaunchScreen.storyboard in Resources */,
 				22F11BDE271D177700E556EB /* Assets.xcassets in Resources */,
 			);

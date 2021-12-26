@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import RxSwift
 import RxCocoa
 import NSObject_Rx
@@ -41,6 +42,22 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         return tableView
     }()
     
+    private lazy var animationView: AnimationView = {
+        let animationView = AnimationView(name: "SearchImage")
+        
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        
+        return animationView
+    }()
+    
+    private lazy var imageBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.addSubview(animationView)
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
@@ -49,11 +66,26 @@ class TrandViewController: UIViewController, ViewModelBindableType {
     private func makeUI() {
         view.backgroundColor = .white
         
+        searchController.searchBar.setImage(UIImage(named: "okstring"), for: .clear, state: .reserved)
+        
         self.navigationItem.searchController = searchController
         
         navigationItem.hidesSearchBarWhenScrolling = false
         
         view.addSubview(repositoryTableView)
+        
+        view.addSubview(imageBackgroundView)
+        
+        imageBackgroundView.snp.makeConstraints({
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view)
+        })
+        
+        animationView.snp.makeConstraints({
+            $0.centerX.equalTo(view.snp_centerXWithinMargins)
+            $0.centerY.equalTo(view.snp_centerYWithinMargins)
+            $0.width.height.equalTo(view.snp.width).multipliedBy(0.7)
+        })
         
         repositoryTableView.snp.makeConstraints({
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -81,6 +113,18 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         
         let output = viewModel.transform(input: input)
         
+        let isEmptyQuery = searchController.searchBar.rx.text
+            .map({ return $0 == nil || $0 == "" })
+        
+        isEmptyQuery
+            .map({ !$0 })
+            .bind(to: imageBackgroundView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        isEmptyQuery
+            .bind(to: repositoryTableView.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
         output.title
             .drive(navigationItem.rx.title)
             .disposed(by: rx.disposeBag)
@@ -104,7 +148,6 @@ class TrandViewController: UIViewController, ViewModelBindableType {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
-                
                 cell.configure(item: repository)
                 
                 return cell
