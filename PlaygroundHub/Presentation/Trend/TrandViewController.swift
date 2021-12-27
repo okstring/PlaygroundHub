@@ -96,6 +96,7 @@ class TrandViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
+        let animationView = animationView
         
         let query = searchController.searchBar.rx.searchButtonClicked
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
@@ -112,6 +113,13 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         let input = TrandViewModel.Input(query: query, pullRefresh: pullRefresh, nextPage: nextPage)
         
         let output = viewModel.transform(input: input)
+        
+        rx.viewWillAppear
+            .mapToVoid()
+            .subscribe(onNext: {
+                animationView.play()
+            })
+            .disposed(by: rx.disposeBag)
         
         let isEmptyQuery = searchController.searchBar.rx.text
             .map({ return $0 == nil || $0 == "" })
