@@ -38,9 +38,6 @@ class OAuthViewModel: ViewModel, ViewModelType {
             
             self?.session = ASWebAuthenticationSession(url: loginURL, callbackURLScheme: callbackURLScheme, completionHandler: { callbackURL, error in
                 
-                if let error = error {
-                    print(error)
-                }
                 if let code = callbackURL?.queryParameters?["code"] {
                     self?.code.onNext(code)
                 }

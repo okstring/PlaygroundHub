@@ -56,10 +56,6 @@ class DefaultGithubRepository: GithubRepository {
                 .subscribe(onSuccess: { repositories in
                     return single(.success(repositories.sorted(by: { $0.updatedAt > $1.updatedAt })))
                     
-                }, onFailure: { error in
-                    #if DEBUG
-                    print(#function, error, endpoint)
-                    #endif
                 }).disposed(by: self.disposeBag)
             
             return Disposables.create()

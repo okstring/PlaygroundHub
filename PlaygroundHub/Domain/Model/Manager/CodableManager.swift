@@ -22,8 +22,7 @@ class CodableManager {
         
         do {
             return try decoder.decode(T.self, from: data)
-        } catch let error {
-            print(error)
+        } catch {
             return nil
         }
     }
@@ -32,8 +31,7 @@ class CodableManager {
         do {
             let data = try encoder.encode(object)
             return String(data: data, encoding: String.Encoding.utf8)
-        } catch let error {
-            print(error)
+        } catch {
             return nil
         }
     }

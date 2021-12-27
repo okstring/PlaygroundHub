@@ -29,10 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let usecase = Usecase()
         
-        #if DEBUG
-        AuthManager.shared.deleteToken()
-        #endif
-        
         if AuthManager.shared.hasValidToken {
             
             let tabsViewModel = TabsViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
