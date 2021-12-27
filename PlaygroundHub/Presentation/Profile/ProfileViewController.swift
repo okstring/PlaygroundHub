@@ -168,10 +168,7 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .asObservable()
             .merge(with: appearTrigger)
         
-        let tapLogout = logoutButton.rx.tap
-            .asObservable()
-        
-        let input = ProfileViewModel.Input(appearTrigger: appearTrigger, repositoryRefresh: repositoryRefresh, starredRefresh: starredRefresh, tapLogout: tapLogout)
+        let input = ProfileViewModel.Input(appearTrigger: appearTrigger, repositoryRefresh: repositoryRefresh, starredRefresh: starredRefresh)
         let output = viewModel.transform(input: input)
         
         output.title
@@ -228,6 +225,18 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             .map{ $0.1 }
             .bind(to: viewModel.detailAction.inputs)
             .disposed(by: rx.disposeBag)
+        
+        logoutButton.rx.tap
+            .flatMap( { [weak self] _ -> Observable<Void> in
+                guard let self = self else {
+                    return Observable.never()
+                }
+                return self.makeLogoutAlert()
+            }).do(onNext : {
+                AuthManager.shared.deleteToken()
+            })
+            .bind(to: viewModel.oauthAction.inputs)
+            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -245,5 +254,23 @@ extension ProfileViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
         repoTypeSegmentedControll.setIndex(index: Int(pageNumber))
+    }
+}
+
+extension ProfileViewController {
+    func makeLogoutAlert() -> Observable<Void> {
+        let result = PublishSubject<Void>()
+        let alert = UIAlertController(title: "Sign Out", message: "Are you sure you want to logout?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .destructive, handler: { _ in
+            result.onNext(())
+            result.onCompleted()
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            result.onCompleted()
+        }
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+        return result
     }
 }

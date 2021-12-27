@@ -15,7 +15,6 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let appearTrigger: Observable<Void>
         let repositoryRefresh: Observable<Void>
         let starredRefresh: Observable<Void>
-        let tapLogout: Observable<Void>
     }
     
     struct Output {
@@ -49,15 +48,20 @@ class ProfileViewModel: ViewModel, ViewModelType {
             .delay(.milliseconds(500), scheduler: MainScheduler.instance)
             .asDriver(onErrorJustReturn: false)
                 
-        input.tapLogout
-            .subscribe(onNext: { print("ho") })
-            .disposed(by: rx.disposeBag)
-                
         return Output(title: title,
                       userRepository: userRepository,
                       starredRespository: starredRepository,
                       isRefresh: isRefresh)
     }
+    
+    lazy var oauthAction: Action<Void, Void> = {
+        return Action {
+            let oauthViewModel = OAuthViewModel(title: "", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
+            let oauthScene = Scene.oauth(oauthViewModel)
+            
+            return self.sceneCoordinator.transition(to: oauthScene, using: .root, animated: false).asObservable().mapToVoid()
+        }
+    }()
     
     lazy var detailAction: Action<Repository, Void> = {
         return Action { repository in

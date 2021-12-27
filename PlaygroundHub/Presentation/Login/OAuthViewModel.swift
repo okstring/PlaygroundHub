@@ -48,6 +48,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
             if #available(iOS 13.0, *) {
                 self?.session?.presentationContextProvider = self
             }
+            self?.session?.prefersEphemeralWebBrowserSession = true
             self?.session?.start()
         }).disposed(by: disposeBag)
         
