@@ -4,14 +4,15 @@
 
 
 
-![PlaygroundHub](https://user-images.githubusercontent.com/62657991/145139070-49c162ea-d5db-4607-af46-4bbc2dc6ea8a.gif)
+![Find Gitstar](https://user-images.githubusercontent.com/62657991/147475074-b6e69b38-e115-45f7-b0c9-d5c52d324333.gif)
 
 
 
 ## 기술적인 시도
 
 - without Storyboard
-- Core Data
+  - Core Data
+
 - KeyChain
 - RxSwift
 - MVVM-C(Clean Architecture)
@@ -30,6 +31,7 @@
 - [RxSwiftExt](https://github.com/RxSwiftCommunity/RxSwiftExt)
 - [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
 - [lottie-ios](https://github.com/airbnb/lottie-ios)
+- [Action](https://github.com/RxSwiftCommunity/Action)
 
 
 
