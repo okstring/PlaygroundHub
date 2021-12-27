@@ -83,9 +83,56 @@ class DetailHeaderView: UIView {
     }
     
     func bind(item: Repository) {
+        let starred = BehaviorSubject<Bool>(value: false)
+        let starCount = BehaviorSubject<Int>(value: item.starCount)
+        let countToggle = PublishSubject<Bool>()
+        
+        StarredLoader.starred(endpoint: .isStarred(name: item.loginName, repo: item.title))
+            .asObservable()
+            .subscribe(onNext: starred.onNext)
+            .disposed(by: disposeBag)
+        
+        let tabResult = starButton.rx.tap
+            .withLatestFrom(starred) { $1 }
+            .flatMap{ starSelected -> Single<Bool> in
+                if starSelected == true {
+                    return StarredLoader.starred(endpoint: .deleteStarred(name: item.loginName, repo: item.title))
+                } else {
+                    return StarredLoader.starred(endpoint: .putStarred(name: item.loginName, repo: item.title))
+                }
+            }.filter{ $0 }
+            .withLatestFrom(starred)
+            .map({ !$0 })
+            .share()
+        
+        tabResult
+            .bind(to: starred)
+            .disposed(by: disposeBag)
+        
+        tabResult
+            .bind(to: countToggle)
+            .disposed(by: disposeBag)
+        
+        starCount
+            .map({ $0.abbreviateStarCount })
+            .bind(to: starCountLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        countToggle
+            .withLatestFrom(starCount){ ($0, $1) }
+            .map{ $0 ? $1 + 1 : $1 - 1 }
+            .do(onNext: starCount.onNext)
+            .map({ $0.abbreviateStarCount })
+            .bind(to: starCountLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        starred
+            .bind(to: starButton.rx.isSelected)
+            .disposed(by: rx.disposeBag)
+        
         ImageLoader.load(from: item.profileImageURL)
             .drive(profileImageView.rx.image)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
     
     private func makeUI() {
