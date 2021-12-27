@@ -9,11 +9,14 @@ import Foundation
 
 extension Int {
     var abbreviateStarCount: String {
-        let count = String(self).count
-        if count > 4 {
-            return "\(self / 1000)k"
-        } else {
-            return "\(self.decimal)"
+        let number = Double(self)
+        let thousand = number / 1000
+        
+        if thousand >= 1.0 {
+            return "\(round(thousand * 10) / 10)K"
+        }
+        else {
+            return "\(self)"
         }
     }
 }
