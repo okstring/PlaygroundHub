@@ -36,9 +36,9 @@ extension Scene {
             
             var trandVC = TrandViewController()
             let trandNav = UINavigationController(rootViewController: trandVC)
-            let trandViewModel = TrandViewModel(title: "Trend", usecase: viewModel.usecase, sceneCoordinator: viewModel.sceneCoordinator)
+            let trandViewModel = TrandViewModel(title: "Find Star", usecase: viewModel.usecase, sceneCoordinator: viewModel.sceneCoordinator)
             trandVC.bind(viewModel: trandViewModel)
-            trandVC.tabBarItem = UITabBarItem(title: "Trend", image: UIImage(systemName: "chart.line.uptrend.xyaxis"), selectedImage: UIImage(systemName: "chart.line.uptrend.xyaxis"))
+            trandVC.tabBarItem = UITabBarItem(title: "Find Star", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
             
             var profileVC = ProfileViewController()
             let profileNav = UINavigationController(rootViewController: profileVC)

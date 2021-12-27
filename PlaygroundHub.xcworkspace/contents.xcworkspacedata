@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PlaygroundHub.xcodeproj">
+      location = "group:/Users/okstring/Documents/swift/PlaygroundHub/PlaygroundHub.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
