@@ -26,7 +26,8 @@ enum Keys {
 struct Configs {
     struct App {
         static let githubScope = "user+repo+notifications+read:org"
-        static let bundleIdentifier = "kr.maylily.GitInsightHub"
+        static let bundleIdentifier = "kr.maylily.PlaygroundHub"
+        static let scheme = "playgroundhub"
     }
     
 }

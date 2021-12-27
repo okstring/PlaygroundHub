@@ -12,7 +12,7 @@ import RxSwiftExt
 import AuthenticationServices
 
 private let loginURL = URL(string: "https://github.com/login/oauth/authorize?client_id=\(Keys.github.appID)&scope=\(Configs.App.githubScope)")!
-private let callbackURLScheme = "gitinsighthub"
+private let callbackURLScheme = "playgroundhub"
 
 class OAuthViewModel: ViewModel, ViewModelType {
     let disposeBag = DisposeBag()
