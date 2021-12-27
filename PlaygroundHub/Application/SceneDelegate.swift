@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let usecase = Usecase()
         
         #if DEBUG
-//        AuthManager.shared.deleteToken()
+        AuthManager.shared.deleteToken()
         #endif
         
         if AuthManager.shared.hasValidToken {

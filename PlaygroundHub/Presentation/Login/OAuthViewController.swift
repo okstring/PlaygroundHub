@@ -51,8 +51,8 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "repository를 불러오기 위해 로그인이 필요합니다."
-        label.font = .systemFont(ofSize: 14)
+        label.text = "Login required to save star"
+        label.font = .systemFont(ofSize: 15)
         label.textColor = .gray
         return label
     }()
@@ -107,7 +107,7 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         })
         
         descriptionLabel.snp.makeConstraints({
-            $0.top.equalTo(loginButton.snp.bottom).offset(16)
+            $0.top.equalTo(loginButton.snp.bottom).offset(8)
             $0.centerX.equalTo(view.snp.centerX)
         })
         
