@@ -82,3 +82,8 @@ struct Repository: Decodable {
     }
 }
 
+extension Repository {
+    static var EMPTY: Repository {
+        return .init(id: 0, title: "", fullTitle: "", repositoryDescription: "", topics: [String](), starCount: 0, language: "", loginName: "", isStarred: false, profileImageURL: "", forkCount: 0, updatedAt: Date(), htmlURL: "")
+    }
+}

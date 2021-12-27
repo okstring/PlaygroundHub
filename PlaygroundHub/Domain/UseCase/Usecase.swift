@@ -25,14 +25,18 @@ class Usecase: GithubAPI {
     }
     
     func getUserRepository() -> Single<[Repository]> {
-        return githubRepository.fetchRepository(endpoint: .repository)
+        return githubRepository.fetchRepositories(endpoint: .repositories)
     }
     
     func getStarred() -> Single<[Repository]> {
-        return githubRepository.fetchRepository(endpoint: .userStarred)
+        return githubRepository.fetchRepositories(endpoint: .userStarred)
     }
     
     func getSearchRepositoryResult(query: String, page: Int) -> Single<[Repository]> {
         return githubRepository.fetchSearchRespotory(query: query, page: page)
+    }
+    
+    func getRepsitory(name: String, repo: String) -> Single<Repository> {
+        return githubRepository.fetchRepository(endpoint: .repository(name: name, repo: repo))
     }
 }

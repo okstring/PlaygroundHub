@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class DetailViewModel: ViewModel, ViewModelType  {
     let disposeBag = DisposeBag()
@@ -15,22 +16,25 @@ class DetailViewModel: ViewModel, ViewModelType  {
     }
     
     struct Output {
-        let repository: Observable<Repository>
+        let repository: Driver<Repository>
     }
     
-    let repository: Repository
+    let repository: BehaviorSubject<Repository>
     
     init(title: String, usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType, repository: Repository) {
-        self.repository = repository
+        self.repository = BehaviorSubject<Repository>(value: repository)
         super.init(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
     }
     
     
     func transform(input: Input) -> Output {
-        let selectedRepository = repository
+        let usecase = usecase
         
         let repository = input.appearTrigger
-            .map{ _ in selectedRepository }
+            .withLatestFrom(repository) { $1 }
+            .flatMap({ usecase.getRepsitory(name: $0.loginName, repo: $0.title) })
+            .asDriver(onErrorJustReturn: Repository.EMPTY)
+            
         
         return Output(repository: repository)
     }

@@ -12,9 +12,10 @@ enum Endpoint {
     case createAccessToken(clientId: String, clientSecret: String, code: String, redirectURI: String?)
     case searchRepository(query: String, page: Int)
     case user
-    case repository
+    case repository(name: String, repo: String)
+    case repositories
     case userStarred
-    case userRepository(name: String)
+    case userRepositories(name: String)
     case isStarred(name: String, repo: String)
     case putStarred(name: String, repo: String)
     case deleteStarred(name: String, repo: String)
@@ -29,7 +30,7 @@ enum Endpoint {
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .searchRepository, .user, .userRepository, .isStarred, .repository, .userStarred:
+        case .repository, .searchRepository, .user, .userRepositories, .isStarred, .repositories, .userStarred:
             return .get
         case .createAccessToken:
             return .post
@@ -48,11 +49,13 @@ enum Endpoint {
             return "search/repositories"
         case .user:
             return "user"
-        case .repository:
+        case .repositories:
             return "user/repos"
         case .userStarred:
             return "user/starred"
-        case .userRepository(name: let user):
+        case .repository(name: let user, repo: let repository):
+            return "repos/\(user)/\(repository)"
+        case .userRepositories(name: let user):
             return "users/\(user)/repos"
         case .isStarred(name: let user, repo: let repository):
             return "user/starred/\(user)/\(repository)"
@@ -70,7 +73,7 @@ enum Endpoint {
         }
         
         switch self {
-        case .searchRepository, .user, .userRepository, .isStarred, .putStarred, .deleteStarred, .repository, .userStarred:
+        case .searchRepository, .user, .userRepositories, .isStarred, .putStarred, .deleteStarred, .repositories, .userStarred, .repository:
             headers.add(HTTPHeader(name: "Accept", value: "application/vnd.github.v3+json"))
             headers.add(HTTPHeader(name: "User-Agent", value: "request"))
         case .createAccessToken:
@@ -94,12 +97,12 @@ enum Endpoint {
                 "code": code,
                 "redirect_uri": redirectURI ?? ""
             ]
-        case .userRepository, .userStarred:
+        case .userRepositories, .userStarred:
             return [
                 "sort": "updated",
                 "per_page": 100
             ]
-        case .user, .isStarred, .putStarred, .deleteStarred, .repository:
+        case .user, .isStarred, .putStarred, .deleteStarred, .repositories, .repository:
             return [:]
         }
     }

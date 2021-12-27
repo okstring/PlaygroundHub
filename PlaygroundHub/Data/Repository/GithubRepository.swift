@@ -15,9 +15,11 @@ protocol GithubRepository {
     
     func fetchUser() -> Single<User>
     
-    func fetchRepository(endpoint: Endpoint) -> Single<[Repository]>
+    func fetchRepository(endpoint: Endpoint) -> Single<Repository>
     
     func fetchSearchRespotory(query: String, page: Int) -> Single<[Repository]>
+    
+    func fetchRepositories(endpoint: Endpoint) -> Single<[Repository]>
 }
 
 class DefaultGithubRepository: GithubRepository {
@@ -28,7 +30,6 @@ class DefaultGithubRepository: GithubRepository {
         self.networkingProtocol = networkingProtocol
     }
     
-    
     func createAccessToken(endpoint: Endpoint) -> Single<Token> {
         return networkingProtocol.createAccessToken(endpoint: endpoint)
     }
@@ -37,13 +38,18 @@ class DefaultGithubRepository: GithubRepository {
         return networkingProtocol.request(type: User.self, endpoint: .user)
     }
     
+    func fetchRepository(endpoint: Endpoint) -> Single<Repository> {
+        return networkingProtocol.request(type: Repository.self, endpoint: endpoint)
+            
+    }
+    
     func fetchSearchRespotory(query: String, page: Int) -> Single<[Repository]> {
         return networkingProtocol.request(type: SearchRepository.self, endpoint: .searchRepository(query: query, page: page))
             .map({ $0.items })
     }
     
     
-    func fetchRepository(endpoint: Endpoint) -> Single<[Repository]> {
+    func fetchRepositories(endpoint: Endpoint) -> Single<[Repository]> {
         return Single.create() { single in
             
             self.networkingProtocol.request(type: [Repository].self, endpoint: endpoint)

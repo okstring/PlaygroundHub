@@ -36,7 +36,7 @@ class DetailViewController: UIViewController, ViewModelBindableType {
         let output = viewModel.transform(input: input)
         
         output.repository
-            .subscribe(onNext: { [weak self] repository in
+            .drive(onNext: { [weak self] repository in
                 self?.headerView.configure(item: repository)
                 
                 if let url = URL(string: repository.htmlURL) {
