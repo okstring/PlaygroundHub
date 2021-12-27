@@ -33,7 +33,7 @@ class Usecase: GithubAPI {
     }
     
     func getSearchRepositoryResult(query: String, page: Int) -> Single<[Repository]> {
-        return githubRepository.fetchSearchRespotory(query: query, page: page)
+        return githubRepository.fetchSearchRespotory(endpoint: Endpoint.searchRepository(query: query, page: page))
     }
     
     func getRepsitory(name: String, repo: String) -> Single<Repository> {
