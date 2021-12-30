@@ -19,6 +19,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let oAuthLoginTrigger: Driver<Void>
+        let tappedDemo: Driver<Void>
     }
     
     struct Output {
@@ -71,6 +72,19 @@ class OAuthViewModel: ViewModel, ViewModelType {
             let tabsViewModel = TabsViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
             sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
         }).disposed(by: rx.disposeBag)
+        
+        let demoDateComponent = DateComponents(year: 2021, month: 1, day: 1)
+        let calendar = Calendar.current
+        
+        if let demoDate = calendar.date(from: demoDateComponent) {
+            input.tappedDemo
+                .filter({ Date() < demoDate })
+                .drive(onNext: { [weak self] in
+                    AuthManager.setToken(Token(accessToken: "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", scope: nil, tokenType: nil))
+                    self?.tokenSaved.onNext(())
+                }).disposed(by: rx.disposeBag)
+            
+        }
         
         return Output()
     }

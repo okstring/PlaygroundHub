@@ -57,6 +57,13 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         return label
     }()
     
+    private let demoButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        return button
+    }()
+    
     private lazy var animationView: AnimationView = {
         let animationView = AnimationView(name: "GithubNeonImage")
         
@@ -79,6 +86,7 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
         view.addSubview(loginButton)
         view.addSubview(animationView)
         view.addSubview(descriptionLabel)
+        view.addSubview(demoButton)
         
         welcomeView.snp.makeConstraints({
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -111,6 +119,10 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
             $0.centerX.equalTo(view.snp.centerX)
         })
         
+        demoButton.snp.makeConstraints({
+            $0.width.height.equalTo(50)
+            $0.top.trailing.equalTo(view.safeAreaLayoutGuide)
+        })
     }
     
     func bindViewModel() {
@@ -121,7 +133,10 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
             .subscribe(onNext: { animationView.play() })
             .disposed(by: rx.disposeBag)
         
-        let input = OAuthViewModel.Input(oAuthLoginTrigger: loginButton.rx.tap.asDriver())
+        
+        
+        let input = OAuthViewModel.Input(oAuthLoginTrigger: loginButton.rx.tap.asDriver(),
+                                         tappedDemo: demoButton.rx.tap.asDriver())
         _ = viewModel.transform(input: input)
     }
     

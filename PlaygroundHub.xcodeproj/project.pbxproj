@@ -669,6 +669,7 @@
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlaygroundHub/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Find Gitstar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -699,6 +700,7 @@
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PlaygroundHub/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Find Gitstar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
