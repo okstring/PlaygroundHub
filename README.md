@@ -4,7 +4,9 @@
 
 # Find Gitstar(PlaygroundHub)
 
-Github Star search client app using RxSwift and MVVM-C / RxSwift와 MVVM-C를 사용한 Github star search client app
+RxSwift와 MVVM-C를 사용한 Github Repository Star 검색 클라이언트 애플리케이션
+
+Github Repository Star Search Client Application Using RxSwift and MVVM-C
 
 <p align="center">
   <img alt="Find Gitstar play" src="https://user-images.githubusercontent.com/62657991/147475074-b6e69b38-e115-45f7-b0c9-d5c52d324333.gif">
@@ -27,11 +29,6 @@ Github Star search client app using RxSwift and MVVM-C / RxSwift와 MVVM-C를 �
 - [Design](#Design)
 - [License](#License)
 
-
-
-라이브럴
-
-참고
 
 ## Library
 
@@ -62,6 +59,7 @@ Github Star search client app using RxSwift and MVVM-C / RxSwift와 MVVM-C를 �
 
 - Unit Test, UI Test
 - Suggestion
+- CoreML
 - Core Data
 - Widget
 - Fix Bug
@@ -75,7 +73,7 @@ Github Star search client app using RxSwift and MVVM-C / RxSwift와 MVVM-C를 �
 
 
 
-## Design / 디자인
+## Design
 
 - [Searching animation](https://lottiefiles.com/49993-search) - Lottie, Ramesh Chintu
 - [GitHub Dark Mode](https://lottiefiles.com/41357-github-dark-mode) - Lottie, Malan Alankara
