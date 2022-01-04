@@ -43,9 +43,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
                     self?.code.onNext(code)
                 }
             })
-            if #available(iOS 13.0, *) {
-                self?.session?.presentationContextProvider = self
-            }
+            self?.session?.presentationContextProvider = self
             self?.session?.prefersEphemeralWebBrowserSession = true
             #if DEBUG
             self?.session?.prefersEphemeralWebBrowserSession = true
@@ -94,7 +92,6 @@ class OAuthViewModel: ViewModel, ViewModelType {
 }
 
 extension OAuthViewModel: ASWebAuthenticationPresentationContextProviding {
-    @available(iOS 13.0, *)
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
         return window ?? ASPresentationAnchor()
