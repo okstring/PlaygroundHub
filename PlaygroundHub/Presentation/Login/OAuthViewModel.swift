@@ -47,6 +47,9 @@ class OAuthViewModel: ViewModel, ViewModelType {
                 self?.session?.presentationContextProvider = self
             }
             self?.session?.prefersEphemeralWebBrowserSession = true
+            #if DEBUG
+            self?.session?.prefersEphemeralWebBrowserSession = true
+            #endif
             self?.session?.start()
         }).disposed(by: disposeBag)
         
