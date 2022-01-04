@@ -34,6 +34,12 @@ extension Scene {
             var tabsVC = TabsViewController()
             tabsVC.bind(viewModel: viewModel)
             
+            let transition = CATransition()
+            transition.duration = 1.0
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.reveal
+            tabsVC.view.layer.add(transition, forKey: nil)
+            
             var trandVC = TrandViewController()
             let trandNav = UINavigationController(rootViewController: trandVC)
             let trandViewModel = TrandViewModel(title: "Find Star", usecase: viewModel.usecase, sceneCoordinator: viewModel.sceneCoordinator)
