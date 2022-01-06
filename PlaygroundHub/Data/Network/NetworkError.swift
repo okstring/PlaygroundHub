@@ -16,6 +16,8 @@ enum NetworkError: Error {
     case unknown
     case login
     case imageURL
+    case invalidRequest
+    case saveFailed
 }
 
 extension NetworkError: CustomStringConvertible {
@@ -37,6 +39,10 @@ extension NetworkError: CustomStringConvertible {
             return "login이 필요합니다"
         case .imageURL:
             return "Image URL이 올바르지 않습니다"
+        case .invalidRequest:
+            return "Request 형식이 맞지 않습니다"
+        case .saveFailed:
+            return "image를 저장하는데 실패했습니다"
         }
     }
 }
