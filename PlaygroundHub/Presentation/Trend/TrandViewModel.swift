@@ -26,6 +26,19 @@ class TrandViewModel: ViewModel, ViewModelType {
     }
     
     private var page = 1
+    let detailAction: Action<Repository, Void>
+    
+    override init(title: String = "", usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
+        
+        self.detailAction = Action<Repository, Void> { repository in
+            let detailViewModel = DetailViewModel(title: "Detail", usecase: usecase, sceneCoordinator: sceneCoordinator, repository: repository)
+            let detailScene = Scene.detail(detailViewModel)
+            
+            return sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().mapToVoid()
+        }
+        
+        super.init(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
+    }
     
     func transform(input: Input) -> Output {
         let title = title.asDriver(onErrorJustReturn: "")
@@ -43,7 +56,7 @@ class TrandViewModel: ViewModel, ViewModelType {
             
         input.query
             .merge(with: input.pullRefresh)
-            .do(onNext: { _ in self.page = 1 })
+            .do(onNext: { [unowned self] _ in self.page = 1 })
             .flatMap({ self.usecase.getSearchRepositoryResult(query: $0, page: self.page) })
             .do(onNext: { _ in refresh.accept(false) })
             .asDriver(onErrorJustReturn: [Repository]())
@@ -51,7 +64,7 @@ class TrandViewModel: ViewModel, ViewModelType {
             .disposed(by: disposeBag)
         
         input.nextPage
-            .do(onNext: { _ in self.page += 1 })
+            .do(onNext: { [unowned self] _ in self.page += 1 })
             .flatMap({ self.usecase.getSearchRepositoryResult(query: $0, page: self.page) })
             .map({ repository.value + $0 })
             .do(onNext: { _ in refresh.accept(false) })
@@ -65,13 +78,5 @@ class TrandViewModel: ViewModel, ViewModelType {
         return Output(title: title, repository: repository, isRefresh: isRefresh)
     }
     
-    lazy var detailAction: Action<Repository, Void> = {
-        return Action { repository in
-            
-            let detailViewModel = DetailViewModel(title: "Detail", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator, repository: repository)
-            let detailScene = Scene.detail(detailViewModel)
-            
-            return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().mapToVoid()
-        }
-    }()
+    
 }

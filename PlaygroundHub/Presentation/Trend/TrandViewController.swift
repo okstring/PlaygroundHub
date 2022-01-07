@@ -96,8 +96,6 @@ class TrandViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        let animationView = animationView
-        
         let query = searchController.searchBar.rx.searchButtonClicked
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
             .distinctUntilChanged()
@@ -108,7 +106,7 @@ class TrandViewController: UIViewController, ViewModelBindableType {
             .delay(.milliseconds(500), scheduler: MainScheduler.instance)
         
         let nextPage = repositoryTableView.rx.reachedBottom(offset: 250)
-            .withLatestFrom(self.searchController.searchBar.rx.text.orEmpty) { $1 }
+            .withLatestFrom(searchController.searchBar.rx.text.orEmpty) { $1 }
         
         let input = TrandViewModel.Input(query: query, pullRefresh: pullRefresh, nextPage: nextPage)
         
@@ -116,8 +114,8 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         
         rx.viewWillAppear
             .mapToVoid()
-            .subscribe(onNext: {
-                animationView.play()
+            .subscribe(onNext: { [weak self] in
+                self?.animationView.play()
             })
             .disposed(by: rx.disposeBag)
         
@@ -138,13 +136,13 @@ class TrandViewController: UIViewController, ViewModelBindableType {
             .disposed(by: rx.disposeBag)
         
         output.isRefresh
-            .drive(onNext: { isRefresh in
+            .drive(onNext: { [weak self] isRefresh in
                 if isRefresh {
-                    self.indicator.startAnimating()
+                    self?.indicator.startAnimating()
                 } else {
-                    self.indicator.stopAnimating()
-                    self.refreshControl.endRefreshing()
-                    self.repositoryTableView.setContentOffset(.zero, animated: true)
+                    self?.indicator.stopAnimating()
+                    self?.refreshControl.endRefreshing()
+                    self?.repositoryTableView.setContentOffset(.zero, animated: true)
                 }
                 
             }).disposed(by: rx.disposeBag)

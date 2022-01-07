@@ -126,11 +126,11 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        let animationView = animationView
-        
         rx.viewWillAppear
             .mapToVoid()
-            .subscribe(onNext: { animationView.play() })
+            .subscribe(onNext: { [weak self] in
+                self?.animationView.play()
+            })
             .disposed(by: rx.disposeBag)
         
         

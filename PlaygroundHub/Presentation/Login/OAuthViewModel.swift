@@ -32,9 +32,6 @@ class OAuthViewModel: ViewModel, ViewModelType {
     let tokenSaved = PublishSubject<Void>()
     
     func transform(input: Input) -> Output {
-        let usecase = usecase
-        let sceneCoordinator = sceneCoordinator
-        
         input.oAuthLoginTrigger.drive(onNext: { [weak self] in
             
             self?.session = ASWebAuthenticationSession(url: loginURL, callbackURLScheme: callbackURLScheme, completionHandler: { callbackURL, error in
@@ -46,16 +43,17 @@ class OAuthViewModel: ViewModel, ViewModelType {
             self?.session?.presentationContextProvider = self
             self?.session?.prefersEphemeralWebBrowserSession = true
             #if DEBUG
-            self?.session?.prefersEphemeralWebBrowserSession = true
+            self?.session?.prefersEphemeralWebBrowserSession = false
             #endif
             self?.session?.start()
         }).disposed(by: disposeBag)
         
-        let tokenRequest = code.flatMapLatest { (code) -> Observable<RxSwift.Event<Token>> in
+        let tokenRequest = code.flatMapLatest { [unowned self] (code) -> Observable<RxSwift.Event<Token>> in
+            
             let clientId = Keys.github.appID
             let clientSecret = Keys.github.apiKey
             
-            return usecase.createAccessToken(clientId: clientId,
+            return self.usecase.createAccessToken(clientId: clientId,
                                                   clientSecret: clientSecret,
                                                   code: code,
                                                   redirectURI: nil)
@@ -69,9 +67,9 @@ class OAuthViewModel: ViewModel, ViewModelType {
         }).disposed(by: disposeBag)
         
         
-        tokenSaved.subscribe(onNext: {
-            let tabsViewModel = TabsViewModel(usecase: usecase, sceneCoordinator: sceneCoordinator)
-            sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
+        tokenSaved.subscribe(onNext: { 
+            let tabsViewModel = TabsViewModel(usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
+            self.sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
         }).disposed(by: rx.disposeBag)
         
         let demoDateComponent = DateComponents(year: 2021, month: 1, day: 1)

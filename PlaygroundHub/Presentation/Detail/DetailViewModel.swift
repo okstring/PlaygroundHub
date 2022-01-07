@@ -28,11 +28,10 @@ class DetailViewModel: ViewModel, ViewModelType  {
     
     
     func transform(input: Input) -> Output {
-        let usecase = usecase
         
         let repository = input.appearTrigger
             .withLatestFrom(repository) { $1 }
-            .flatMap({ usecase.getRepsitory(name: $0.loginName, repo: $0.title) })
+            .flatMap({ self.usecase.getRepsitory(name: $0.loginName, repo: $0.title) })
             .asDriver(onErrorJustReturn: Repository.EMPTY)
             
         

@@ -25,12 +25,9 @@ class TabsViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let sceneCoordinator = sceneCoordinator
-        
         selectedIndex
-            .subscribe(onNext: {
-                sceneCoordinator.transition()
-            }).disposed(by: rx.disposeBag)
+            .subscribe(onNext: { self.sceneCoordinator.transition() })
+            .disposed(by: rx.disposeBag)
         
         return Output()
     }

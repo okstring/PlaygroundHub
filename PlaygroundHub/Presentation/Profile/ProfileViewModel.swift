@@ -24,8 +24,29 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let isRefresh: Driver<Bool>
     }
     
+    let oauthAction: Action<Void, Void>
+    let detailAction: Action<Repository, Void>
+    
+    override init(title: String = "", usecase: GithubAPI, sceneCoordinator: SceneCoordinatorType) {
+        
+        self.oauthAction = Action<Void, Void> {
+            let oauthViewModel = OAuthViewModel(title: "", usecase: usecase, sceneCoordinator: sceneCoordinator)
+            let oauthScene = Scene.oauth(oauthViewModel)
+            
+            return sceneCoordinator.transition(to: oauthScene, using: .root, animated: false).asObservable().mapToVoid()
+        }
+        
+        self.detailAction = Action<Repository, Void> { repository in
+            let detailViewModel = DetailViewModel(title: "Detail", usecase: usecase, sceneCoordinator: sceneCoordinator, repository: repository)
+            let detailScene = Scene.detail(detailViewModel)
+            
+            return sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().mapToVoid()
+        }
+        
+        super.init(title: title, usecase: usecase, sceneCoordinator: sceneCoordinator)
+    }
+    
     func transform(input: Input) -> Output {
-        let usecase = usecase
         let refresh = PublishSubject<Bool>()
         
         let title = title.asDriver(onErrorJustReturn: "")
@@ -33,14 +54,14 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let userRepository = Observable
             .combineLatest(input.repositoryRefresh, input.appearTrigger) { appear, _ in appear }
             .do(onNext: { refresh.onNext(true) })
-            .flatMap{ usecase.getUserRepository() }
+            .flatMap({ self.usecase.getUserRepository() })
             .do(onNext: { _ in refresh.onNext(false) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
         let starredRepository = Observable
             .combineLatest(input.starredRefresh, input.appearTrigger) { appear, _ in appear }
             .do(onNext: { refresh.onNext(true) })
-            .flatMap({ usecase.getStarred() })
+            .flatMap({ self.usecase.getStarred() })
             .do(onNext: { _ in refresh.onNext(false) })
             .asDriver(onErrorJustReturn: [Repository]())
                 
@@ -54,22 +75,5 @@ class ProfileViewModel: ViewModel, ViewModelType {
                       isRefresh: isRefresh)
     }
     
-    lazy var oauthAction: Action<Void, Void> = {
-        return Action {
-            let oauthViewModel = OAuthViewModel(title: "", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
-            let oauthScene = Scene.oauth(oauthViewModel)
-            
-            return self.sceneCoordinator.transition(to: oauthScene, using: .root, animated: false).asObservable().mapToVoid()
-        }
-    }()
     
-    lazy var detailAction: Action<Repository, Void> = {
-        return Action { repository in
-            
-            let detailViewModel = DetailViewModel(title: "Detail", usecase: self.usecase, sceneCoordinator: self.sceneCoordinator, repository: repository)
-            let detailScene = Scene.detail(detailViewModel)
-            
-            return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().mapToVoid()
-        }
-    }()
 }
