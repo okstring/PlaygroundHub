@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class DetailViewController: UIViewController, ViewModelBindableType {
+class DetailViewController: AnimationBaseViewController, ViewModelBindableType {
     var viewModel: DetailViewModel!
     
     private let headerView: DetailHeaderView = {
@@ -37,6 +37,7 @@ class DetailViewController: UIViewController, ViewModelBindableType {
         
         output.repository
             .drive(onNext: { [weak self] repository in
+                self?.headerView.changeStarred = self?.starredToast.onNext
                 self?.headerView.configure(item: repository)
                 
                 if let url = URL(string: repository.htmlURL) {

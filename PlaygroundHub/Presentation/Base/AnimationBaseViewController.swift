@@ -20,14 +20,16 @@ class AnimationBaseViewController: UIViewController {
     
     func bind() {
         starredToast
-            .do(onNext: { [weak self] _ in self?.impactFeedbackGenerator.impactOccurred() })
-            .subscribe(onNext: { isStarred in
+            .do(onNext: { [weak self] _ in
+                self?.impactFeedbackGenerator.impactOccurred()
+            })
+            .subscribe(onNext: { [weak self] isStarred in
                 let vc = UIHostingController(rootView: StarredAnimationView(isStarred: isStarred))
                 guard let alertToast = vc.view else {
                     return
                 }
-                alertToast.center = self.view.center
-                self.view.addSubview(alertToast)
+                alertToast.center = self?.view.center ?? .zero
+                self?.view.addSubview(alertToast)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     UIView.animate(withDuration: 0.3) {
