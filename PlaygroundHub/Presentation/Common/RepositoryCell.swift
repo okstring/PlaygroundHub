@@ -13,6 +13,8 @@ import NSObject_Rx
 class RepositoryCell: UITableViewCell {
     private var disposeBag = DisposeBag()
     
+    var changeStarred: ((Bool) -> Void)?
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -204,6 +206,7 @@ class RepositoryCell: UITableViewCell {
             }.filter{ $0 }
             .withLatestFrom(starred)
             .map({ !$0 })
+            .do(onNext: changeStarred)
             .share()
         
         tabResult

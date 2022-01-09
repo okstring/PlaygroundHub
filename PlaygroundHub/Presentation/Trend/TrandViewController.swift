@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
-class TrandViewController: UIViewController, ViewModelBindableType {
+class TrandViewController: AnimationBaseViewController, ViewModelBindableType {
     var viewModel: TrandViewModel!
     
     private lazy var searchController: UISearchController = {
@@ -150,10 +150,12 @@ class TrandViewController: UIViewController, ViewModelBindableType {
         repositoryTableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.className)
         
         output.repository
-            .bind(to: repositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+            .bind(to: repositoryTableView.rx.items) { [weak self] (tableView, indexPath, repository) -> UITableViewCell in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
+                
+                cell.changeStarred = self?.starredToast.onNext
                 cell.configure(item: repository)
                 
                 return cell

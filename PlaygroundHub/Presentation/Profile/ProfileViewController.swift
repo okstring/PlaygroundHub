@@ -24,7 +24,7 @@ enum SegmentedControlIndex: Int, CustomStringConvertible {
     }
 }
 
-class ProfileViewController: UIViewController, ViewModelBindableType {
+class ProfileViewController: AnimationBaseViewController, ViewModelBindableType {
     var viewModel: ProfileViewModel!
     
     private lazy var indicator: UIActivityIndicatorView = {
@@ -187,24 +187,25 @@ class ProfileViewController: UIViewController, ViewModelBindableType {
             }).disposed(by: rx.disposeBag)
         
         output.userRepository
-            .drive(userRepositoryTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+            .drive(userRepositoryTableView.rx.items) { [weak self] (tableView, indexPath, repository) -> UITableViewCell in
                 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
-                
+                cell.changeStarred = self?.starredToast.onNext
                 cell.configure(item: repository)
                 
                 return cell
             }.disposed(by: rx.disposeBag)
         
         output.starredRespository
-            .drive(starredTableView.rx.items) { (tableView, indexPath, repository) -> UITableViewCell in
+            .drive(starredTableView.rx.items) { [weak self] (tableView, indexPath, repository) -> UITableViewCell in
                 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.className) as? RepositoryCell else {
                     return UITableViewCell()
                 }
                 
+                cell.changeStarred = self?.starredToast.onNext
                 cell.configure(item: repository)
                 
                 return cell

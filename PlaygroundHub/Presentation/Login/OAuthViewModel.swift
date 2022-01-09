@@ -67,7 +67,7 @@ class OAuthViewModel: ViewModel, ViewModelType {
         }).disposed(by: disposeBag)
         
         
-        tokenSaved.subscribe(onNext: { 
+        tokenSaved.subscribe(onNext: {
             let tabsViewModel = TabsViewModel(usecase: self.usecase, sceneCoordinator: self.sceneCoordinator)
             self.sceneCoordinator.transition(to: .tabs(tabsViewModel), using: .root, animated: true)
         }).disposed(by: rx.disposeBag)
