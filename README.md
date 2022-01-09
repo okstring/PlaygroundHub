@@ -9,8 +9,9 @@ RxSwift와 MVVM-C를 사용한 Github Repository Star 검색 클라이언트 애
 Github Repository Star Search Client Application Using RxSwift and MVVM-C
 
 <p align="center">
-  <img alt="Find Gitstar play" src="https://user-images.githubusercontent.com/62657991/147475074-b6e69b38-e115-45f7-b0c9-d5c52d324333.gif">
+  <img alt="Find Gitstar play" src="https://user-images.githubusercontent.com/62657991/148689986-1b5d5d67-d698-46ee-8aa0-26e2b022a578.gif">
 </p>
+
 
 <p align="center">
   <a href="https://apps.apple.com/us/app/find-gitstar/id1602224951">
@@ -46,11 +47,12 @@ Github Repository Star Search Client Application Using RxSwift and MVVM-C
 
 ## Technologies
 
-- Without Storyboard - Easy to refactor, Reusability, 
+- Without Storyboard - Easy to refactor, Reusability
 - KeyChain - Persisting Sensitive Data(token)
 - RxSwift - To pass an asynchronously generated value as a return value
 - MVVM-C(Clean Architecture) - Get used of the different layers and how to keep the responsibilities well isolated and easy to test.
 - Lottie - Lightweight, scalable animations
+- SwiftUI - Animating View
 - CustomSegmentedControl
 
 
@@ -70,6 +72,7 @@ Github Repository Star Search Client Application Using RxSwift and MVVM-C
 
 - [CustomSegmentedControl](https://github.com/Code-With-Coffee/CustomSegmentedControl)
 - [MVVM-C](https://www.youtube.com/playlist?list=PLziSvys01Oek7ANk4rzOYobnUU_FTu5ns)
+- [AlertToast](https://github.com/elai950/AlertToast)
 
 
 
@@ -77,6 +80,7 @@ Github Repository Star Search Client Application Using RxSwift and MVVM-C
 
 - [Searching animation](https://lottiefiles.com/49993-search) - Lottie, Ramesh Chintu
 - [GitHub Dark Mode](https://lottiefiles.com/41357-github-dark-mode) - Lottie, Malan Alankara
+- [Logo Objet](https://www.flaticon.com/premium-icon/new-moon_686751?term=circle&page=1&position=5&page=1&position=5&related_id=686751) - Flaticon, Freepik
 
 
 
