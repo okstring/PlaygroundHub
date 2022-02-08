@@ -31,8 +31,6 @@ class TabsViewController: UITabBarController, ViewModelBindableType {
     func bindViewModel() {
         let input = TabsViewModel.Input(trigger: rx.viewWillAppear.mapToVoid().asObservable())
         let _ = viewModel.transform(input: input)
-        
-        
     }
 }
 

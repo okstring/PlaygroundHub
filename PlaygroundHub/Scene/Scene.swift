@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SwiftUI
 
 enum Scene {
     case oauth(OAuthViewModel)
     case tabs(TabsViewModel)
     case profile(ProfileViewModel)
     case detail(DetailViewModel)
+    case setting(SettingViewModel)
 }
 
 extension Scene {
@@ -52,7 +54,11 @@ extension Scene {
             profileVC.bind(viewModel: profileViewModel)
             profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), selectedImage: UIImage(systemName: "person.fill"))
             
-            tabsVC.viewControllers = [trandNav, profileNav]
+            let settingViewModel = SettingViewModel(usecase: viewModel.usecase, sceneCoordinator: viewModel.sceneCoordinator)
+            let settingVC = UIHostingController(rootView: SettingView(viewModel: settingViewModel))
+            settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gearshape.fill"), selectedImage: UIImage(systemName: "gearshape.fill"))
+            
+            tabsVC.viewControllers = [trandNav, profileNav, settingVC]
             
             return tabsVC
         case .oauth(let viewModel):
@@ -70,6 +76,10 @@ extension Scene {
             detailVC.bind(viewModel: viewModel)
             
             return detailVC
+        case .setting(let viewModel):
+            let settingVC = UIHostingController(rootView: SettingView(viewModel: viewModel))
+            
+            return settingVC
         }
     }
     

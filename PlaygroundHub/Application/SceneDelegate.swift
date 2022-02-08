@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let sceneCoordinator = SceneCoordinator(window: window!)
         
         #if DEBUG
-        AuthManager.shared.deleteToken()
+//        AuthManager.shared.deleteToken()
         #endif
         
         let usecase = Usecase()

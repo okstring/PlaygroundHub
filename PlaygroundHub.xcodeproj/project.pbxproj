@@ -51,6 +51,8 @@
 		22F11C03271D782800E556EB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11C02271D782800E556EB /* Token.swift */; };
 		22F11C05271D792100E556EB /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11C04271D792100E556EB /* GithubAPI.swift */; };
 		22F11C08271D7F6200E556EB /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F11C07271D7F6200E556EB /* AuthManager.swift */; };
+		FC383CDF27B20D6C00A8AD46 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC383CDE27B20D6C00A8AD46 /* SettingView.swift */; };
+		FC383CE127B20F7C00A8AD46 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC383CE027B20F7C00A8AD46 /* SettingViewModel.swift */; };
 		FC44A1DA2775D0860070C8CE /* Int+abbreviateStarCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */; };
 		FC5F07142776295800EA1160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07132776295800EA1160 /* DetailViewController.swift */; };
 		FC5F07162776296500EA1160 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07152776296500EA1160 /* DetailViewModel.swift */; };
@@ -111,6 +113,8 @@
 		3853DEEA1A5379DD36B3AEEA /* Pods-PlaygroundHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundHub.release.xcconfig"; path = "Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub.release.xcconfig"; sourceTree = "<group>"; };
 		3ED68ADD16E1859F2E4E3483 /* Pods-PlaygroundHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundHub.debug.xcconfig"; path = "Target Support Files/Pods-PlaygroundHub/Pods-PlaygroundHub.debug.xcconfig"; sourceTree = "<group>"; };
 		57AD30471986960E71346C7C /* Pods_PlaygroundHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC383CDE27B20D6C00A8AD46 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		FC383CE027B20F7C00A8AD46 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+abbreviateStarCount.swift"; sourceTree = "<group>"; };
 		FC5F07132776295800EA1160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FC5F07152776296500EA1160 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				22005DE6271EF5A10058609C /* Trend */,
 				22C796E927206F3800576501 /* Profile */,
 				FC5F07122776293A00EA1160 /* Detail */,
+				FC383CDD27B20D5400A8AD46 /* Setting */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -362,6 +367,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC383CDD27B20D5400A8AD46 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FC383CDE27B20D6C00A8AD46 /* SettingView.swift */,
+				FC383CE027B20F7C00A8AD46 /* SettingViewModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		FC5F07122776293A00EA1160 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +524,7 @@
 				22F11C05271D792100E556EB /* GithubAPI.swift in Sources */,
 				22AA7A9F2725552D00FDA6C3 /* StarredLoader.swift in Sources */,
 				FCD8FB34278B245800772F2A /* StarredAnimationView.swift in Sources */,
+				FC383CE127B20F7C00A8AD46 /* SettingViewModel.swift in Sources */,
 				22F11BF9271D179D00E556EB /* SceneDelegate.swift in Sources */,
 				22C796EF27206F7D00576501 /* ProfileViewModel.swift in Sources */,
 				22DF7EEF2738AFC8001F0CD1 /* GithubRepository.swift in Sources */,
@@ -550,6 +565,7 @@
 				22005DEA271EF6B40058609C /* TrandViewModel.swift in Sources */,
 				FC44A1DA2775D0860070C8CE /* Int+abbreviateStarCount.swift in Sources */,
 				22005DD7271D8E420058609C /* NetworkError.swift in Sources */,
+				FC383CDF27B20D6C00A8AD46 /* SettingView.swift in Sources */,
 				2276AE7E273163770082EA73 /* UIImage.swift in Sources */,
 				22005DCE271D880A0058609C /* SceneCoordinatorType.swift in Sources */,
 				22F11C01271D740C00E556EB /* URL.swift in Sources */,
@@ -696,7 +712,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -714,6 +731,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.PlaygroundHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development kr.maylily.PlaygroundHub";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -727,7 +745,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -745,6 +764,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.PlaygroundHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore kr.maylily.PlaygroundHub";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
