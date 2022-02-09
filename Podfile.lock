@@ -3,6 +3,7 @@ PODS:
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - Alamofire (5.4.3)
+  - Carte (2.2.1)
   - KeychainAccess (4.2.2)
   - lottie-ios (3.2.3)
   - "NSObject+Rx (5.2.2)":
@@ -29,6 +30,7 @@ PODS:
 DEPENDENCIES:
   - Action
   - Alamofire
+  - Carte
   - KeychainAccess
   - lottie-ios
   - "NSObject+Rx"
@@ -42,6 +44,7 @@ SPEC REPOS:
   trunk:
     - Action
     - Alamofire
+    - Carte
     - KeychainAccess
     - lottie-ios
     - "NSObject+Rx"
@@ -55,6 +58,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Carte: 6bcff4eaa894ff5b979d646de833fec96e04a38c
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
@@ -65,6 +69,6 @@ SPEC CHECKSUMS:
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 8a362c9bbef2ec9fcd3fb12030fc5365321b0d82
+PODFILE CHECKSUM: ae99730440ae8f24557e03c6af3f8954089bec1e
 
 COCOAPODS: 1.11.2
