@@ -9,8 +9,9 @@ RxSwift와 MVVM-C를 사용한 Github Repository Star 검색 클라이언트 애
 Github Repository Star Search Client Application Using RxSwift and MVVM-C
 
 <p align="center">
-  <img alt="Find Gitstar play" src="https://user-images.githubusercontent.com/62657991/148689986-1b5d5d67-d698-46ee-8aa0-26e2b022a578.gif">
+  <img alt="Find Gitstar play" src="https://user-images.githubusercontent.com/62657991/154052755-aebab35c-3632-4f56-8fd5-4a20cc632f45.gif">
 </p>
+
 
 
 <p align="center">
@@ -52,7 +53,7 @@ Github Repository Star Search Client Application Using RxSwift and MVVM-C
 - RxSwift - To pass an asynchronously generated value as a return value
 - MVVM-C(Clean Architecture) - Get used of the different layers and how to keep the responsibilities well isolated and easy to test.
 - Lottie - Lightweight, scalable animations
-- SwiftUI - Animating View
+- SwiftUI - Animating View, Setting
 - CustomSegmentedControl
 
 
