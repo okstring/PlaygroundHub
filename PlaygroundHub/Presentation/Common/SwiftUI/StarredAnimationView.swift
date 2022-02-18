@@ -10,14 +10,18 @@ import SwiftUI
 struct StarredAnimationView: View {
     var isStarred: Bool
     
+    var starredText: some View {
+        Text(isStarred ? "Starred" : "Unstarred")
+            .font(Font.body.bold())
+            .multilineTextAlignment(.center)
+    }
+    
     var body: some View {
         VStack{
             Spacer()
             VStack(spacing: 24){
                 AnimatedCheckmarkView(color: isStarred ? .yellow : .black)
-                Text(isStarred ? "Starred" : "Unstarred")
-                    .font(Font.body.bold())
-                    .multilineTextAlignment(.center)
+                starredText
             }
             .frame(width: 120, height: 120, alignment: .center)
             .padding()
@@ -30,6 +34,6 @@ struct StarredAnimationView: View {
 
 struct StarredAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        StarredAnimationView(isStarred: true)
+        StarredAnimationView(isStarred: false)
     }
 }

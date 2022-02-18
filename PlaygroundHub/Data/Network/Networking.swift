@@ -39,7 +39,6 @@ final class Networking: NetworkingProtocol {
                     guard let statusCode = dataResponse.response?.statusCode else {
                         return single(.failure(NetworkError.internet))
                     }
-                    print(String(data: dataResponse.data!, encoding: .utf8))
                     switch statusCode {
                     case 200..<300:
                         guard let result = dataResponse.value else {
