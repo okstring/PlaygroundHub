@@ -34,12 +34,13 @@ final class ImageLoader {
                 case 200:
                     guard let data = response.data,
                           let responseHeader = response.response?.headers else {
-                        return single(.failure(NetworkError.noResult))
-                    }
-                    guard let Etag = responseHeader.value(for: "ETag"),
+                              return single(.failure(NetworkError.noResult))
+                          }
+                    guard let Etag = responseHeader.value(for: "Etag"),
                           saveImageData(of: data, fileName: fileName) else {
-                        return single(.failure(NetworkError.saveFailed))
-                    }
+                              let image = UIImage(data: data)
+                              return single(.success(image))
+                          }
                     
                     saveEtag(of: fileName, Etag: Etag)
                     
@@ -63,7 +64,7 @@ final class ImageLoader {
             }
             return Disposables.create()
         }.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-        .asDriver(onErrorJustReturn: UIImage())
+            .asDriver(onErrorJustReturn: UIImage())
     }
 }
 
