@@ -54,6 +54,7 @@
 		FC383CDF27B20D6C00A8AD46 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC383CDE27B20D6C00A8AD46 /* SettingView.swift */; };
 		FC383CE127B20F7C00A8AD46 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC383CE027B20F7C00A8AD46 /* SettingViewModel.swift */; };
 		FC44A1DA2775D0860070C8CE /* Int+abbreviateStarCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */; };
+		FC4FC1D827C523E800A874D2 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4FC1D727C523E800A874D2 /* UIView+Shadow.swift */; };
 		FC5F07142776295800EA1160 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07132776295800EA1160 /* DetailViewController.swift */; };
 		FC5F07162776296500EA1160 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F07152776296500EA1160 /* DetailViewModel.swift */; };
 		FC9DA96C2776FE29008B23FC /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DA96B2776FE29008B23FC /* DetailHeaderView.swift */; };
@@ -116,6 +117,7 @@
 		FC383CDE27B20D6C00A8AD46 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		FC383CE027B20F7C00A8AD46 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+abbreviateStarCount.swift"; sourceTree = "<group>"; };
+		FC4FC1D727C523E800A874D2 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		FC5F07132776295800EA1160 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FC5F07152776296500EA1160 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		FC9DA96B2776FE29008B23FC /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				2276AE7D273163770082EA73 /* UIImage.swift */,
 				22F11C00271D740C00E556EB /* URL.swift */,
 				22AA7A982725543000FDA6C3 /* Int+NumberFormatter.swift */,
+				FC4FC1D727C523E800A874D2 /* UIView+Shadow.swift */,
 				2227A45D2720CE290057387E /* ObservableType.swift */,
 				FC44A1D92775D0860070C8CE /* Int+abbreviateStarCount.swift */,
 				223F55E12729A21100B8BCE3 /* UIColor.swift */,
@@ -569,6 +572,7 @@
 				22C796EF27206F7D00576501 /* ProfileViewModel.swift in Sources */,
 				22DF7EEF2738AFC8001F0CD1 /* GithubRepository.swift in Sources */,
 				22005DD3271D8CF10058609C /* Networking.swift in Sources */,
+				FC4FC1D827C523E800A874D2 /* UIView+Shadow.swift in Sources */,
 				22005DEC271EF6CD0058609C /* TrandViewController.swift in Sources */,
 				22AA7A992725543000FDA6C3 /* Int+NumberFormatter.swift in Sources */,
 				22005DDB271D9D310058609C /* CodableManager.swift in Sources */,

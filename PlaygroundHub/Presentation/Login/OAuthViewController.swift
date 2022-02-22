@@ -35,11 +35,12 @@ class OAuthViewController: UIViewController, ViewModelBindableType {
     
     private let welcomeView: UIStackView = {
         let firstLabel = UILabel()
-        firstLabel.font = .systemFont(ofSize: 32, weight: .bold)
-        firstLabel.text = "Hello,"
-        
         let secondLabel = UILabel()
+        
+        firstLabel.font = .systemFont(ofSize: 32, weight: .bold)
         secondLabel.font = .systemFont(ofSize: 32, weight: .bold)
+        
+        firstLabel.text = "Hello,"
         secondLabel.text = "Wellcome Back!"
         
         let stackView = UIStackView(arrangedSubviews: [firstLabel, secondLabel])
